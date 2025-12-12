@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Fitness & Health Blog</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Arial, sans-serif;
+      margin: 0;
+      background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), 
+                  url('C:\\Users\\LENOVO\\Downloads\\pexels-victorfreitas-841130.jpg');
+      background-size: cover;
+      background-attachment: fixed;
+      background-position: center;
+      line-height: 1.6;
+    }
+
+    header {
+      background: linear-gradient(135deg, #008080, #006666);
+      color: white;
+      padding: 25px;
+      text-align: center;
+      box-shadow: 0 2px 15px rgba(0,0,0,0.1);
+    }
+
+    nav {
+      margin: 20px 0;
+    }
+
+    nav a {
+      color: white;
+      margin: 0 20px;
+      text-decoration: none;
+      font-weight: bold;
+      padding: 8px 15px;
+      border-radius: 20px;
+      transition: all 0.3s ease;
+    }
+
+    nav a:hover {
+      background: rgba(255,255,255,0.2);
+      color: #ffcc00;
+      transform: translateY(-2px);
+    }
+
+    section {
+      padding: 40px 20px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .welcome-text {
+      width: 100%;
+      max-width: none;
+      margin: 0 auto 35px;
+      padding: 45px 50px;
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.99), rgba(248, 252, 255, 0.99));
+      border-radius: 0 80px 80px 0;
+      box-shadow: 0 15px 45px rgba(0,0,0,0.25);
+      overflow: hidden;
+      backdrop-filter: blur(15px);
+      border: 2px solid rgba(0, 128, 128, 0.3);
+      transition: all 0.3s ease;
+      position: relative;
+    }
+
+    .welcome-text::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 5px;
+      background: linear-gradient(90deg, #008080, #00a6a6, #008080);
+      border-radius: 80px 80px 0 0;
+    }
+
+    .welcome-text:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 20px 55px rgba(0,128,128,0.3);
+      border-color: rgba(0, 128, 128, 0.5);
+    }
+
+    h1 {
+      font-size: 2.5em;
+      margin-bottom: 20px;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+    }
+
+    h2 {
+      color: #008080;
+      font-size: 2em;
+      margin: 0 0 15px 0;
+      font-weight: 800;
+    }
+
+    h2::after {
+      content: '';
+      display: block;
+      width: 80px;
+      height: 4px;
+      background: linear-gradient(90deg, #008080, #00a6a6);
+      border-radius: 2px;
+      margin-top: 10px;
+    }
+
+    p {
+      color: #333;
+      font-size: 1.05em;
+      margin-bottom: 15px;
+      line-height: 1.8;
+      font-weight: 500;
+    }
+
+    .featured-image {
+      display: none;
+    }
+
+    /* Features Section */
+    .features-section {
+      margin: 50px 0;
+    }
+
+    .features-title {
+      text-align: center;
+      color: white;
+      font-size: 2rem;
+      margin-bottom: 40px;
+      display: inline-block;
+      padding: 16px 40px;
+      background: linear-gradient(135deg, rgba(0,128,128,0.5), rgba(0,102,102,0.4));
+      border-radius: 15px;
+      backdrop-filter: blur(12px);
+      border: 2px solid rgba(255,255,255,0.3);
+      width: 100%;
+      box-sizing: border-box;
+      text-shadow: 2px 2px 8px rgba(0,0,0,0.6);
+      font-weight: 800;
+      letter-spacing: 1.2px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 28px;
+      margin-top: 35px;
+    }
+
+    .feature-card {
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.99), rgba(248, 252, 255, 0.99));
+      padding: 35px;
+      border-radius: 18px;
+      box-shadow: 0 12px 40px rgba(0,0,0,0.2);
+      text-align: center;
+      transition: all 0.3s ease;
+      backdrop-filter: blur(12px);
+      border: 2px solid rgba(0, 128, 128, 0.2);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .feature-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, #008080, #00a6a6, #008080);
+    }
+
+    .feature-card:hover {
+      transform: translateY(-12px);
+      box-shadow: 0 20px 60px rgba(0,128,128,0.3);
+      border-color: rgba(0, 128, 128, 0.5);
+    }
+
+    .feature-icon {
+      font-size: 3.5rem;
+      margin-bottom: 15px;
+      transition: transform 0.3s ease;
+    }
+
+    .feature-card:hover .feature-icon {
+      transform: scale(1.15);
+    }
+
+    .feature-card h3 {
+      color: #008080;
+      font-size: 1.4rem;
+      margin: 15px 0;
+      font-weight: 800;
+    }
+
+    .feature-card p {
+      color: #555;
+      font-size: 0.98rem;
+      margin-bottom: 18px;
+      font-weight: 500;
+      line-height: 1.7;
+    }
+
+    .feature-link {
+      color: white;
+      text-decoration: none;
+      font-weight: 700;
+      transition: all 0.3s ease;
+      display: inline-block;
+      background: linear-gradient(135deg, #008080, #00a6a6);
+      padding: 10px 20px;
+      border-radius: 8px;
+      letter-spacing: 0.5px;
+    }
+
+    .feature-link:hover {
+      background: linear-gradient(135deg, #006666, #008080);
+      transform: translateX(5px);
+      box-shadow: 0 5px 15px rgba(0,128,128,0.3);
+    }
+
+    /* Why Choose Us Section */
+    .why-section {
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.99), rgba(248, 252, 255, 0.99));
+      padding: 45px;
+      border-radius: 18px;
+      box-shadow: 0 15px 45px rgba(0,0,0,0.2);
+      margin: 50px 0;
+      backdrop-filter: blur(12px);
+      border: 2px solid rgba(0, 128, 128, 0.3);
+      transition: all 0.3s ease;
+      position: relative;
+    }
+
+    .why-section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 5px;
+      background: linear-gradient(90deg, #008080, #00a6a6, #008080);
+      border-radius: 18px 18px 0 0;
+    }
+
+    .why-section:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 20px 55px rgba(0,128,128,0.25);
+      border-color: rgba(0, 128, 128, 0.5);
+    }
+
+    .why-section h3 {
+      color: #008080;
+      font-size: 1.8rem;
+      margin-top: 15px;
+      margin-bottom: 25px;
+      font-weight: 800;
+    }
+
+    .why-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+    }
+
+    .why-list li {
+      padding: 16px 18px;
+      padding-left: 40px;
+      position: relative;
+      color: #333;
+      font-size: 0.98rem;
+      font-weight: 600;
+      background: linear-gradient(135deg, rgba(0,128,128,0.05), rgba(0,166,166,0.03));
+      border-radius: 10px;
+      border-left: 4px solid #008080;
+      transition: all 0.3s ease;
+    }
+
+    .why-list li:hover {
+      background: linear-gradient(135deg, rgba(0,128,128,0.1), rgba(0,166,166,0.08));
+      border-left-color: #00a6a6;
+      transform: translateX(5px);
+    }
+
+    .why-list li::before {
+      content: '✓';
+      position: absolute;
+      left: 12px;
+      color: #008080;
+      font-weight: bold;
+      font-size: 1.2rem;
+    }
+
+    /* CTA Button */
+    .cta-section {
+      text-align: center;
+      margin: 50px 0;
+      padding: 35px;
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.98), rgba(248, 252, 255, 0.98));
+      border-radius: 18px;
+      box-shadow: 0 15px 45px rgba(0,0,0,0.2);
+      backdrop-filter: blur(12px);
+      border: 2px solid rgba(0, 128, 128, 0.3);
+      transition: all 0.3s ease;
+    }
+
+    .cta-section:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 20px 55px rgba(0,128,128,0.25);
+    }
+
+    .cta-button {
+      background: linear-gradient(135deg, #008080, #00a6a6);
+      color: white;
+      padding: 18px 50px;
+      border: none;
+      border-radius: 10px;
+      font-size: 1.15rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 1.3px;
+      cursor: pointer;
+      box-shadow: 0 10px 30px rgba(0,128,128,0.35);
+      transition: all 0.3s ease;
+      text-decoration: none;
+      display: inline-block;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cta-button::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+      transition: left 0.5s ease;
+    }
+
+    .cta-button:hover {
+      background: linear-gradient(135deg, #006666, #008080);
+      transform: translateY(-4px);
+      box-shadow: 0 15px 45px rgba(0,128,128,0.45);
+    }
+
+    .cta-button:hover::before {
+      left: 100%;
+    }
+
+    /* Stats Section */
+    .stats-section {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 25px;
+      margin: 50px 0;
+    }
+
+    .stat-card {
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.99), rgba(248, 252, 255, 0.99));
+      padding: 30px;
+      border-radius: 15px;
+      text-align: center;
+      box-shadow: 0 12px 35px rgba(0,0,0,0.18);
+      backdrop-filter: blur(12px);
+      border: 2px solid rgba(0, 128, 128, 0.2);
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .stat-card::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, #008080, #00a6a6, #008080);
+    }
+
+    .stat-card:hover {
+      transform: translateY(-10px) scale(1.04);
+      box-shadow: 0 18px 50px rgba(0,128,128,0.25);
+      border-color: rgba(0, 128, 128, 0.5);
+    }
+
+    .stat-number {
+      font-size: 2.8rem;
+      color: #008080;
+      font-weight: 900;
+      margin-top: 10px;
+    }
+
+    .stat-label {
+      color: #555;
+      font-size: 1rem;
+      margin-top: 12px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+    }
+
+    footer {
+      text-align: center;
+      background: linear-gradient(135deg, rgba(0,128,128,0.95), rgba(0,102,102,0.95));
+      color: #ffffff;
+      padding: 25px;
+      margin-top: 50px;
+      backdrop-filter: blur(10px);
+    }
+
+    footer p {
+      color: #ffffff;
+      margin: 0;
+      font-weight: 600;
+    }
+    /* Back to top button */
+.scroll-top {
+  position: fixed;
+  right: 20px;
+  bottom: 25px;
+  background: linear-gradient(135deg, #008080, #00a6a6);
+  color: #fff;
+  text-decoration: none;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.3rem;
+  box-shadow: 0 8px 22px rgba(0,0,0,0.35);
+  transition: transform 0.25s ease, box-shadow 0.25s ease, opacity 0.25s ease;
+  opacity: 0.9;
+  z-index: 999;
+}
+
+.scroll-top:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 30px rgba(0,0,0,0.45);
+  opacity: 1;
+}
+
+
+    @media (max-width: 768px) {
+      section {
+        padding: 20px;
+      }
+      
+      nav a {
+        display: inline-block;
+        margin: 5px 10px;
+      }
+
+      .welcome-text {
+        border-radius: 0 40px 40px 0;
+        padding: 25px;
+      }
+
+      .features-grid {
+        grid-template-columns: 1fr;
+      }
+
+      h1 {
+        font-size: 1.8rem;
+      }
+
+      .why-list {
+        grid-template-columns: 1fr;
+      }
+
+      .cta-section {
+        padding: 25px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header id="top">
+
+    <h1>🏋️‍♂️ Fitness & Health Blog</h1>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="diet.html">Diet Plans</a>
+      <a href="exercise.html">Exercise</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </header>
+
+  <section>
+    <div class="welcome-text">
+      <h2>Welcome to Your Fitness Journey</h2>
+      <p>Hi, I'm <strong>Puneet Kewlani</strong>, a passionate fitness enthusiast and student dedicated to promoting healthy living and physical fitness.</p>
+      <p>This comprehensive website is designed to guide you through scientifically-backed diet plans, effective exercise routines, and practical wellness tips to help you maintain a balanced, healthy lifestyle using natural methods.</p>
+    </div>
+
+    <!-- Features Section -->
+    <div class="features-section">
+      <h2 style="text-align: center; width: 100%; color: white; text-shadow: 2px 2px 6px rgba(0,0,0,0.5);">📚 What We Offer</h2>
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="feature-icon">🥗</div>
+          <h3>Customized Diet Plans</h3>
+          <p>Discover balanced, nutritious meal plans tailored to your fitness goals and dietary preferences.</p>
+          <a href="diet.html" class="feature-link">Explore Diet Plans →</a>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">💪</div>
+          <h3>Effective Workouts</h3>
+          <p>Learn proven exercise techniques designed to build strength, endurance, and overall fitness.</p>
+          <a href="exercise.html" class="feature-link">View Exercises →</a>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">🧠</div>
+          <h3>Wellness Tips</h3>
+          <p>Get expert advice on nutrition, fitness, mental health, and sustainable lifestyle changes.</p>
+          <a href="contact.html" class="feature-link">Get Guidance →</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Stats Section -->
+    <div class="stats-section">
+      <div class="stat-card">
+        <div class="stat-number">50+</div>
+        <div class="stat-label">Workout Plans</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">100+</div>
+        <div class="stat-label">Diet Recipes</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">1000+</div>
+        <div class="stat-label">Active Members</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">5★</div>
+        <div class="stat-label">User Rating</div>
+      </div>
+    </div>
+
+    <!-- Why Choose Us Section -->
+    <div class="why-section">
+      <h3>🎯 Why Choose Us?</h3>
+      <ul class="why-list">
+        <li><strong>Science-Based Approach:</strong> All our plans are backed by fitness and nutrition science</li>
+        <li><strong>Beginner-Friendly:</strong> Easy-to-follow routines suitable for all fitness levels</li>
+        <li><strong>Natural Methods:</strong> Focus on healthy, sustainable lifestyle changes without shortcuts</li>
+        <li><strong>Personalized Guidance:</strong> Get professional coaching and customized programs</li>
+        <li><strong>Community Support:</strong> Join thousands of members on their fitness journey</li>
+        <li><strong>Holistic Wellness:</strong> Address physical fitness, nutrition, and mental well-being</li>
+      </ul>
+    </div>
+
+    <!-- CTA Section -->
+    <div class="cta-section">
+      <p style="color: white; font-size: 1.15rem; font-weight: 600; text-shadow: 2px 2px 4px rgba(0,0,0,0.5);">Ready to Transform Your Life?</p>
+      <a href="contact.html" class="cta-button">Start Your Journey Today 🚀</a>
+    </div>
+
+  </section>
+
+  <footer>
+    <p>© 2025 Fitness Blog | Created by Puneet Kewlani | Dedicated to Your Health & Wellness</p>
+  </footer>
+  <a href="#top" class="scroll-top">↑</a>
+
+
+</body>
+</html>

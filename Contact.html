@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Contact - Fitness Blog</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Arial, sans-serif;
+      margin: 0;
+      background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), 
+                  url('C:\\Users\\LENOVO\\Downloads\\pexels-victorfreitas-841130.jpg');
+      background-size: cover;
+      background-attachment: fixed;
+      background-position: center;
+      line-height: 1.6;
+    }
+
+    header {
+      background: linear-gradient(135deg, #008080, #006666);
+      color: white;
+      padding: 22px;
+      text-align: center;
+      box-shadow: 0 2px 15px rgba(0,0,0,0.1);
+    }
+
+    nav {
+      margin-top: 12px;
+    }
+
+    nav a {
+      color: white;
+      margin: 0 14px;
+      text-decoration: none;
+      font-weight: 700;
+      padding: 8px 14px;
+      border-radius: 20px;
+      transition: all 0.25s ease;
+    }
+
+    nav a:hover {
+      background: rgba(255,255,255,0.12);
+      color: #ffcc00;
+      transform: translateY(-2px);
+    }
+
+    section {
+      padding: 36px 24px;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    h1 {
+      font-size: 2.2rem;
+      margin: 6px 0 6px;
+      text-shadow: 1px 1px 3px rgba(0,0,0,0.12);
+    }
+
+    h2 {
+      color: white;
+      text-align: center;
+      margin: 14px 0 40px;
+      font-size: 2.2rem;
+      font-weight: 800;
+      text-shadow: 3px 3px 10px rgba(0, 0, 0, 0.7);
+      letter-spacing: 2px;
+      background: linear-gradient(135deg, rgba(0, 128, 128, 0.4), rgba(0, 102, 102, 0.3));
+      padding: 20px 40px;
+      border-radius: 15px;
+      display: inline-block;
+      width: auto;
+      position: relative;
+      left: 50%;
+      transform: translateX(-50%);
+      backdrop-filter: blur(8px);
+      border: 2px solid rgba(255, 255, 255, 0.2);
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+    }
+
+    .intro-card {
+      background: rgba(255, 255, 255, 0.98);
+      padding: 28px 32px;
+      margin: 30px auto 40px;
+      border-radius: 18px;
+      box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+      max-width: 800px;
+      color: #333;
+      text-align: center;
+      font-size: 1.05rem;
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      line-height: 1.8;
+      font-weight: 500;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .intro-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 20px 50px rgba(0,0,0,0.25);
+    }
+
+    /* Center the form horizontally */
+    form {
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.99), rgba(248, 252, 255, 0.99));
+      margin: 30px auto;
+      display: block;
+      padding: 45px 50px;
+      border-radius: 18px;
+      box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+      max-width: 550px;
+      width: 100%;
+      box-sizing: border-box;
+      backdrop-filter: blur(10px);
+      border: 2px solid rgba(0, 128, 128, 0.3);
+      transition: transform 0.3s ease;
+      position: relative;
+    }
+
+    form::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 5px;
+      background: linear-gradient(90deg, #008080, #00a6a6, #008080);
+      border-radius: 18px 18px 0 0;
+    }
+
+    form::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, transparent, #008080, transparent);
+      border-radius: 0 0 18px 18px;
+    }
+
+    form:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 25px 50px rgba(0,128,128,0.2);
+      border-color: rgba(0, 128, 128, 0.5);
+    }
+
+    .form-group {
+      position: relative;
+      margin-bottom: 24px;
+      padding: 12px 14px;
+      background: linear-gradient(135deg, rgba(0, 128, 128, 0.04), rgba(0, 166, 166, 0.04));
+      border-radius: 12px;
+      border-left: 4px solid #008080;
+      transition: all 0.3s ease;
+    }
+
+    .form-group:hover {
+      background: linear-gradient(135deg, rgba(0, 128, 128, 0.08), rgba(0, 166, 166, 0.08));
+      border-left-color: #00a6a6;
+    }
+
+    .form-label {
+      display: block;
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: #008080;
+      margin-bottom: 10px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    input, textarea {
+      width: 100%;
+      padding: 14px 16px;
+      margin: 0;
+      border: 2px solid #e0e0e0;
+      border-radius: 10px;
+      font-size: 15px;
+      transition: all 0.3s ease;
+      box-sizing: border-box;
+      background: rgba(255, 255, 255, 0.98);
+      font-family: 'Segoe UI', Arial, sans-serif;
+    }
+
+    input::placeholder, textarea::placeholder {
+      color: #bbb;
+      font-weight: 400;
+    }
+
+    input:focus, textarea:focus {
+      border-color: #008080;
+      outline: none;
+      box-shadow: 0 0 15px rgba(0,128,128,0.3), inset 0 0 5px rgba(0,128,128,0.1);
+      background: white;
+      transform: translateY(-2px);
+      border-radius: 12px;
+    }
+
+    input[type=submit] {
+      background: linear-gradient(135deg, #008080, #00a6a6);
+      color: white;
+      cursor: pointer;
+      border: none;
+      padding: 16px 50px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      transition: all 0.3s ease;
+      width: 100%;
+      border-radius: 10px;
+      font-size: 16px;
+      box-shadow: 0 8px 25px rgba(0,128,128,0.3);
+      margin-top: 20px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    input[type=submit]::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+      transition: left 0.5s ease;
+    }
+
+    input[type=submit]:hover {
+      background: linear-gradient(135deg, #006666, #008080);
+      transform: translateY(-3px);
+      box-shadow: 0 15px 40px rgba(0,128,128,0.5);
+    }
+
+    input[type=submit]:hover::before {
+      left: 100%;
+    }
+
+    input[type=submit]:active {
+      transform: translateY(-1px);
+    }
+
+    /* Success message styling */
+    .success-icon {
+      text-align: center;
+      margin: 20px 0;
+      font-size: 3rem;
+    }
+
+    footer {
+      text-align: center;
+      background: linear-gradient(135deg, rgba(0,128,128,0.95), rgba(0,102,102,0.95));
+      color: #ffffff;
+      padding: 20px;
+      margin-top: 40px;
+      backdrop-filter: blur(10px);
+    }
+    /* Back to top button */
+.scroll-top {
+  position: fixed;
+  right: 20px;
+  bottom: 25px;
+  background: linear-gradient(135deg, #008080, #00a6a6);
+  color: #fff;
+  text-decoration: none;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.3rem;
+  box-shadow: 0 8px 22px rgba(0,0,0,0.35);
+  transition: transform 0.25s ease, box-shadow 0.25s ease, opacity 0.25s ease;
+  opacity: 0.9;
+  z-index: 999;
+}
+
+.scroll-top:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 30px rgba(0,0,0,0.45);
+  opacity: 1;
+}
+
+
+    footer p { margin: 0; color: #ffffff; font-weight: 600; }
+
+    @media (max-width: 680px) {
+      section { padding: 20px; }
+      form { padding: 30px 20px; max-width: 100%; }
+      nav a { display: inline-block; margin: 6px 8px; }
+      h2 { font-size: 1.8rem; padding: 15px 20px; letter-spacing: 1px; }
+      input[type=submit] { font-size: 14px; padding: 12px 30px; }
+    }
+  </style>
+</head>
+<body>
+
+  <header id="top">
+
+    <h1>🏋️‍♂️ Contact & Personal Training</h1>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="diet.html">Diet Plans</a>
+      <a href="exercise.html">Exercise</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </header>
+
+  <section>
+    <h2>Get in Touch</h2>
+
+    <div class="intro-card">
+      I offer one-on-one personal training and tailored workout plans. If you would like personal coaching, goal planning, or a customised program, contact me and I will help you get started.
+    </div>
+
+    <form>
+      <div class="form-group">
+        <label class="form-label">📝 Full Name</label>
+        <input type="text" placeholder="Enter your full name" required>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">📧 Email Address</label>
+        <input type="email" placeholder="Enter your email address" required>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">💬 Your Message</label>
+        <textarea rows="5" placeholder="Tell me about your fitness goals and any questions you have..."></textarea>
+      </div>
+
+      <div style="text-align:center; margin-top:15px;">
+        <input type="submit" value="✉️ Send Message">
+      </div>
+    </form>
+  </section>
+
+  <footer>
+    <p>© 2025 Fitness Blog | Created by Puneet Kewlani</p>
+  </footer>
+<a href="#top" class="scroll-top">↑</a>
+
+</body>
+</html>

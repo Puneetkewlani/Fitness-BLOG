@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Diet Plans - Fitness Blog</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Arial, sans-serif;
+      margin: 0;
+      background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), 
+                  url('C:\\Users\\LENOVO\\Downloads\\pexels-victorfreitas-841130.jpg');
+      background-size: cover;
+      background-attachment: fixed;
+      background-position: center;
+      line-height: 1.6;
+    }
+
+    header {
+      background: linear-gradient(135deg, #008080, #006666);
+      color: white;
+      padding: 25px;
+      text-align: center;
+      box-shadow: 0 2px 15px rgba(0,0,0,0.1);
+    }
+
+    nav {
+      margin: 20px 0;
+    }
+
+    nav a {
+      color: white;
+      margin: 0 20px;
+      text-decoration: none;
+      font-weight: bold;
+      padding: 8px 15px;
+      border-radius: 20px;
+      transition: all 0.3s ease;
+    }
+
+    nav a:hover {
+      background: rgba(255,255,255,0.2);
+      color: #ffcc00;
+      transform: translateY(-2px);
+    }
+
+    section {
+      padding: 40px 20px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    h1 {
+      font-size: 2.5em;
+      margin-bottom: 20px;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+    }
+
+    h2 {
+      font-size: 1.8rem;
+      color: white;
+      text-align: center;
+      margin: 30px 0 40px;
+      display: inline-block;
+      padding: 16px 35px;
+      border-radius: 15px;
+      background: linear-gradient(135deg, rgba(0,128,128,0.4), rgba(0,102,102,0.3));
+      box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+      position: relative;
+      left: 50%;
+      transform: translateX(-50%);
+      letter-spacing: 1px;
+      font-weight: 800;
+      text-shadow: 2px 2px 6px rgba(0,0,0,0.5);
+      backdrop-filter: blur(8px);
+      border: 2px solid rgba(255,255,255,0.2);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    h2:hover {
+      transform: translateX(-50%) translateY(-3px);
+      box-shadow: 0 12px 35px rgba(0,0,0,0.3);
+    }
+
+    h2::after {
+      content: '';
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      bottom: -12px;
+      width: 70px;
+      height: 4px;
+      background: linear-gradient(90deg,#00b3b3,#006666);
+      border-radius: 3px;
+    }
+
+    .diet-container {
+      display: flex;
+      flex-direction: column;
+      gap: 30px;
+    }
+
+   
+    .diet-plan-section {
+      background: rgba(255, 255, 255, 0.98);
+      padding: 30px;
+      border-radius: 18px;
+      box-shadow: 0 10px 35px rgba(0,0,0,0.2);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255,255,255,0.3);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .diet-plan-section:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 45px rgba(0,128,128,0.2);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background: linear-gradient(135deg, rgba(255,255,255,0.95), rgba(248,252,255,0.95));
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+    }
+
+    th, td {
+      border-bottom: 2px solid #e0e0e0;
+      padding: 16px 14px;
+      text-align: center;
+      font-weight: 500;
+    }
+
+    th {
+      background: linear-gradient(135deg, #008080, #00a6a6);
+      color: white;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      font-size: 0.95rem;
+    }
+
+    td {
+      color: #333;
+      font-size: 0.95rem;
+    }
+
+    tr:hover {
+      background: rgba(0,128,128,0.05);
+    }
+
+    tr:last-child td {
+      border-bottom: 3px solid #008080;
+      background: rgba(0,128,128,0.08);
+      font-weight: 700;
+      color: #008080;
+    }
+
+    tr:last-child th {
+      background: linear-gradient(135deg, #006666, #008080);
+      color: white;
+    }
+
+    /* Nutrition Tips Section */
+    .tips-section {
+      background: rgba(255, 255, 255, 0.98);
+      padding: 30px;
+      border-radius: 18px;
+      box-shadow: 0 10px 35px rgba(0,0,0,0.2);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255,255,255,0.3);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .tips-section:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 45px rgba(0,128,128,0.2);
+    }
+
+    .tips-section h3 {
+      color: #008080;
+      font-size: 1.3rem;
+      margin-top: 0;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    .tips-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+    }
+
+    .tip-card {
+      background: linear-gradient(135deg, rgba(0,128,128,0.08), rgba(0,166,166,0.06));
+      padding: 18px;
+      border-radius: 12px;
+      border-left: 5px solid #008080;
+      transition: all 0.3s ease;
+    }
+
+    .tip-card:hover {
+      background: linear-gradient(135deg, rgba(0,128,128,0.12), rgba(0,166,166,0.1));
+      border-left-color: #00a6a6;
+      transform: translateX(5px);
+    }
+
+    .tip-number {
+      display: inline-block;
+      background: linear-gradient(135deg, #008080, #00a6a6);
+      color: white;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      text-align: center;
+      line-height: 32px;
+      font-weight: 800;
+      margin-right: 10px;
+      margin-bottom: 10px;
+    }
+
+    .tip-text {
+      color: #333;
+      font-size: 0.95rem;
+      line-height: 1.7;
+      font-weight: 500;
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    ul li {
+      margin: 0;
+      padding: 0;
+    }
+
+    footer {
+      text-align: center;
+      background: linear-gradient(135deg, rgba(0,128,128,0.95), rgba(0,102,102,0.95));
+      color: #ffffff;
+      padding: 20px;
+      margin-top: 40px;
+      backdrop-filter: blur(10px);
+    }
+
+    footer p {
+      color: #ffffff;
+      margin: 0;
+      font-weight: 600;
+    }
+    /* Back to top button */
+.scroll-top {
+  position: fixed;
+  right: 20px;
+  bottom: 25px;
+  background: linear-gradient(135deg, #008080, #00a6a6);
+  color: #fff;
+  text-decoration: none;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.3rem;
+  box-shadow: 0 8px 22px rgba(0,0,0,0.35);
+  transition: transform 0.25s ease, box-shadow 0.25s ease, opacity 0.25s ease;
+  opacity: 0.9;
+  z-index: 999;
+}
+
+.scroll-top:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 30px rgba(0,0,0,0.45);
+  opacity: 1;
+}
+
+
+    @media (max-width: 768px) {
+      section { padding: 20px; }
+      h2 { font-size: 1.5rem; padding: 12px 20px; }
+      .diet-plan-section, .tips-section { padding: 20px; }
+      th, td { padding: 10px 8px; font-size: 0.85rem; }
+      .tips-grid { grid-template-columns: 1fr; }
+      nav a { display: inline-block; margin: 5px 10px; }
+    }
+  </style>
+</head>
+<body>
+
+ <header id="top">
+
+    <h1>🍎 Healthy Diet Plans</h1>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="diet.html">Diet Plans</a>
+      <a href="exercise.html">Exercise</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </header>
+
+  <section>
+    <h2>Simple Balanced Diet Plan</h2>
+    
+    <div class="diet-container">
+      <div class="diet-plan-section">
+        <table>
+          <tr>
+            <th>🍽️ Meal</th>
+            <th>🥗 Example Food</th>
+            <th>⚡ Calories</th>
+          </tr>
+          <tr>
+            <td>Breakfast</td>
+            <td>Oats with milk, fruits & nuts</td>
+            <td>350 kcal</td>
+          </tr>
+          <tr>
+            <td>Lunch</td>
+            <td>Brown rice, dal, salad, curd</td>
+            <td>500 kcal</td>
+          </tr>
+          <tr>
+            <td>Evening Snack</td>
+            <td>Green tea & roasted chana</td>
+            <td>150 kcal</td>
+          </tr>
+          <tr>
+            <td>Dinner</td>
+            <td>Grilled paneer/tofu & soup</td>
+            <td>400 kcal</td>
+          </tr>
+          <tr>
+            <th>Total Daily Intake</th>
+            <th></th>
+            <th>1400 kcal</th>
+          </tr>
+        </table>
+      </div>
+
+      <div class="tips-section">
+        <h3>💡 Top 5 Nutrition Tips for Success</h3>
+        <div class="tips-grid">
+          <div class="tip-card">
+            <div class="tip-number">1</div>
+            <div class="tip-text">
+              <strong>Hydration is Key</strong><br>
+              Drink at least 2–3 liters of water daily. Proper hydration aids metabolism and helps flush toxins from your body.
+            </div>
+          </div>
+
+          <div class="tip-card">
+            <div class="tip-number">2</div>
+            <div class="tip-text">
+              <strong>Protein at Every Meal</strong><br>
+              Include protein in every meal to build muscle, feel fuller longer, and maintain stable blood sugar levels.
+            </div>
+          </div>
+
+          <div class="tip-card">
+            <div class="tip-number">3</div>
+            <div class="tip-text">
+              <strong>Say No to Processed Foods</strong><br>
+              Avoid processed sugar and junk food. Opt for whole, natural foods that nourish your body.
+            </div>
+          </div>
+
+          <div class="tip-card">
+            <div class="tip-number">4</div>
+            <div class="tip-text">
+              <strong>Fruits & Vegetables First</strong><br>
+              Eat more fruits, vegetables, and fiber-rich foods to boost immunity and improve digestion.
+            </div>
+          </div>
+
+          <div class="tip-card">
+            <div class="tip-number">5</div>
+            <div class="tip-text">
+              <strong>Consistency Matters</strong><br>
+              Maintain a regular eating schedule. Eating at the same times daily helps regulate your metabolism.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>© 2025 Fitness Blog | Created by Puneet Kewlani</p>
+  </footer>
+<a href="#top" class="scroll-top">↑</a>
+
+</body>
+</html>
