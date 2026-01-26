@@ -710,7 +710,7 @@
         </form>
 
         <div style="text-align: center; margin-top: 35px;">
-          <button type="submit" style="padding: 16px 50px; background: linear-gradient(135deg, #00a6a6, #008080); color: white; border: none; border-radius: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.2px; font-size: 1rem; cursor: pointer; transition: all 0.3s ease; box-shadow: 0 10px 25px rgba(0,128,128,0.35); text-shadow: 1px 1px 2px rgba(0,0,0,0.1);" onmouseover="this.style.transform='translateY(-3px)'; this.style.boxShadow='0 15px 35px rgba(0,128,128,0.5)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 10px 25px rgba(0,128,128,0.35)'">Get My Personalized Plan 🚀</button>
+          <button type="submit" id="assessmentBtn" style="padding: 16px 50px; background: linear-gradient(135deg, #00a6a6, #008080); color: white; border: none; border-radius: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.2px; font-size: 1rem; cursor: pointer; transition: all 0.3s ease; box-shadow: 0 10px 25px rgba(0,128,128,0.35); text-shadow: 1px 1px 2px rgba(0,0,0,0.1);" onmouseover="this.style.transform='translateY(-3px)'; this.style.boxShadow='0 15px 35px rgba(0,128,128,0.5)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 10px 25px rgba(0,128,128,0.35)'">Get My Personalized Plan 🚀</button>
         </div>
 
         <p style="text-align: center; color: #666; font-size: 0.9rem; margin-top: 25px; line-height: 1.6;">✓ We'll analyze your profile and send personalized workout & nutrition recommendations to your inbox within 24 hours!</p>
@@ -741,6 +741,76 @@
     <p>© 2025 Fitness Blog | Created by Puneet Kewlani | Dedicated to Your Health & Wellness</p>
   </footer>
   <a href="#top" class="scroll-top">↑</a>
+
+  <script>
+    // Backend API URL
+    const API_URL = 'http://localhost:5000';
+
+    // Fitness Assessment Form Handler
+    document.addEventListener('DOMContentLoaded', function() {
+      const assessmentForm = document.querySelector('form');
+      if (assessmentForm) {
+        assessmentForm.addEventListener('submit', async function(e) {
+          e.preventDefault();
+
+          // Get form values
+          const name = assessmentForm.querySelector('input[type="text"]').value;
+          const weight = parseFloat(assessmentForm.querySelectorAll('input[type="number"]')[0].value);
+          const height = parseFloat(assessmentForm.querySelectorAll('input[type="number"]')[1].value);
+          const goal = assessmentForm.querySelectorAll('select')[0].value;
+          const fitness_level = assessmentForm.querySelectorAll('select')[1].value;
+          const email = assessmentForm.querySelector('input[type="email"]').value;
+
+          // Validate
+          if (!name || !weight || !height || !goal || !fitness_level || !email) {
+            alert('❌ Please fill all required fields!');
+            return;
+          }
+
+          // Show loading state
+          const btn = document.getElementById('assessmentBtn');
+          const originalText = btn.textContent;
+          btn.textContent = '⏳ Submitting...';
+          btn.disabled = true;
+
+          try {
+            const response = await fetch(`${API_URL}/api/fitness-assessment`, {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json',
+              },
+              body: JSON.stringify({
+                name,
+                weight,
+                height,
+                goal,
+                fitness_level,
+                email
+              })
+            });
+
+            const data = await response.json();
+
+            if (data.status === 'success') {
+              alert('✅ ' + data.message + '\nWe will send your personalized plan to: ' + email);
+              assessmentForm.reset();
+              btn.textContent = 'Get My Personalized Plan 🚀';
+              btn.disabled = false;
+            } else {
+              alert('❌ Error: ' + data.message);
+              btn.textContent = originalText;
+              btn.disabled = false;
+            }
+          } catch (error) {
+            alert('❌ Connection error. Make sure the backend server is running on port 5000.\n\nTo start the server, open terminal in the backend folder and run: python app.py');
+            btn.textContent = originalText;
+            btn.disabled = false;
+            console.error('Error:', error);
+          }
+        });
+      }
+    });
+  </script>
 
 
 </body>

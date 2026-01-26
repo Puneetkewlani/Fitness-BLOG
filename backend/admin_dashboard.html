@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard - Fitness Website</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Arial, sans-serif;
+      background: linear-gradient(135deg, #1a1a2e, #16213e);
+      color: #333;
+    }
+
+    .container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    header {
+      background: linear-gradient(135deg, #008080, #006666);
+      color: white;
+      padding: 30px;
+      border-radius: 12px;
+      margin-bottom: 40px;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 10px;
+    }
+
+    .subtitle {
+      font-size: 1rem;
+      opacity: 0.95;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 25px;
+      margin-bottom: 40px;
+    }
+
+    .stat-card {
+      background: white;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+      border-left: 5px solid #008080;
+      transition: all 0.3s ease;
+    }
+
+    .stat-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 40px rgba(0,128,128,0.2);
+    }
+
+    .stat-card h3 {
+      color: #008080;
+      font-size: 0.95rem;
+      margin-bottom: 15px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .stat-number {
+      font-size: 2.5rem;
+      color: #008080;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+
+    .stat-description {
+      color: #666;
+      font-size: 0.9rem;
+    }
+
+    .tabs {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 30px;
+      flex-wrap: wrap;
+    }
+
+    .tab-button {
+      background: white;
+      border: 2px solid #ddd;
+      color: #333;
+      padding: 12px 24px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: all 0.3s ease;
+    }
+
+    .tab-button:hover {
+      border-color: #008080;
+      color: #008080;
+    }
+
+    .tab-button.active {
+      background: #008080;
+      color: white;
+      border-color: #008080;
+    }
+
+    .tab-content {
+      display: none;
+      background: white;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+    }
+
+    .tab-content.active {
+      display: block;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+
+    th {
+      background: #f5f5f5;
+      color: #333;
+      padding: 15px;
+      text-align: left;
+      font-weight: 700;
+      border-bottom: 2px solid #ddd;
+    }
+
+    td {
+      padding: 15px;
+      border-bottom: 1px solid #eee;
+    }
+
+    tr:hover {
+      background: #f9f9f9;
+    }
+
+    .loading {
+      text-align: center;
+      padding: 40px;
+      color: #666;
+    }
+
+    .error {
+      background: #fee;
+      color: #c33;
+      padding: 15px;
+      border-radius: 8px;
+      margin-bottom: 20px;
+      border-left: 4px solid #c33;
+    }
+
+    .success {
+      background: #efe;
+      color: #3c3;
+      padding: 15px;
+      border-radius: 8px;
+      margin-bottom: 20px;
+      border-left: 4px solid #3c3;
+    }
+
+    .footer {
+      text-align: center;
+      margin-top: 40px;
+      color: white;
+      font-size: 0.9rem;
+    }
+
+    @media (max-width: 768px) {
+      h1 {
+        font-size: 1.8rem;
+      }
+
+      .stat-number {
+        font-size: 2rem;
+      }
+
+      table {
+        font-size: 0.9rem;
+      }
+
+      th, td {
+        padding: 10px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>📊 Admin Dashboard</h1>
+      <p class="subtitle">Manage and view all form submissions from your fitness website</p>
+    </header>
+
+    <div class="stats-grid" id="statsGrid">
+      <div class="stat-card">
+        <h3>Fitness Assessments</h3>
+        <div class="stat-number" id="assessmentCount">0</div>
+        <p class="stat-description">Total fitness assessments submitted</p>
+      </div>
+
+      <div class="stat-card">
+        <h3>Contact Submissions</h3>
+        <div class="stat-number" id="contactCount">0</div>
+        <p class="stat-description">Total contact form submissions</p>
+      </div>
+
+      <div class="stat-card">
+        <h3>BMI Calculations</h3>
+        <div class="stat-number" id="bmiCount">0</div>
+        <p class="stat-description">Total BMI calculations performed</p>
+      </div>
+    </div>
+
+    <div class="tabs">
+      <button class="tab-button active" onclick="showTab('assessments')">📋 Fitness Assessments</button>
+      <button class="tab-button" onclick="showTab('contacts')">📧 Contact Submissions</button>
+      <button class="tab-button" onclick="showTab('bmi')">⚖️ BMI Data</button>
+    </div>
+
+    <!-- Fitness Assessments Tab -->
+    <div id="assessments" class="tab-content active">
+      <h2>Fitness Assessment Submissions</h2>
+      <div id="assessmentsContent" class="loading">Loading...</div>
+    </div>
+
+    <!-- Contact Submissions Tab -->
+    <div id="contacts" class="tab-content">
+      <h2>Contact Form Submissions</h2>
+      <div id="contactsContent" class="loading">Loading...</div>
+    </div>
+
+    <!-- BMI Data Tab -->
+    <div id="bmi" class="tab-content">
+      <h2>BMI Calculation History</h2>
+      <div id="bmiContent" class="loading">Loading...</div>
+    </div>
+
+    <div class="footer">
+      <p>✅ Backend API running at http://localhost:5000</p>
+      <p>© 2025 Fitness Dashboard | Data synchronized in real-time</p>
+    </div>
+  </div>
+
+  <script>
+    const API_URL = 'http://localhost:5000';
+
+    // Initialize dashboard
+    async function initDashboard() {
+      await loadStats();
+      await loadAssessments();
+      await loadContacts();
+      await loadBMIData();
+    }
+
+    // Load statistics
+    async function loadStats() {
+      try {
+        const response = await fetch(`${API_URL}/admin/dashboard`);
+        const data = await response.json();
+
+        if (data.status === 'success') {
+          document.getElementById('assessmentCount').textContent = data.statistics.fitness_assessments;
+          document.getElementById('contactCount').textContent = data.statistics.contact_submissions;
+          document.getElementById('bmiCount').textContent = data.statistics.bmi_calculations;
+        }
+      } catch (error) {
+        console.error('Error loading stats:', error);
+      }
+    }
+
+    // Load fitness assessments
+    async function loadAssessments() {
+      try {
+        const response = await fetch(`${API_URL}/admin/assessments`);
+        const data = await response.json();
+
+        if (data.status === 'success') {
+          const content = document.getElementById('assessmentsContent');
+
+          if (data.data.length === 0) {
+            content.innerHTML = '<p style="text-align: center; color: #999; padding: 40px;">No fitness assessments yet.</p>';
+          } else {
+            let html = '<table><thead><tr><th>ID</th><th>Name</th><th>Weight (kg)</th><th>Height (cm)</th><th>Goal</th><th>Fitness Level</th><th>Email</th><th>Submitted</th></tr></thead><tbody>';
+
+            data.data.forEach(item => {
+              const date = new Date(item.submitted_at).toLocaleString();
+              html += `<tr>
+                <td>#${item.id}</td>
+                <td>${item.name}</td>
+                <td>${item.weight}</td>
+                <td>${item.height}</td>
+                <td>${item.goal}</td>
+                <td>${item.fitness_level}</td>
+                <td>${item.email}</td>
+                <td>${date}</td>
+              </tr>`;
+            });
+
+            html += '</tbody></table>';
+            content.innerHTML = html;
+          }
+        }
+      } catch (error) {
+        console.error('Error loading assessments:', error);
+        document.getElementById('assessmentsContent').innerHTML = '<div class="error">❌ Error loading data. Make sure the backend server is running on port 5000.</div>';
+      }
+    }
+
+    // Load contact submissions
+    async function loadContacts() {
+      try {
+        const response = await fetch(`${API_URL}/admin/contacts`);
+        const data = await response.json();
+
+        if (data.status === 'success') {
+          const content = document.getElementById('contactsContent');
+
+          if (data.data.length === 0) {
+            content.innerHTML = '<p style="text-align: center; color: #999; padding: 40px;">No contact submissions yet.</p>';
+          } else {
+            let html = '<table><thead><tr><th>ID</th><th>Name</th><th>Email</th><th>Phone</th><th>Interest</th><th>Message</th><th>Submitted</th></tr></thead><tbody>';
+
+            data.data.forEach(item => {
+              const date = new Date(item.submitted_at).toLocaleString();
+              const message = item.message.substring(0, 50) + (item.message.length > 50 ? '...' : '');
+              html += `<tr>
+                <td>#${item.id}</td>
+                <td>${item.name}</td>
+                <td>${item.email}</td>
+                <td>${item.phone || '-'}</td>
+                <td>${item.interest || '-'}</td>
+                <td title="${item.message}">${message}</td>
+                <td>${date}</td>
+              </tr>`;
+            });
+
+            html += '</tbody></table>';
+            content.innerHTML = html;
+          }
+        }
+      } catch (error) {
+        console.error('Error loading contacts:', error);
+        document.getElementById('contactsContent').innerHTML = '<div class="error">❌ Error loading data. Make sure the backend server is running on port 5000.</div>';
+      }
+    }
+
+    // Load BMI data
+    async function loadBMIData() {
+      try {
+        const response = await fetch(`${API_URL}/admin/bmi-data`);
+        const data = await response.json();
+
+        if (data.status === 'success') {
+          const content = document.getElementById('bmiContent');
+
+          if (data.data.length === 0) {
+            content.innerHTML = '<p style="text-align: center; color: #999; padding: 40px;">No BMI calculations yet.</p>';
+          } else {
+            let html = '<table><thead><tr><th>ID</th><th>Weight</th><th>Height</th><th>BMI</th><th>Category</th><th>IP Address</th><th>Calculated</th></tr></thead><tbody>';
+
+            data.data.forEach(item => {
+              const date = new Date(item.submitted_at).toLocaleString();
+              html += `<tr>
+                <td>#${item.id}</td>
+                <td>${(item.weight / 100).toFixed(1)} kg</td>
+                <td>${(item.height / 100).toFixed(1)} cm</td>
+                <td>${item.bmi.toFixed(1)}</td>
+                <td>${item.category}</td>
+                <td>${item.ip_address}</td>
+                <td>${date}</td>
+              </tr>`;
+            });
+
+            html += '</tbody></table>';
+            content.innerHTML = html;
+          }
+        }
+      } catch (error) {
+        console.error('Error loading BMI data:', error);
+        document.getElementById('bmiContent').innerHTML = '<div class="error">❌ Error loading data. Make sure the backend server is running on port 5000.</div>';
+      }
+    }
+
+    // Tab switching
+    function showTab(tabName) {
+      // Hide all tabs
+      const tabs = document.querySelectorAll('.tab-content');
+      tabs.forEach(tab => tab.classList.remove('active'));
+
+      // Remove active class from buttons
+      const buttons = document.querySelectorAll('.tab-button');
+      buttons.forEach(btn => btn.classList.remove('active'));
+
+      // Show selected tab
+      document.getElementById(tabName).classList.add('active');
+      event.target.classList.add('active');
+    }
+
+    // Auto-refresh every 30 seconds
+    setInterval(() => {
+      initDashboard();
+    }, 30000);
+
+    // Initialize on page load
+    window.addEventListener('load', initDashboard);
+  </script>
+</body>
+</html>

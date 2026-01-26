@@ -755,6 +755,8 @@
   </footer>
 
   <script>
+    const API_URL = 'http://localhost:5000';
+
     function calculateBMI() {
       const height = parseFloat(document.getElementById('height').value);
       const weight = parseFloat(document.getElementById('weight').value);
@@ -800,6 +802,27 @@
       
       resultDiv.style.display = 'block';
       emptyState.style.display = 'none';
+
+      // Send BMI data to backend
+      sendBMIToBackend(weight, height, bmi);
+    }
+
+    // Send BMI calculation to backend
+    async function sendBMIToBackend(weight, height, bmi) {
+      try {
+        await fetch(`${API_URL}/api/bmi`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            weight,
+            height
+          })
+        });
+      } catch (error) {
+        console.log('Note: Backend server not running. BMI calculation saved locally.');
+      }
     }
   </script>
 <a href="#top" class="scroll-top">↑</a>
