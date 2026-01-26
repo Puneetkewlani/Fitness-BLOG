@@ -340,7 +340,9 @@ def server_error(error):
 
 if __name__ == '__main__':
     init_db()
+    port = int(os.environ.get('PORT', 5000))
+    debug_mode = os.environ.get('FLASK_DEBUG', 'True') == 'True'
     print("🚀 Starting Fitness Backend Server...")
-    print("📍 Server running at http://localhost:5000")
-    print("📊 Admin Dashboard: http://localhost:5000/admin/dashboard")
-    app.run(debug=True, port=5000, host='0.0.0.0')
+    print(f"📍 Server running at port {port}")
+    print(f"📊 Admin Dashboard available at your deployed URL")
+    app.run(debug=debug_mode, port=port, host='0.0.0.0')
