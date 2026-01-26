@@ -8,8 +8,9 @@ import os
 app = Flask(__name__)
 CORS(app)
 
-# Database configuration
-DATABASE = 'fitness_data.db'
+# Database configuration - handle both local and deployed environments
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+DATABASE = os.path.join(BASE_DIR, 'fitness_data.db')
 
 # Initialize database
 def init_db():
