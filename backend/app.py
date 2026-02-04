@@ -46,35 +46,35 @@ def init_db():
                 phone TEXT,
                 interest TEXT,
                 message TEXT NOT NULL,
-        
-                        # Wellness Assessment Table
-                        cursor.execute('''
-                            CREATE TABLE IF NOT EXISTS wellness_assessments (
-                                id INTEGER PRIMARY KEY AUTOINCREMENT,
-                                name TEXT NOT NULL,
-                                email TEXT NOT NULL,
-                                age INTEGER,
-                                gender TEXT,
-                                weight REAL,
-                                height REAL,
-                                fitness_level TEXT,
-                                goal TEXT,
-                                frequency TEXT,
-                                workout_type TEXT,
-                                injuries_concerns TEXT,
-                                stress_level INTEGER,
-                                sleep_quality TEXT,
-                                sleep_hours REAL,
-                                diet_preference TEXT,
-                                water_intake INTEGER,
-                                smoking TEXT,
-                                alcohol TEXT,
-                                motivation TEXT,
-                                challenges TEXT,
-                                additional_comments TEXT,
-                                submitted_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-                            )
-                        ''')
+                submitted_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+            )
+        ''')
+
+        # Wellness Assessment Table
+        cursor.execute('''
+            CREATE TABLE IF NOT EXISTS wellness_assessments (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                name TEXT NOT NULL,
+                email TEXT NOT NULL,
+                age INTEGER,
+                gender TEXT,
+                weight REAL,
+                height REAL,
+                fitness_level TEXT,
+                goal TEXT,
+                frequency TEXT,
+                workout_type TEXT,
+                injuries_concerns TEXT,
+                stress_level INTEGER,
+                sleep_quality TEXT,
+                sleep_hours REAL,
+                diet_preference TEXT,
+                water_intake INTEGER,
+                smoking TEXT,
+                alcohol TEXT,
+                motivation TEXT,
+                challenges TEXT,
+                additional_comments TEXT,
                 submitted_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
             )
         ''')
