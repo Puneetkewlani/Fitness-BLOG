@@ -29,6 +29,10 @@ def init_db():
                 goal TEXT NOT NULL,
                 fitness_level TEXT NOT NULL,
                 email TEXT NOT NULL,
+                workout_type TEXT,
+                frequency TEXT,
+                diet_preference TEXT,
+                injuries_concerns TEXT,
                 submitted_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
             )
         ''')
@@ -96,7 +100,7 @@ def submit_fitness_assessment():
         data = request.get_json()
         
         # Validation
-        required_fields = ['name', 'weight', 'height', 'goal', 'fitness_level', 'email']
+        required_fields = ['name', 'weight', 'height', 'goal', 'fitness_level', 'email', 'workout_type', 'frequency', 'diet_preference']
         if not all(field in data for field in required_fields):
             return jsonify({
                 'status': 'error',
@@ -107,9 +111,11 @@ def submit_fitness_assessment():
         cursor = conn.cursor()
         
         cursor.execute('''
-            INSERT INTO fitness_assessments (name, weight, height, goal, fitness_level, email)
-            VALUES (?, ?, ?, ?, ?, ?)
-        ''', (data['name'], data['weight'], data['height'], data['goal'], data['fitness_level'], data['email']))
+            INSERT INTO fitness_assessments 
+            (name, weight, height, goal, fitness_level, email, workout_type, frequency, diet_preference, injuries_concerns)
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+        ''', (data['name'], data['weight'], data['height'], data['goal'], data['fitness_level'], data['email'], 
+              data['workout_type'], data['frequency'], data['diet_preference'], data.get('injuries_concerns', '')))
         
         conn.commit()
         submission_id = cursor.lastrowid

@@ -1,4 +1,4 @@
-# 🏋️‍♂️ Fitness Blog – IWT Project
+# 🏋️‍♂️ Fitness Blog
 
 The **Fitness Blog** is a fully responsive multi-page fitness and wellness website designed to promote **healthy lifestyle choices**, **exercise awareness**, and **balanced nutrition**.
 
@@ -168,3 +168,4 @@ If you want, I can also:
 - 💯 Optimize it to score **full internal marks**
 
 Just tell me 👍
+

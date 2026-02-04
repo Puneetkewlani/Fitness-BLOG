@@ -707,6 +707,44 @@
             <input type="email" placeholder="your.email@example.com" required style="padding: 14px 16px; border: 2px solid #e0e0e0; border-radius: 10px; font-size: 0.95rem; transition: all 0.3s ease; background: rgba(255,255,255,0.9);" onfocus="this.style.borderColor='#008080'; this.style.boxShadow='0 0 12px rgba(0,128,128,0.35)'; this.style.background='white'" onblur="this.style.borderColor='#e0e0e0'; this.style.boxShadow='none'; this.style.background='rgba(255,255,255,0.9)'">
           </div>
 
+          <div style="display: flex; flex-direction: column;">
+            <label style="color: #008080; font-weight: 700; margin-bottom: 10px; font-size: 0.95rem;">🏋️ Preferred Workout Type</label>
+            <select required style="padding: 14px 16px; border: 2px solid #e0e0e0; border-radius: 10px; font-size: 0.95rem; font-family: 'Segoe UI', Arial, sans-serif; transition: all 0.3s ease; background: rgba(255,255,255,0.9); cursor: pointer;" onfocus="this.style.borderColor='#008080'; this.style.boxShadow='0 0 12px rgba(0,128,128,0.35)'; this.style.background='white'" onblur="this.style.borderColor='#e0e0e0'; this.style.boxShadow='none'; this.style.background='rgba(255,255,255,0.9)'">
+              <option value="">Select workout type</option>
+              <option value="cardio">🏃 Cardio</option>
+              <option value="strength">💪 Strength Training</option>
+              <option value="yoga">🧘 Yoga/Flexibility</option>
+              <option value="hiit">⚡ HIIT</option>
+              <option value="mixed">🎯 Mixed Training</option>
+            </select>
+          </div>
+
+          <div style="display: flex; flex-direction: column;">
+            <label style="color: #008080; font-weight: 700; margin-bottom: 10px; font-size: 0.95rem;">📅 Available Days/Week</label>
+            <select required style="padding: 14px 16px; border: 2px solid #e0e0e0; border-radius: 10px; font-size: 0.95rem; font-family: 'Segoe UI', Arial, sans-serif; transition: all 0.3s ease; background: rgba(255,255,255,0.9); cursor: pointer;" onfocus="this.style.borderColor='#008080'; this.style.boxShadow='0 0 12px rgba(0,128,128,0.35)'; this.style.background='white'" onblur="this.style.borderColor='#e0e0e0'; this.style.boxShadow='none'; this.style.background='rgba(255,255,255,0.9)'">
+              <option value="">Select frequency</option>
+              <option value="2-3">2-3 days</option>
+              <option value="4-5">4-5 days</option>
+              <option value="6-7">6-7 days</option>
+            </select>
+          </div>
+
+          <div style="display: flex; flex-direction: column;">
+            <label style="color: #008080; font-weight: 700; margin-bottom: 10px; font-size: 0.95rem;">🍽️ Diet Preference</label>
+            <select required style="padding: 14px 16px; border: 2px solid #e0e0e0; border-radius: 10px; font-size: 0.95rem; font-family: 'Segoe UI', Arial, sans-serif; transition: all 0.3s ease; background: rgba(255,255,255,0.9); cursor: pointer;" onfocus="this.style.borderColor='#008080'; this.style.boxShadow='0 0 12px rgba(0,128,128,0.35)'; this.style.background='white'" onblur="this.style.borderColor='#e0e0e0'; this.style.boxShadow='none'; this.style.background='rgba(255,255,255,0.9)'">
+              <option value="">Select diet preference</option>
+              <option value="vegetarian">🥬 Vegetarian</option>
+              <option value="non-vegetarian">🥩 Non-Vegetarian</option>
+              <option value="vegan">🌱 Vegan</option>
+              <option value="no-preference">😋 No Preference</option>
+            </select>
+          </div>
+
+          <div style="display: flex; flex-direction: column;">
+            <label style="color: #008080; font-weight: 700; margin-bottom: 10px; font-size: 0.95rem;">💬 Any Injuries/Concerns?</label>
+            <input type="text" placeholder="e.g., Back pain, Knee issues (Optional)" style="padding: 14px 16px; border: 2px solid #e0e0e0; border-radius: 10px; font-size: 0.95rem; transition: all 0.3s ease; background: rgba(255,255,255,0.9);" onfocus="this.style.borderColor='#008080'; this.style.boxShadow='0 0 12px rgba(0,128,128,0.35)'; this.style.background='white'" onblur="this.style.borderColor='#e0e0e0'; this.style.boxShadow='none'; this.style.background='rgba(255,255,255,0.9)'">
+          </div>
+
         </form>
 
         <div style="text-align: center; margin-top: 35px;">
@@ -757,12 +795,17 @@
           const name = assessmentForm.querySelector('input[type="text"]').value;
           const weight = parseFloat(assessmentForm.querySelectorAll('input[type="number"]')[0].value);
           const height = parseFloat(assessmentForm.querySelectorAll('input[type="number"]')[1].value);
-          const goal = assessmentForm.querySelectorAll('select')[0].value;
-          const fitness_level = assessmentForm.querySelectorAll('select')[1].value;
+          const selects = assessmentForm.querySelectorAll('select');
+          const goal = selects[0].value;
+          const fitness_level = selects[1].value;
+          const workout_type = selects[2].value;
+          const frequency = selects[3].value;
+          const diet_preference = selects[4].value;
           const email = assessmentForm.querySelector('input[type="email"]').value;
+          const injuries_concerns = assessmentForm.querySelectorAll('input[type="text"]')[1].value;
 
-          // Validate
-          if (!name || !weight || !height || !goal || !fitness_level || !email) {
+          // Validate required fields
+          if (!name || !weight || !height || !goal || !fitness_level || !email || !workout_type || !frequency || !diet_preference) {
             alert('❌ Please fill all required fields!');
             return;
           }
@@ -785,14 +828,18 @@
                 height,
                 goal,
                 fitness_level,
-                email
+                email,
+                workout_type,
+                frequency,
+                diet_preference,
+                injuries_concerns
               })
             });
 
             const data = await response.json();
 
             if (data.status === 'success') {
-              alert('✅ ' + data.message + '\nWe will send your personalized plan to: ' + email);
+              alert('✅ ' + data.message + '\n\n📧 Check your email for:\n• Personalized workout plan\n• Nutrition recommendations\n• Progress tracking tips\n\nSubmission ID: #' + data.id);
               assessmentForm.reset();
               btn.textContent = 'Get My Personalized Plan 🚀';
               btn.disabled = false;
