@@ -1,16 +1,17 @@
-from flask import Flask, request, jsonify, render_template
+from flask import Flask, request, jsonify, render_template, send_from_directory, send_file
 from flask_cors import CORS
 import sqlite3
 import json
 from datetime import datetime
 import os
 
-app = Flask(__name__)
+app = Flask(__name__, static_folder='..', static_url_path='')
 CORS(app)
 
 # Database configuration - handle both local and deployed environments
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 DATABASE = os.path.join(BASE_DIR, 'fitness_data.db')
+PARENT_DIR = os.path.dirname(BASE_DIR)
 
 # Initialize database
 def init_db():
@@ -71,19 +72,22 @@ def get_db():
 
 @app.route('/', methods=['GET'])
 def index():
-    return jsonify({
-        'status': 'success',
-        'message': 'Fitness Backend API is running!',
-        'endpoints': {
-            'fitness_assessment': '/api/fitness-assessment',
-            'contact': '/api/contact',
-            'bmi_calculation': '/api/bmi',
-            'admin_dashboard': '/admin/dashboard',
-            'get_assessments': '/admin/assessments',
-            'get_contacts': '/admin/contacts',
-            'get_bmi_data': '/admin/bmi-data'
-        }
-    })
+    try:
+        return send_file(os.path.join(PARENT_DIR, 'index.html'))
+    except:
+        return jsonify({
+            'status': 'success',
+            'message': 'Fitness Backend API is running!',
+            'endpoints': {
+                'fitness_assessment': '/api/fitness-assessment',
+                'contact': '/api/contact',
+                'bmi_calculation': '/api/bmi',
+                'admin_dashboard': '/admin/dashboard',
+                'get_assessments': '/admin/assessments',
+                'get_contacts': '/admin/contacts',
+                'get_bmi_data': '/admin/bmi-data'
+            }
+        })
 
 # Fitness Assessment Endpoint
 @app.route('/api/fitness-assessment', methods=['POST'])
