@@ -1,0 +1,732 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Comprehensive Fitness & Wellness Assessment">
+  <title>Fitness Assessment - Your Personal Wellness Journey</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Arial, sans-serif;
+      background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), 
+                  linear-gradient(135deg, #1a1a2e, #16213e);
+      background-size: cover;
+      background-attachment: fixed;
+      min-height: 100vh;
+      color: #333;
+    }
+
+    header {
+      background: linear-gradient(135deg, #008080, #006666);
+      color: white;
+      padding: 25px;
+      text-align: center;
+      box-shadow: 0 2px 15px rgba(0,0,0,0.1);
+    }
+
+    header h1 {
+      font-size: 2.5rem;
+      margin-bottom: 10px;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+    }
+
+    header p {
+      font-size: 1.1rem;
+      opacity: 0.95;
+    }
+
+    nav {
+      margin: 20px 0;
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+      padding: 10px 20px;
+      border-radius: 20px;
+      transition: all 0.3s ease;
+      background: rgba(255,255,255,0.1);
+    }
+
+    nav a:hover {
+      background: rgba(255,255,255,0.25);
+      color: #ffcc00;
+      transform: translateY(-2px);
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 40px 20px;
+    }
+
+    .form-section {
+      background: white;
+      border-radius: 20px;
+      padding: 40px;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+      margin-bottom: 30px;
+    }
+
+    .form-section h2 {
+      color: #008080;
+      font-size: 1.8rem;
+      margin-bottom: 25px;
+      padding-bottom: 15px;
+      border-bottom: 3px solid #008080;
+    }
+
+    .form-group {
+      margin-bottom: 25px;
+    }
+
+    .form-group label {
+      display: block;
+      color: #008080;
+      font-weight: 700;
+      margin-bottom: 10px;
+      font-size: 1rem;
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%;
+      padding: 12px 15px;
+      border: 2px solid #e0e0e0;
+      border-radius: 10px;
+      font-size: 1rem;
+      font-family: 'Segoe UI', Arial, sans-serif;
+      transition: all 0.3s ease;
+      background: rgba(255,255,255,0.95);
+    }
+
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      border-color: #008080;
+      box-shadow: 0 0 12px rgba(0,128,128,0.35);
+      background: white;
+      outline: none;
+    }
+
+    .form-group textarea {
+      resize: vertical;
+      min-height: 100px;
+    }
+
+    .radio-group {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .radio-option {
+      display: flex;
+      align-items: center;
+      padding: 10px;
+      border-radius: 8px;
+      transition: all 0.2s ease;
+      cursor: pointer;
+      background: #f5f5f5;
+    }
+
+    .radio-option:hover {
+      background: #e8f5e9;
+    }
+
+    .radio-option input[type="radio"] {
+      width: auto;
+      margin-right: 12px;
+      cursor: pointer;
+    }
+
+    .checkbox-group {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .checkbox-option {
+      display: flex;
+      align-items: center;
+      padding: 10px;
+      border-radius: 8px;
+      transition: all 0.2s ease;
+      cursor: pointer;
+      background: #f5f5f5;
+    }
+
+    .checkbox-option:hover {
+      background: #e8f5e9;
+    }
+
+    .checkbox-option input[type="checkbox"] {
+      width: auto;
+      margin-right: 12px;
+      cursor: pointer;
+    }
+
+    .scale-group {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      margin-top: 10px;
+    }
+
+    .scale-btn {
+      flex: 1;
+      padding: 12px;
+      border: 2px solid #e0e0e0;
+      background: white;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-weight: bold;
+      color: #666;
+    }
+
+    .scale-btn:hover {
+      border-color: #008080;
+      background: #f0f8f8;
+    }
+
+    .scale-btn.active {
+      background: #008080;
+      color: white;
+      border-color: #008080;
+    }
+
+    .button-group {
+      display: flex;
+      gap: 15px;
+      justify-content: center;
+      margin-top: 40px;
+    }
+
+    .btn {
+      padding: 15px 40px;
+      border: none;
+      border-radius: 12px;
+      font-size: 1rem;
+      font-weight: bold;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #008080, #006666);
+      color: white;
+      box-shadow: 0 10px 25px rgba(0,128,128,0.35);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 15px 35px rgba(0,128,128,0.5);
+    }
+
+    .btn-primary:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    .btn-secondary {
+      background: #f5f5f5;
+      color: #666;
+      border: 2px solid #e0e0e0;
+    }
+
+    .btn-secondary:hover {
+      border-color: #008080;
+      color: #008080;
+    }
+
+    .progress-bar {
+      background: #e0e0e0;
+      height: 8px;
+      border-radius: 10px;
+      margin-bottom: 30px;
+      overflow: hidden;
+    }
+
+    .progress-fill {
+      height: 100%;
+      background: linear-gradient(90deg, #008080, #00a6a6);
+      transition: width 0.3s ease;
+    }
+
+    footer {
+      background: linear-gradient(135deg, #008080, #006666);
+      color: white;
+      text-align: center;
+      padding: 20px;
+      margin-top: 60px;
+    }
+
+    .success-message {
+      display: none;
+      background: #4caf50;
+      color: white;
+      padding: 20px;
+      border-radius: 10px;
+      margin-bottom: 20px;
+      text-align: center;
+      font-weight: bold;
+    }
+
+    .error-message {
+      display: none;
+      background: #f44336;
+      color: white;
+      padding: 20px;
+      border-radius: 10px;
+      margin-bottom: 20px;
+      text-align: center;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>🎯 Personal Wellness Assessment</h1>
+    <p>Complete this comprehensive assessment to get your personalized fitness & wellness plan</p>
+    <nav>
+      <a href="index.html">🏠 Home</a>
+      <a href="games.html">🎮 Games</a>
+      <a href="diet.html">🍎 Diet</a>
+      <a href="exercise.html">💪 Exercise</a>
+      <a href="contact.html">📧 Contact</a>
+    </nav>
+  </header>
+
+  <div class="container">
+    <div class="progress-bar">
+      <div class="progress-fill" id="progressFill"></div>
+    </div>
+
+    <div class="success-message" id="successMessage">
+      ✅ Assessment submitted successfully! Check your email for personalized recommendations.
+    </div>
+
+    <div class="error-message" id="errorMessage"></div>
+
+    <form id="assessmentForm">
+      <!-- Section 1: Basic Information -->
+      <div class="form-section">
+        <h2>📝 Basic Information</h2>
+
+        <div class="form-group">
+          <label for="name">Full Name *</label>
+          <input type="text" id="name" name="name" required placeholder="Enter your full name">
+        </div>
+
+        <div class="form-group">
+          <label for="email">Email Address *</label>
+          <input type="email" id="email" name="email" required placeholder="your.email@example.com">
+        </div>
+
+        <div class="form-group">
+          <label for="age">Age *</label>
+          <input type="number" id="age" name="age" required min="13" max="120" placeholder="e.g., 25">
+        </div>
+
+        <div class="form-group">
+          <label>Gender *</label>
+          <div class="radio-group">
+            <label class="radio-option">
+              <input type="radio" name="gender" value="male" required> Male
+            </label>
+            <label class="radio-option">
+              <input type="radio" name="gender" value="female" required> Female
+            </label>
+            <label class="radio-option">
+              <input type="radio" name="gender" value="other" required> Prefer not to say
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <!-- Section 2: Physical Metrics -->
+      <div class="form-section">
+        <h2>⚖️ Physical Metrics</h2>
+
+        <div class="form-group">
+          <label>Measurement System *</label>
+          <div class="radio-group">
+            <label class="radio-option">
+              <input type="radio" name="unitSystem" value="metric" required checked> Metric (kg, cm)
+            </label>
+            <label class="radio-option">
+              <input type="radio" name="unitSystem" value="imperial" required> Imperial (lbs, ft/inches)
+            </label>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="weight">Weight (kg) *</label>
+          <input type="number" id="weight" name="weight" required min="30" max="300" step="0.1" placeholder="e.g., 70">
+        </div>
+
+        <div class="form-group">
+          <label for="height">Height (cm) *</label>
+          <input type="number" id="height" name="height" required min="100" max="250" placeholder="e.g., 175">
+        </div>
+      </div>
+
+      <!-- Section 3: Fitness Profile -->
+      <div class="form-section">
+        <h2>💪 Fitness Profile</h2>
+
+        <div class="form-group">
+          <label for="fitnessLevel">Current Fitness Level *</label>
+          <select id="fitnessLevel" name="fitnessLevel" required>
+            <option value="">Select your fitness level</option>
+            <option value="beginner">🌱 Beginner (Little to no exercise)</option>
+            <option value="intermediate">📈 Intermediate (Exercise 2-3x per week)</option>
+            <option value="advanced">🏆 Advanced (Exercise 4+ times per week)</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="goal">Primary Fitness Goal *</label>
+          <select id="goal" name="goal" required>
+            <option value="">Select your goal</option>
+            <option value="weight-loss">💪 Weight Loss</option>
+            <option value="muscle-gain">🏋️ Muscle Gain</option>
+            <option value="strength">⚡ Build Strength</option>
+            <option value="flexibility">🧘 Flexibility & Mobility</option>
+            <option value="endurance">🏃 Improve Endurance</option>
+            <option value="general">✨ General Health & Fitness</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label>How many days per week can you exercise? *</label>
+          <div class="radio-group">
+            <label class="radio-option">
+              <input type="radio" name="frequency" value="2-3" required> 2-3 days per week
+            </label>
+            <label class="radio-option">
+              <input type="radio" name="frequency" value="4-5" required> 4-5 days per week
+            </label>
+            <label class="radio-option">
+              <input type="radio" name="frequency" value="6-7" required> 6-7 days per week
+            </label>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>Preferred Workout Type *</label>
+          <div class="radio-group">
+            <label class="radio-option">
+              <input type="radio" name="workoutType" value="cardio" required> 🏃 Cardio
+            </label>
+            <label class="radio-option">
+              <input type="radio" name="workoutType" value="strength" required> 💪 Strength Training
+            </label>
+            <label class="radio-option">
+              <input type="radio" name="workoutType" value="yoga" required> 🧘 Yoga/Flexibility
+            </label>
+            <label class="radio-option">
+              <input type="radio" name="workoutType" value="hiit" required> ⚡ HIIT
+            </label>
+            <label class="radio-option">
+              <input type="radio" name="workoutType" value="mixed" required> 🎯 Mixed Training
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <!-- Section 4: Health & Wellness -->
+      <div class="form-section">
+        <h2>🏥 Health & Wellness</h2>
+
+        <div class="form-group">
+          <label>Do you have any injuries or health concerns? (Optional)</label>
+          <textarea id="injuries" name="injuries" placeholder="Describe any physical limitations, injuries, or health conditions..."></textarea>
+        </div>
+
+        <div class="form-group">
+          <label>How would you rate your current stress level? *</label>
+          <div class="scale-group">
+            <button type="button" class="scale-btn" data-stress="1">Low</button>
+            <button type="button" class="scale-btn" data-stress="2">Moderate</button>
+            <button type="button" class="scale-btn" data-stress="3">High</button>
+          </div>
+          <input type="hidden" id="stressLevel" name="stressLevel" required>
+        </div>
+
+        <div class="form-group">
+          <label>How would you rate your sleep quality? *</label>
+          <div class="radio-group">
+            <label class="radio-option">
+              <input type="radio" name="sleep" value="excellent" required> ⭐⭐⭐⭐⭐ Excellent
+            </label>
+            <label class="radio-option">
+              <input type="radio" name="sleep" value="good" required> ⭐⭐⭐⭐ Good
+            </label>
+            <label class="radio-option">
+              <input type="radio" name="sleep" value="average" required> ⭐⭐⭐ Average
+            </label>
+            <label class="radio-option">
+              <input type="radio" name="sleep" value="poor" required> ⭐⭐ Poor
+            </label>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>How many hours of sleep do you get per night? *</label>
+          <input type="number" id="sleepHours" name="sleepHours" required min="3" max="12" step="0.5" placeholder="e.g., 7">
+        </div>
+      </div>
+
+      <!-- Section 5: Lifestyle & Nutrition -->
+      <div class="form-section">
+        <h2>🍎 Lifestyle & Nutrition</h2>
+
+        <div class="form-group">
+          <label for="dietPreference">Diet Preference *</label>
+          <select id="dietPreference" name="dietPreference" required>
+            <option value="">Select your diet preference</option>
+            <option value="vegetarian">🥬 Vegetarian</option>
+            <option value="non-vegetarian">🥩 Non-Vegetarian</option>
+            <option value="vegan">🌱 Vegan</option>
+            <option value="no-preference">😋 No Preference</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label>Water intake per day (glasses) *</label>
+          <input type="number" id="waterIntake" name="waterIntake" required min="0" max="20" placeholder="e.g., 8">
+        </div>
+
+        <div class="form-group">
+          <label>Do you smoke or use tobacco? *</label>
+          <div class="radio-group">
+            <label class="radio-option">
+              <input type="radio" name="smoking" value="no" required> No
+            </label>
+            <label class="radio-option">
+              <input type="radio" name="smoking" value="yes" required> Yes
+            </label>
+            <label class="radio-option">
+              <input type="radio" name="smoking" value="former" required> Former smoker
+            </label>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>Alcohol consumption frequency *</label>
+          <div class="radio-group">
+            <label class="radio-option">
+              <input type="radio" name="alcohol" value="none" required> Never
+            </label>
+            <label class="radio-option">
+              <input type="radio" name="alcohol" value="occasional" required> Occasionally
+            </label>
+            <label class="radio-option">
+              <input type="radio" name="alcohol" value="moderate" required> Moderate
+            </label>
+            <label class="radio-option">
+              <input type="radio" name="alcohol" value="frequent" required> Frequent
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <!-- Section 6: Motivation & Goals -->
+      <div class="form-section">
+        <h2>🎯 Motivation & Goals</h2>
+
+        <div class="form-group">
+          <label>What motivates you to stay fit? (Select all that apply)</label>
+          <div class="checkbox-group">
+            <label class="checkbox-option">
+              <input type="checkbox" name="motivation" value="health"> Health & Wellness
+            </label>
+            <label class="checkbox-option">
+              <input type="checkbox" name="motivation" value="appearance"> Better Appearance
+            </label>
+            <label class="checkbox-option">
+              <input type="checkbox" name="motivation" value="confidence"> Increased Confidence
+            </label>
+            <label class="checkbox-option">
+              <input type="checkbox" name="motivation" value="energy"> More Energy
+            </label>
+            <label class="checkbox-option">
+              <input type="checkbox" name="motivation" value="sports"> Sports/Competition
+            </label>
+            <label class="checkbox-option">
+              <input type="checkbox" name="motivation" value="stress"> Stress Relief
+            </label>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>What are your biggest fitness challenges? (Select all that apply)</label>
+          <div class="checkbox-group">
+            <label class="checkbox-option">
+              <input type="checkbox" name="challenges" value="time"> Lack of Time
+            </label>
+            <label class="checkbox-option">
+              <input type="checkbox" name="challenges" value="motivation"> Lack of Motivation
+            </label>
+            <label class="checkbox-option">
+              <input type="checkbox" name="challenges" value="knowledge"> Not Sure What to Do
+            </label>
+            <label class="checkbox-option">
+              <input type="checkbox" name="challenges" value="injury"> Past Injuries
+            </label>
+            <label class="checkbox-option">
+              <input type="checkbox" name="challenges" value="cost"> Cost/Gym Access
+            </label>
+            <label class="checkbox-option">
+              <input type="checkbox" name="challenges" value="diet"> Diet Control
+            </label>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="additional">Any additional comments or goals? (Optional)</label>
+          <textarea id="additional" name="additional" placeholder="Tell us anything else about your fitness journey..."></textarea>
+        </div>
+      </div>
+
+      <!-- Buttons -->
+      <div class="button-group">
+        <button type="reset" class="btn btn-secondary">Clear Form</button>
+        <button type="submit" class="btn btn-primary" id="submitBtn">📊 Submit Assessment</button>
+      </div>
+    </form>
+  </div>
+
+  <footer>
+    <p>© 2025 Fitness Blog | Assessment Section | Your wellness journey starts here! 🎯</p>
+  </footer>
+
+  <script>
+    const API_URL = 'http://localhost:5000';
+    const form = document.getElementById('assessmentForm');
+
+    // Scale button handlers
+    document.querySelectorAll('[data-stress]').forEach(btn => {
+      btn.addEventListener('click', function(e) {
+        e.preventDefault();
+        document.querySelectorAll('[data-stress]').forEach(b => b.classList.remove('active'));
+        this.classList.add('active');
+        document.getElementById('stressLevel').value = this.dataset.stress;
+      });
+    });
+
+    // Progress bar update
+    form.addEventListener('change', updateProgress);
+    form.addEventListener('input', updateProgress);
+
+    function updateProgress() {
+      const inputs = form.querySelectorAll('input[required], select[required]');
+      let filled = 0;
+      inputs.forEach(input => {
+        if (input.type === 'radio' || input.type === 'checkbox') {
+          if (input.checked) filled++;
+        } else if (input.value) {
+          filled++;
+        }
+      });
+      const progress = (filled / inputs.length) * 100;
+      document.getElementById('progressFill').style.width = progress + '%';
+    }
+
+    // Form submission
+    form.addEventListener('submit', async function(e) {
+      e.preventDefault();
+
+      const submitBtn = document.getElementById('submitBtn');
+      const originalText = submitBtn.textContent;
+      submitBtn.disabled = true;
+      submitBtn.textContent = '⏳ Submitting...';
+
+      try {
+        const formData = new FormData(form);
+        const data = {
+          name: formData.get('name'),
+          email: formData.get('email'),
+          age: parseInt(formData.get('age')),
+          gender: formData.get('gender'),
+          weight: parseFloat(formData.get('weight')),
+          height: parseFloat(formData.get('height')),
+          fitness_level: formData.get('fitnessLevel'),
+          goal: formData.get('goal'),
+          frequency: formData.get('frequency'),
+          workout_type: formData.get('workoutType'),
+          injuries_concerns: formData.get('injuries'),
+          stress_level: parseInt(formData.get('stressLevel')),
+          sleep_quality: formData.get('sleep'),
+          sleep_hours: parseFloat(formData.get('sleepHours')),
+          diet_preference: formData.get('dietPreference'),
+          water_intake: parseInt(formData.get('waterIntake')),
+          smoking: formData.get('smoking'),
+          alcohol: formData.get('alcohol'),
+          motivation: Array.from(formData.getAll('motivation')),
+          challenges: Array.from(formData.getAll('challenges')),
+          additional_comments: formData.get('additional')
+        };
+
+        const response = await fetch(`${API_URL}/api/wellness-assessment`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data)
+        });
+
+        const result = await response.json();
+
+        if (result.status === 'success') {
+          document.getElementById('successMessage').style.display = 'block';
+          form.reset();
+          updateProgress();
+          setTimeout(() => {
+            window.scrollTo(0, 0);
+          }, 100);
+          setTimeout(() => {
+            document.getElementById('successMessage').style.display = 'none';
+          }, 5000);
+        } else {
+          showError(result.message || 'Failed to submit assessment');
+        }
+      } catch (error) {
+        showError('Connection error. Make sure the backend server is running on port 5000.');
+        console.error('Error:', error);
+      }
+
+      submitBtn.disabled = false;
+      submitBtn.textContent = originalText;
+    });
+
+    function showError(message) {
+      const errorDiv = document.getElementById('errorMessage');
+      errorDiv.textContent = '❌ Error: ' + message;
+      errorDiv.style.display = 'block';
+      setTimeout(() => {
+        errorDiv.style.display = 'none';
+      }, 5000);
+    }
+  </script>
+
+</body>
+</html>

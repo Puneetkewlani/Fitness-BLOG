@@ -46,6 +46,35 @@ def init_db():
                 phone TEXT,
                 interest TEXT,
                 message TEXT NOT NULL,
+        
+                        # Wellness Assessment Table
+                        cursor.execute('''
+                            CREATE TABLE IF NOT EXISTS wellness_assessments (
+                                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                                name TEXT NOT NULL,
+                                email TEXT NOT NULL,
+                                age INTEGER,
+                                gender TEXT,
+                                weight REAL,
+                                height REAL,
+                                fitness_level TEXT,
+                                goal TEXT,
+                                frequency TEXT,
+                                workout_type TEXT,
+                                injuries_concerns TEXT,
+                                stress_level INTEGER,
+                                sleep_quality TEXT,
+                                sleep_hours REAL,
+                                diet_preference TEXT,
+                                water_intake INTEGER,
+                                smoking TEXT,
+                                alcohol TEXT,
+                                motivation TEXT,
+                                challenges TEXT,
+                                additional_comments TEXT,
+                                submitted_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+                            )
+                        ''')
                 submitted_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
             )
         ''')
@@ -132,6 +161,58 @@ def submit_fitness_assessment():
             'status': 'error',
             'message': str(e)
         }), 500
+# Wellness Assessment Endpoint
+@app.route('/api/wellness-assessment', methods=['POST'])
+def submit_wellness_assessment():
+    try:
+        data = request.get_json()
+        
+        required_fields = ['name', 'email', 'weight', 'height', 'fitness_level', 'goal']
+        if not all(field in data for field in required_fields):
+            return jsonify({
+                'status': 'error',
+                'message': 'Missing required fields'
+            }), 400
+        
+        conn = get_db()
+        cursor = conn.cursor()
+        
+        motivation = ','.join(data.get('motivation', [])) if isinstance(data.get('motivation'), list) else data.get('motivation', '')
+        challenges = ','.join(data.get('challenges', [])) if isinstance(data.get('challenges'), list) else data.get('challenges', '')
+        
+        cursor.execute('''
+            INSERT INTO wellness_assessments 
+            (name, email, age, gender, weight, height, fitness_level, goal, frequency, 
+             workout_type, injuries_concerns, stress_level, sleep_quality, sleep_hours, 
+             diet_preference, water_intake, smoking, alcohol, motivation, challenges, additional_comments)
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+        ''', (
+            data['name'], data['email'], data.get('age'), data.get('gender'),
+            data.get('weight'), data.get('height'), data['fitness_level'],
+            data['goal'], data.get('frequency'), data.get('workout_type'),
+            data.get('injuries_concerns'), data.get('stress_level'),
+            data.get('sleep_quality'), data.get('sleep_hours'),
+            data.get('diet_preference'), data.get('water_intake'),
+            data.get('smoking'), data.get('alcohol'),
+            motivation, challenges, data.get('additional_comments', '')
+        ))
+        
+        conn.commit()
+        submission_id = cursor.lastrowid
+        conn.close()
+        
+        return jsonify({
+            'status': 'success',
+            'message': 'Wellness assessment submitted successfully!',
+            'id': submission_id
+        }), 201
+    
+    except Exception as e:
+        return jsonify({
+            'status': 'error',
+            'message': str(e)
+        }), 500
+
 
 # Contact Form Endpoint
 @app.route('/api/contact', methods=['POST'])
@@ -184,7 +265,17 @@ def submit_bmi():
             }), 400
         
         weight = float(data['weight'])
-        height = float(data['height']) / 100  # Convert cm to meters
+        unit_system = data.get('unit_system', 'metric')  # 'metric' or 'imperial'
+        
+        # Convert height to meters
+        if unit_system == 'imperial':
+            # feet and inches to meters
+            feet = float(data.get('feet', 0))
+            inches = float(data.get('inches', 0))
+            height = (feet * 12 + inches) * 0.0254  # Convert to meters
+            weight = weight * 0.453592  # Convert lbs to kg
+        else:
+            height = float(data['height']) / 100  # Convert cm to meters
         
         # Calculate BMI
         bmi = weight / (height ** 2)
@@ -206,7 +297,7 @@ def submit_bmi():
         cursor.execute('''
             INSERT INTO bmi_calculations (weight, height, bmi, category, ip_address)
             VALUES (?, ?, ?, ?, ?)
-        ''', (weight * 100, height * 100, bmi, category, ip_address))
+        ''', (weight, height * 100, bmi, category, ip_address))
         
         conn.commit()
         conn.close()

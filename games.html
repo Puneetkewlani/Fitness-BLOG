@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Fitness Games - Have fun while staying active!">
+  <title>Fitness Games - Fun Workouts 🎮</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Arial, sans-serif;
+      background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), 
+                  linear-gradient(135deg, #1a1a2e, #16213e);
+      background-size: cover;
+      background-attachment: fixed;
+      min-height: 100vh;
+      color: #333;
+    }
+
+    header {
+      background: linear-gradient(135deg, #008080, #006666);
+      color: white;
+      padding: 25px;
+      text-align: center;
+      box-shadow: 0 2px 15px rgba(0,0,0,0.1);
+    }
+
+    header h1 {
+      font-size: 2.5rem;
+      margin-bottom: 10px;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+    }
+
+    nav {
+      margin: 20px 0;
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+      padding: 10px 20px;
+      border-radius: 20px;
+      transition: all 0.3s ease;
+      background: rgba(255,255,255,0.1);
+    }
+
+    nav a:hover {
+      background: rgba(255,255,255,0.25);
+      color: #ffcc00;
+      transform: translateY(-2px);
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 40px 20px;
+    }
+
+    .game-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+      margin-bottom: 60px;
+    }
+
+    .game-card {
+      background: white;
+      border-radius: 20px;
+      padding: 30px;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+      transition: all 0.3s ease;
+      border-left: 5px solid #008080;
+      cursor: pointer;
+    }
+
+    .game-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 20px 60px rgba(0,128,128,0.3);
+    }
+
+    .game-card h3 {
+      color: #008080;
+      font-size: 1.8rem;
+      margin-bottom: 15px;
+    }
+
+    .game-card p {
+      color: #666;
+      font-size: 1rem;
+      line-height: 1.6;
+      margin-bottom: 20px;
+    }
+
+    .game-btn {
+      display: inline-block;
+      background: linear-gradient(135deg, #008080, #006666);
+      color: white;
+      padding: 12px 30px;
+      border-radius: 10px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: all 0.3s ease;
+      border: none;
+      cursor: pointer;
+      font-size: 1rem;
+    }
+
+    .game-btn:hover {
+      background: linear-gradient(135deg, #00a6a6, #008080);
+      transform: translateY(-2px);
+      box-shadow: 0 10px 25px rgba(0,128,128,0.35);
+    }
+
+    .game-container {
+      background: white;
+      border-radius: 20px;
+      padding: 40px;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+      margin-bottom: 60px;
+      display: none;
+    }
+
+    .game-container.active {
+      display: block;
+    }
+
+    .game-container h2 {
+      color: #008080;
+      font-size: 2.2rem;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    .close-btn {
+      float: right;
+      background: #f44336;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 10px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    .close-btn:hover {
+      background: #d32f2f;
+    }
+
+    /* Reaction Time Game */
+    #reactionGame {
+      text-align: center;
+      padding: 40px;
+    }
+
+    .reaction-box {
+      width: 200px;
+      height: 200px;
+      background: #4caf50;
+      margin: 40px auto;
+      border-radius: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 2rem;
+      font-weight: bold;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .reaction-box:hover {
+      transform: scale(1.05);
+    }
+
+    .reaction-box.ready {
+      background: #2196f3;
+    }
+
+    .reaction-box.go {
+      background: #4caf50;
+      cursor: pointer;
+    }
+
+    /* Memory Game */
+    .memory-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 100px);
+      gap: 15px;
+      justify-content: center;
+      margin: 40px 0;
+    }
+
+    .memory-card {
+      width: 100px;
+      height: 100px;
+      background: linear-gradient(135deg, #008080, #006666);
+      border-radius: 10px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      color: white;
+      transition: all 0.3s ease;
+      border: 3px solid transparent;
+    }
+
+    .memory-card:hover {
+      transform: scale(1.05);
+      border-color: #ffcc00;
+    }
+
+    .memory-card.flipped {
+      background: white;
+      color: #008080;
+    }
+
+    /* Typing Speed Game */
+    .typing-section {
+      text-align: center;
+      margin: 40px 0;
+    }
+
+    .typing-text {
+      font-size: 1.3rem;
+      color: #008080;
+      background: #f5f5f5;
+      padding: 20px;
+      border-radius: 10px;
+      margin: 20px 0;
+      font-family: monospace;
+      min-height: 60px;
+    }
+
+    .typing-input {
+      width: 100%;
+      max-width: 600px;
+      padding: 15px;
+      font-size: 1.1rem;
+      border: 2px solid #008080;
+      border-radius: 10px;
+      margin: 20px 0;
+    }
+
+    .stats {
+      display: flex;
+      justify-content: space-around;
+      margin: 30px 0;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    .stat {
+      background: #f5f5f5;
+      padding: 20px;
+      border-radius: 10px;
+      min-width: 150px;
+      text-align: center;
+    }
+
+    .stat h3 {
+      color: #008080;
+      margin-bottom: 10px;
+    }
+
+    .stat p {
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: #333;
+    }
+
+    footer {
+      background: linear-gradient(135deg, #008080, #006666);
+      color: white;
+      text-align: center;
+      padding: 20px;
+      margin-top: 60px;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>🎮 Fitness Games - Have Fun While Staying Active!</h1>
+    <nav>
+      <a href="index.html">🏠 Home</a>
+      <a href="assessment.html">📋 Assessment</a>
+      <a href="diet.html">🍎 Diet</a>
+      <a href="exercise.html">💪 Exercise</a>
+      <a href="contact.html">📧 Contact</a>
+    </nav>
+  </header>
+
+  <div class="container">
+    <div class="game-grid" id="gamesList">
+      <div class="game-card" onclick="startGame('reaction')">
+        <h3>⚡ Reaction Time</h3>
+        <p>Test your reflexes! Click as fast as you can when the box changes color. Perfect for warming up before a workout!</p>
+        <button class="game-btn">Play Now</button>
+      </div>
+
+      <div class="game-card" onclick="startGame('memory')">
+        <h3>🧠 Memory Match</h3>
+        <p>Match the pairs in this classic memory game. Great for mental focus and concentration training!</p>
+        <button class="game-btn">Play Now</button>
+      </div>
+
+      <div class="game-card" onclick="startGame('typing')">
+        <h3>⌨️ Typing Speed</h3>
+        <p>Test your typing speed and accuracy. Challenge yourself and see how fast you can type!</p>
+        <button class="game-btn">Play Now</button>
+      </div>
+    </div>
+
+    <!-- Reaction Time Game -->
+    <div class="game-container" id="reactionContainer">
+      <button class="close-btn" onclick="closeGame()">✕ Close</button>
+      <h2>⚡ Reaction Time Challenge</h2>
+      <div id="reactionGame">
+        <p style="font-size: 1.2rem; color: #666; margin-bottom: 20px;">Click the box as fast as you can!</p>
+        <div class="reaction-box" id="reactionBox">Ready?</div>
+        <p id="reactionResult" style="font-size: 1.5rem; color: #008080; font-weight: bold; margin-top: 30px;"></p>
+      </div>
+    </div>
+
+    <!-- Memory Game -->
+    <div class="game-container" id="memoryContainer">
+      <button class="close-btn" onclick="closeGame()">✕ Close</button>
+      <h2>🧠 Memory Match Game</h2>
+      <p style="text-align: center; color: #666; margin: 20px 0;">Match the pairs! Score: <span id="memoryScore">0</span></p>
+      <div class="memory-grid" id="memoryGrid"></div>
+      <div style="text-align: center; margin-top: 30px;">
+        <button class="game-btn" onclick="resetMemoryGame()">New Game</button>
+      </div>
+    </div>
+
+    <!-- Typing Speed Game -->
+    <div class="game-container" id="typingContainer">
+      <button class="close-btn" onclick="closeGame()">✕ Close</button>
+      <h2>⌨️ Typing Speed Challenge</h2>
+      <div class="typing-section">
+        <div class="typing-text" id="typingText">The quick brown fox jumps over the lazy dog</div>
+        <input type="text" class="typing-input" id="typingInput" placeholder="Start typing here...">
+        
+        <div class="stats">
+          <div class="stat">
+            <h3>WPM</h3>
+            <p id="wpm">0</p>
+          </div>
+          <div class="stat">
+            <h3>Accuracy</h3>
+            <p id="accuracy">100%</p>
+          </div>
+          <div class="stat">
+            <h3>Time</h3>
+            <p id="timer">60s</p>
+          </div>
+        </div>
+
+        <button class="game-btn" onclick="startTypingGame()">Start Game</button>
+        <button class="game-btn" onclick="resetTypingGame()" style="background: #f44336; margin-left: 10px;">Reset</button>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <p>© 2025 Fitness Blog | Games Section | Have Fun & Stay Active! 🎮💪</p>
+  </footer>
+
+  <script>
+    // Game state
+    let currentGame = null;
+    let reactionStart = null;
+    let memoryCards = [];
+    let memoryFlipped = [];
+    let memoryMatches = 0;
+    let typingActive = false;
+    let typingStartTime = null;
+
+    function startGame(game) {
+      currentGame = game;
+      document.getElementById('gamesList').style.display = 'none';
+      
+      if (game === 'reaction') {
+        document.getElementById('reactionContainer').classList.add('active');
+        initReactionGame();
+      } else if (game === 'memory') {
+        document.getElementById('memoryContainer').classList.add('active');
+        initMemoryGame();
+      } else if (game === 'typing') {
+        document.getElementById('typingContainer').classList.add('active');
+        initTypingGame();
+      }
+    }
+
+    function closeGame() {
+      document.getElementById('gamesList').style.display = 'grid';
+      document.getElementById('reactionContainer').classList.remove('active');
+      document.getElementById('memoryContainer').classList.remove('active');
+      document.getElementById('typingContainer').classList.remove('active');
+      currentGame = null;
+      typingActive = false;
+    }
+
+    // Reaction Time Game
+    function initReactionGame() {
+      const box = document.getElementById('reactionBox');
+      const result = document.getElementById('reactionResult');
+      box.textContent = 'Click when it turns green!';
+      box.classList.add('ready');
+      result.textContent = '';
+
+      setTimeout(() => {
+        box.textContent = 'GO!';
+        box.classList.remove('ready');
+        box.classList.add('go');
+        reactionStart = Date.now();
+
+        box.onclick = function() {
+          const time = Date.now() - reactionStart;
+          result.textContent = `Your reaction time: ${time}ms 🎉`;
+          box.onclick = null;
+          
+          setTimeout(() => {
+            initReactionGame();
+          }, 2000);
+        };
+      }, Math.random() * 2000 + 1000);
+    }
+
+    // Memory Game
+    function initMemoryGame() {
+      const symbols = ['🎮', '🏋️', '🥗', '🧘', '⚡', '💪', '🏃', '🎯'];
+      const gameSymbols = [...symbols, ...symbols];
+      memoryCards = gameSymbols.sort(() => Math.random() - 0.5);
+      memoryFlipped = new Array(16).fill(false);
+      memoryMatches = 0;
+      let lastCard = null;
+      let flipped = [];
+
+      document.getElementById('memoryScore').textContent = '0';
+      const grid = document.getElementById('memoryGrid');
+      grid.innerHTML = '';
+
+      memoryCards.forEach((symbol, index) => {
+        const card = document.createElement('div');
+        card.className = 'memory-card';
+        card.textContent = '?';
+        card.onclick = function() {
+          if (!memoryFlipped[index] && flipped.length < 2) {
+            memoryFlipped[index] = true;
+            card.textContent = symbol;
+            card.classList.add('flipped');
+            flipped.push({index, symbol, card});
+
+            if (flipped.length === 2) {
+              if (flipped[0].symbol === flipped[1].symbol) {
+                memoryMatches++;
+                document.getElementById('memoryScore').textContent = memoryMatches;
+                flipped = [];
+              } else {
+                setTimeout(() => {
+                  flipped[0].card.textContent = '?';
+                  flipped[1].card.textContent = '?';
+                  flipped[0].card.classList.remove('flipped');
+                  flipped[1].card.classList.remove('flipped');
+                  memoryFlipped[flipped[0].index] = false;
+                  memoryFlipped[flipped[1].index] = false;
+                  flipped = [];
+                }, 800);
+              }
+            }
+          }
+        };
+        grid.appendChild(card);
+      });
+    }
+
+    function resetMemoryGame() {
+      initMemoryGame();
+    }
+
+    // Typing Game
+    function initTypingGame() {
+      const texts = [
+        'The quick brown fox jumps over the lazy dog',
+        'Practice makes perfect, keep typing to improve your speed',
+        'Fitness is not a destination, it is a way of life',
+        'Push yourself, because no one else is going to do it for you'
+      ];
+      document.getElementById('typingText').textContent = texts[Math.floor(Math.random() * texts.length)];
+      document.getElementById('typingInput').value = '';
+      document.getElementById('wpm').textContent = '0';
+      document.getElementById('accuracy').textContent = '100%';
+      document.getElementById('timer').textContent = '60s';
+    }
+
+    function startTypingGame() {
+      if (typingActive) return;
+      typingActive = true;
+      const input = document.getElementById('typingInput');
+      const text = document.getElementById('typingText').textContent;
+      let timeLeft = 60;
+
+      input.focus();
+      typingStartTime = Date.now();
+
+      const timer = setInterval(() => {
+        timeLeft--;
+        document.getElementById('timer').textContent = timeLeft + 's';
+
+        const typed = input.value;
+        let correct = 0;
+        for (let i = 0; i < typed.length; i++) {
+          if (typed[i] === text[i]) correct++;
+        }
+
+        const accuracy = typed.length > 0 ? Math.round((correct / typed.length) * 100) : 100;
+        document.getElementById('accuracy').textContent = accuracy + '%';
+
+        const elapsed = (60 - timeLeft) / 60;
+        const wpm = Math.round((typed.split(' ').length / elapsed) * 60) || 0;
+        document.getElementById('wpm').textContent = wpm;
+
+        if (timeLeft <= 0) {
+          clearInterval(timer);
+          input.disabled = true;
+          alert(`Game Over!\nWPM: ${wpm}\nAccuracy: ${accuracy}%\nWords typed: ${typed.split(' ').length}`);
+          typingActive = false;
+        }
+      }, 1000);
+    }
+
+    function resetTypingGame() {
+      typingActive = false;
+      initTypingGame();
+    }
+  </script>
+
+</body>
+</html>

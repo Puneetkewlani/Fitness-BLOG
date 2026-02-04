@@ -38,6 +38,13 @@
       padding: 8px 15px;
       border-radius: 20px;
       transition: all 0.3s ease;
+
+        nav {
+          display: flex;
+          justify-content: center;
+          gap: 15px;
+          flex-wrap: wrap;
+        }
     }
 
     nav a:hover {
@@ -766,7 +773,7 @@
       <p style="color: rgba(255,255,255,0.95); font-size: 1.15rem; margin-bottom: 35px; max-width: 700px; margin-left: auto; margin-right: auto; line-height: 1.7; position: relative; z-index: 1; font-weight: 500;">Join hundreds of members who have already transformed their lives with our proven coaching methods. Your success story starts today!</p>
       
       <div style="display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; position: relative; z-index: 1;">
-        <a href="#assessment" style="background: white; color: #008080; padding: 16px 40px; border-radius: 12px; text-decoration: none; font-weight: 700; font-size: 1rem; transition: all 0.3s ease; box-shadow: 0 10px 30px rgba(0,0,0,0.2); display: inline-block; text-transform: uppercase; letter-spacing: 0.5px;" onmouseover="this.style.transform='translateY(-4px)'; this.style.boxShadow='0 15px 40px rgba(0,0,0,0.3)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 10px 30px rgba(0,0,0,0.2)'">Start Free Assessment →</a>
+        <a href="assessment.html" style="background: white; color: #008080; padding: 16px 40px; border-radius: 12px; text-decoration: none; font-weight: 700; font-size: 1rem; transition: all 0.3s ease; box-shadow: 0 10px 30px rgba(0,0,0,0.2); display: inline-block; text-transform: uppercase; letter-spacing: 0.5px;" onmouseover="this.style.transform='translateY(-4px)'; this.style.boxShadow='0 15px 40px rgba(0,0,0,0.3)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 10px 30px rgba(0,0,0,0.2)'">Start Free Assessment →</a>
         <a href="contact.html" style="background: transparent; color: white; padding: 16px 40px; border: 2px solid white; border-radius: 12px; text-decoration: none; font-weight: 700; font-size: 1rem; transition: all 0.3s ease; display: inline-block; text-transform: uppercase; letter-spacing: 0.5px;" onmouseover="this.style.background='rgba(255,255,255,0.1)'; this.style.transform='translateY(-4px)'" onmouseout="this.style.background='transparent'; this.style.transform='translateY(0)'">View Packages 💎</a>
       </div>
 
@@ -822,13 +829,15 @@
               headers: {
                 'Content-Type': 'application/json',
               },
-              body: JSON.stringify({
-                name,
-                weight,
-                height,
-                goal,
-                fitness_level,
                 email,
+                  <nav>
+                    <a href="index.html">🏠 Home</a>
+                    <a href="assessment.html">📋 Assessment</a>
+                    <a href="diet.html">🍎 Diet Plans</a>
+                    <a href="exercise.html">💪 Exercise</a>
+                    <a href="games.html">🎮 Games</a>
+                    <a href="contact.html">📧 Contact</a>
+                  </nav>
                 workout_type,
                 frequency,
                 diet_preference,
