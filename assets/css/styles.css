@@ -1,0 +1,68 @@
+:root{
+  --bg-1: #1a1a2e;
+  --accent: #008080;
+  --accent-2: #00a6a6;
+  --muted: #666666;
+  --card-bg: rgba(255,255,255,0.98);
+  --radius: 12px;
+}
+
+/* Basic reset + typography */
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  font-family:'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+  margin:0;
+  color:var(--muted);
+  background-color:var(--bg-1);
+}
+
+.container{max-width:1200px;margin:0 auto;padding:28px}
+
+header{background:linear-gradient(135deg,var(--accent),#006666);color:#fff;padding:20px;text-align:center}
+header h1{margin:0;font-size:1.6rem}
+nav{margin-top:12px}
+nav a{color:#fff;text-decoration:none;padding:8px 14px;border-radius:20px;font-weight:700;display:inline-block}
+nav a:hover{opacity:0.95;transform:translateY(-2px)}
+
+/* Buttons */
+.btn{display:inline-block;padding:10px 20px;border-radius:10px;text-decoration:none;font-weight:700}
+.btn-primary{background:linear-gradient(135deg,var(--accent),var(--accent-2));color:#fff}
+.btn-ghost{background:transparent;border:2px solid #fff;color:#fff}
+
+/* Cards */
+.card{background:var(--card-bg);border-radius:var(--radius);box-shadow:0 10px 30px rgba(0,0,0,0.12);overflow:hidden}
+.card-padding{padding:20px}
+
+/* Responsive image helper used for placeholders */
+.responsive-img{width:100%;height:100%;object-fit:cover;display:block}
+
+.feature-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px}
+.center{text-align:center}
+
+.cta{display:inline-block;padding:14px 36px;border-radius:14px}
+.cta-primary{background:linear-gradient(135deg,var(--accent),var(--accent-2));color:#fff;font-weight:800}
+
+.scroll-top{position:fixed;right:20px;bottom:25px;background:linear-gradient(135deg,var(--accent),var(--accent-2));color:#fff;width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;text-decoration:none}
+
+/* Responsive helpers */
+@media (max-width:768px){.container{padding:18px}header h1{font-size:1.25rem}nav a{margin:4px 6px}}
+
+/* Utility */
+.muted{color:var(--muted)}
+
+/* Standard header / footer */
+.site-header{background:linear-gradient(135deg,var(--accent),#006666);padding:20px 0;color:#fff}
+.site-header .container{display:flex;flex-direction:column;align-items:center;gap:10px}
+.site-header h1{margin:0;font-size:1.6rem}
+.site-nav{display:flex;gap:12px;flex-wrap:wrap;justify-content:center}
+.site-nav a{color:#fff;text-decoration:none;padding:8px 14px;border-radius:18px;font-weight:700}
+.site-nav a:hover{opacity:0.95;transform:translateY(-2px)}
+
+.site-footer{background:linear-gradient(135deg,rgba(0,128,128,0.95),rgba(0,102,102,0.95));color:#fff;padding:18px;margin-top:40px}
+.site-footer .container{display:flex;align-items:center;justify-content:center}
+
+/* Feature link/button style used across pages */
+.feature-link{display:inline-block;padding:10px 18px;border-radius:8px;background:linear-gradient(135deg,var(--accent),var(--accent-2));color:#fff;text-decoration:none;font-weight:700}
+.feature-link:hover{transform:translateY(-3px);box-shadow:0 8px 22px rgba(0,0,0,0.12)}
+
