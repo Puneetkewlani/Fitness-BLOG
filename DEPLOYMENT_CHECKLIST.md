@@ -74,7 +74,7 @@ For forms to work with live backend:
 const API_URL = 'https://YOUR-RAILWAY-URL.up.railway.app';
 ```
 
-2. Update in Contact.html (line ~523):
+2. Update in contact.html (line ~523):
 ```javascript
 const API_URL = 'https://YOUR-RAILWAY-URL.up.railway.app';
 ```

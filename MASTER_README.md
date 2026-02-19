@@ -31,7 +31,7 @@ Choose what you want to do:
 ### Frontend (HTML/CSS/JavaScript)
 ```
 index.html          - Homepage with fitness assessment form
-Contact.html        - Contact page with coaching packages
+contact.html        - Contact page with coaching packages
 diet.html           - Diet guide with BMI calculator
 exercise.html       - Exercise guide and workout plans
 ```
@@ -80,7 +80,7 @@ See: BACKEND_SETUP.md
 IWT-Project-/
 ├── Frontend Files
 │   ├── index.html              (Homepage - 38.7 KB)
-│   ├── Contact.html            (Services & contact - 28.7 KB)
+│   ├── contact.html            (Services & contact - 28.7 KB)
 │   ├── diet.html               (Nutrition guide - 38.9 KB)
 │   └── exercise.html           (Workout guide - 42.1 KB)
 │

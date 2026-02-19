@@ -17,7 +17,7 @@
 ✅ Admin Dashboard for viewing submissions
 ✅ Form integration on all pages:
    • Fitness assessment (index.html)
-   • Contact form (Contact.html)
+   • Contact form (contact.html)
    • BMI calculator (diet.html)
 ✅ Complete documentation
 ✅ Error handling and CORS support
@@ -81,7 +81,7 @@ POST /api/fitness-assessment
 
 POST /api/contact
    └─ Stores contact form submissions
-   └─ Called from: Contact.html
+   └─ Called from: contact.html
    └─ Fields: name, email, phone, interest, message
 
 POST /api/bmi

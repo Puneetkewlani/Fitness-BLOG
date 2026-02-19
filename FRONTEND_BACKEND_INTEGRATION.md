@@ -25,7 +25,7 @@ const API_URL = 'http://localhost:5000';
 const API_URL = 'https://YOUR-RAILWAY-URL.up.railway.app';
 ```
 
-#### File 2: Contact.html (Line ~523)
+#### File 2: contact.html (Line ~523)
 ```javascript
 // OLD:
 const API_URL = 'http://localhost:5000';

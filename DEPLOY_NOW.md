@@ -57,7 +57,7 @@ Your frontend is still using localhost. To use your live backend:
    const API_URL = 'https://YOUR-RAILWAY-URL.up.railway.app';
    ```
 
-2. Update in `Contact.html` (around line 523):
+2. Update in `contact.html` (around line 523):
    ```javascript
    const API_URL = 'https://YOUR-RAILWAY-URL.up.railway.app';
    ```

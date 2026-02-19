@@ -64,7 +64,7 @@ Your frontend files are already configured to use localhost:5000 during developm
 
 For production, update API URLs in:
 - index.html (line ~669): `const API_URL = 'http://localhost:5000'`
-- Contact.html (line ~523): `const API_URL = 'http://localhost:5000'`
+- contact.html (line ~523): `const API_URL = 'http://localhost:5000'`
 - diet.html (line ~759): `const API_URL = 'http://localhost:5000'`
 
 Change to your Railway URL:
