@@ -5,6 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Comprehensive Fitness & Wellness Assessment">
   <title>Fitness Assessment - Your Personal Wellness Journey</title>
+  <link rel="icon" href="assets/images/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/styles.css">
   <style>
     * {
       margin: 0;
@@ -312,10 +317,18 @@
       <a href="exercise.html">💪 Exercise</a>
       <a href="contact.html">📧 Contact</a>
     </nav>
+  <header id="top" class="site-header">
+    <div class="container">
+      <h1>🏋️‍♂️ Fitness Assessment</h1>
+      <p style="color:rgba(255,255,255,0.95);margin:0">Complete the form to get a personalized plan</p>
+      <nav class="site-nav">
+        <a href="index.html">Home</a>
+        <a href="diet.html">Diet Plans</a>
+        <a href="exercise.html">Exercise</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+    </div>
   </header>
-
-  <div class="container">
-    <div class="progress-bar">
       <div class="progress-fill" id="progressFill"></div>
     </div>
 
@@ -617,9 +630,9 @@
 
   <footer>
     <p>© 2025 Fitness Blog | Assessment Section | Your wellness journey starts here! 🎯</p>
-  </footer>
-
-  <script>
+    <footer class="site-footer">
+      <div class="container">© 2025 Fitness Blog | Created by Puneet Kewlani</div>
+    </footer>
     const API_URL = 'http://localhost:5000';
     const form = document.getElementById('assessmentForm');
 

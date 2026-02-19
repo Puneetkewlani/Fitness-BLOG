@@ -5,6 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Discover effective exercise routines and fitness training programs.">
   <title>Exercise - Fitness Blog</title>
+  <link rel="icon" href="assets/images/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/styles.css">
   <style>
     body {
       font-family: 'Segoe UI', Arial, sans-serif;
@@ -534,15 +539,16 @@
 </head>
 <body>
 
- <header id="top">
-
-    <h1>🏋️‍♂️ Exercise Gallery</h1>
-    <nav>
-      <a href="index.html">Home</a>
-      <a href="diet.html">Diet Plans</a>
-      <a href="exercise.html">Exercise</a>
-      <a href="contact.html">Contact</a>
-    </nav>
+  <header id="top" class="site-header">
+    <div class="container">
+      <h1>🏋️‍♂️ Exercise Gallery</h1>
+      <nav class="site-nav">
+        <a href="index.html">Home</a>
+        <a href="diet.html">Diet Plans</a>
+        <a href="exercise.html">Exercise</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+    </div>
   </header>
 
   <section>
@@ -579,7 +585,7 @@
       
       <div class="card">
         <div class="card-image">
-          <img src="C:\Users\LENOVO\Downloads\push-up-exercises.webp" alt="Push-ups">
+          <img src="assets/images/push-up-exercises.svg" alt="Push-ups exercise" loading="lazy" class="responsive-img">
           <span class="card-badge">Upper Body</span>
         </div>
         <div class="card-content">
@@ -610,7 +616,7 @@
 
       <div class="card">
         <div class="card-image">
-          <img src="C:\Users\LENOVO\Downloads\pexels-victorfreitas-841130.jpg" alt="Squats">
+          <img src="assets/images/pexels-victorfreitas-841130.svg" alt="Squat exercise" loading="lazy" class="responsive-img">
           <span class="card-badge">Lower Body</span>
         </div>
         <div class="card-content">
@@ -641,7 +647,7 @@
 
       <div class="card">
         <div class="card-image">
-          <img src="C:\Users\LENOVO\Downloads\plank2.webp" alt="Plank">
+          <img src="assets/images/plank2.svg" alt="Plank exercise" loading="lazy" class="responsive-img">
           <span class="card-badge">Core</span>
         </div>
         <div class="card-content">
@@ -672,7 +678,7 @@
 
       <div class="card">
         <div class="card-image">
-          <img src="C:\Users\LENOVO\Downloads\yoga_poses_1756548307118_1756548315207.webp" alt="Yoga">
+          <img src="assets/images/yoga_poses_1756548307118_1756548315207.svg" alt="Yoga poses" loading="lazy" class="responsive-img">
           <span class="card-badge">Flexibility</span>
         </div>
         <div class="card-content">
@@ -1060,8 +1066,8 @@
     }
   </script>
 
-  <footer>
-    <p>© 2025 Fitness Blog | Created by Puneet Kewlani</p>
+  <footer class="site-footer">
+    <div class="container">© 2025 Fitness Blog | Created by Puneet Kewlani</div>
   </footer>
 <a href="#top" class="scroll-top">↑</a>
 
