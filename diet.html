@@ -761,7 +761,7 @@
     </footer>
 
   <script>
-    const API_URL = 'http://localhost:5000';
+    const API_URL = window.location.origin;
 
     function calculateBMI() {
       const height = parseFloat(document.getElementById('height').value);

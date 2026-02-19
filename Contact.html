@@ -532,8 +532,8 @@
 <a href="#top" class="scroll-top">↑</a>
 
 <script>
-  // Backend API URL
-  const API_URL = 'http://localhost:5000';
+  // Backend API URL - Dynamic based on environment
+  const API_URL = window.location.origin;
 
   // Contact Form Handler
   document.addEventListener('DOMContentLoaded', function() {
