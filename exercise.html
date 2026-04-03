@@ -8,114 +8,23 @@
   <link rel="icon" href="assets/images/favicon.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/css/styles.css">
   <style>
-    body {
-      font-family: 'Segoe UI', Arial, sans-serif;
-      margin: 0;
-      background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), 
-                  linear-gradient(135deg, #1a1a2e, #16213e);
-      background-size: cover;
-      background-attachment: fixed;
-      background-position: center;
-      line-height: 1.6;
-      min-height: 100vh;
-    }
-
-    header {
-      background: linear-gradient(135deg, #008080, #006666);
-      color: white;
-      padding: 25px;
-      text-align: center;
-      box-shadow: 0 2px 15px rgba(0,0,0,0.1);
-    }
-
-    nav {
-      margin: 20px 0;
-    }
-
-    nav a {
-      color: white;
-      margin: 0 20px;
-      text-decoration: none;
-      font-weight: bold;
-      padding: 8px 15px;
-      border-radius: 20px;
-      transition: all 0.3s ease;
-    }
-
-    nav a:hover {
-      background: rgba(255,255,255,0.2);
-      color: #ffcc00;
-      transform: translateY(-2px);
-    }
-
-    h1 {
-      font-size: 2.5em;
-      margin-bottom: 20px;
-      text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
-    }
-
-    h2 {
-      font-size: 1.8rem;
-      color: white;
-      text-align: center;
-      margin: 30px 0 40px;
-      display: inline-block;
-      padding: 16px 35px;
-      border-radius: 15px;
-      background: linear-gradient(135deg, rgba(0,128,128,0.4), rgba(0,102,102,0.3));
-      box-shadow: 0 8px 25px rgba(0,0,0,0.2);
-      position: relative;
-      left: 50%;
-      transform: translateX(-50%);
-      letter-spacing: 1px;
-      font-weight: 800;
-      text-shadow: 2px 2px 6px rgba(0,0,0,0.5);
-      backdrop-filter: blur(8px);
-      border: 2px solid rgba(255,255,255,0.2);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-
-    h2:hover {
-      transform: translateX(-50%) translateY(-3px);
-      box-shadow: 0 12px 35px rgba(0,0,0,0.3);
-    }
-
-    h2::after {
-      content: '';
-      position: absolute;
-      left: 50%;
-      transform: translateX(-50%);
-      bottom: -12px;
-      width: 70px;
-      height: 4px;
-      background: linear-gradient(90deg,#00b3b3,#006666);
-      border-radius: 3px;
-    }
-
-    section {
-      padding: 40px 20px;
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-
-    .gallery {
+    /* Exercise Page Specific Styles */
+    .exercise-grid {
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
       gap: 25px;
     }
 
-    .card {
-      background: rgba(255, 255, 255, 0.98);
-      margin: 15px 0;
-      padding: 0;
+    .exercise-card {
+      background: var(--card-bg);
       width: 320px;
-      border-radius: 18px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      border-radius: var(--radius-xl);
+      box-shadow: var(--shadow-lg);
+      transition: transform var(--transition-base), box-shadow var(--transition-base);
       overflow: hidden;
       backdrop-filter: blur(5px);
       border: 2px solid rgba(0, 128, 128, 0.2);
@@ -123,31 +32,31 @@
       flex-direction: column;
     }
 
-    .card:hover {
+    .exercise-card:hover {
       transform: translateY(-10px);
-      box-shadow: 0 15px 45px rgba(0,128,128,0.25);
+      box-shadow: var(--shadow-glow);
       border-color: rgba(0, 128, 128, 0.5);
     }
 
-    .card-image {
+    .exercise-image {
       position: relative;
       height: 250px;
       overflow: hidden;
       background: linear-gradient(135deg, #008080, #006666);
     }
 
-    .card img {
+    .exercise-image img {
       width: 100%;
       height: 100%;
       object-fit: cover;
       transition: transform 0.4s ease;
     }
 
-    .card:hover img {
+    .exercise-card:hover .exercise-image img {
       transform: scale(1.08);
     }
 
-    .card-badge {
+    .exercise-badge {
       position: absolute;
       top: 15px;
       right: 15px;
@@ -162,21 +71,21 @@
       box-shadow: 0 4px 12px rgba(255,107,107,0.3);
     }
 
-    .card-content {
+    .exercise-content {
       padding: 25px;
       flex-grow: 1;
       display: flex;
       flex-direction: column;
     }
 
-    .card h3 {
+    .exercise-card h3 {
       color: #008080;
       font-size: 1.4rem;
       margin: 0 0 12px 0;
       font-weight: 800;
     }
 
-    .card-description {
+    .exercise-description {
       color: #555;
       font-size: 0.95rem;
       margin-bottom: 16px;
@@ -184,7 +93,7 @@
       line-height: 1.6;
     }
 
-    .card-details {
+    .exercise-details {
       background: linear-gradient(135deg, rgba(0,128,128,0.08), rgba(0,166,166,0.06));
       padding: 15px;
       border-radius: 12px;
@@ -192,7 +101,7 @@
       margin-bottom: 15px;
     }
 
-    .card-detail-title {
+    .exercise-detail-title {
       color: #008080;
       font-weight: 700;
       font-size: 0.85rem;
@@ -201,13 +110,13 @@
       margin-bottom: 6px;
     }
 
-    .card-detail-text {
+    .exercise-detail-text {
       color: #444;
       font-size: 0.9rem;
       margin: 4px 0;
     }
 
-    .card-benefits {
+    .exercise-benefits {
       margin: 15px 0;
       flex-grow: 1;
     }
@@ -244,7 +153,7 @@
       font-size: 1.1rem;
     }
 
-    .card-cta {
+    .exercise-cta {
       background: linear-gradient(135deg, #008080, #00a6a6);
       color: white;
       padding: 12px 16px;
@@ -255,7 +164,7 @@
       text-transform: uppercase;
       font-size: 0.85rem;
       letter-spacing: 0.8px;
-      transition: all 0.3s ease;
+      transition: all var(--transition-base);
       width: 100%;
       margin-top: 15px;
       text-decoration: none;
@@ -263,7 +172,7 @@
       box-shadow: 0 4px 12px rgba(0,128,128,0.2);
     }
 
-    .card-cta:hover {
+    .exercise-cta:hover {
       background: linear-gradient(135deg, #006666, #008080);
       transform: translateY(-2px);
       box-shadow: 0 6px 16px rgba(0,128,128,0.35);
@@ -281,11 +190,6 @@
       background-color: rgba(0,0,0,0.7);
       animation: fadeIn 0.4s ease;
       overflow-y: auto;
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
     }
 
     .modal.show {
@@ -307,29 +211,8 @@
     }
 
     @keyframes slideDown {
-      from { 
-        transform: translateY(-80px); 
-        opacity: 0; 
-      }
-      to { 
-        transform: translateY(0); 
-        opacity: 1; 
-      }
-    }
-
-    @keyframes slideUp {
-      from { 
-        transform: translateY(0); 
-        opacity: 1; 
-      }
-      to { 
-        transform: translateY(-80px); 
-        opacity: 0; 
-      }
-    }
-
-    .modal-content.closing {
-      animation: slideUp 0.4s ease forwards;
+      from { transform: translateY(-80px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
     }
 
     .modal-header {
@@ -340,58 +223,15 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .modal-header::after {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      height: 3px;
-      background: linear-gradient(90deg, transparent, #00b3b3, transparent);
     }
 
     .modal-header h2 {
       margin: 0;
       color: white;
       text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
-      display: inline-block;
-      padding: 0;
-      border: none;
       font-size: 1.9rem;
-      left: 0;
-      transform: none;
       font-weight: 800;
       letter-spacing: 0.5px;
-    }
-
-    .modal-header h2::after {
-      display: none;
-    }
-
-    .close-btn {
-      color: white;
-      font-size: 2.2rem;
-      font-weight: bold;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      line-height: 1;
-      width: 40px;
-      height: 40px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border-radius: 50%;
-      background: rgba(255,255,255,0.1);
-    }
-
-    .close-btn:hover {
-      color: #ffcc00;
-      transform: scale(1.15) rotate(90deg);
-      background: rgba(255,255,255,0.2);
     }
 
     .modal-body {
@@ -413,10 +253,6 @@
     .modal-body::-webkit-scrollbar-thumb {
       background: linear-gradient(135deg, #008080, #00a6a6);
       border-radius: 10px;
-    }
-
-    .modal-body::-webkit-scrollbar-thumb:hover {
-      background: linear-gradient(135deg, #006666, #008080);
     }
 
     .modal-body h3 {
@@ -451,7 +287,7 @@
       color: #444;
       font-weight: 500;
       line-height: 1.6;
-      transition: all 0.3s ease;
+      transition: all var(--transition-base);
     }
 
     .modal-body ul li:hover {
@@ -466,53 +302,41 @@
       color: #008080;
       font-weight: bold;
       font-size: 1.1rem;
-      transition: all 0.3s ease;
+      transition: all var(--transition-base);
     }
 
     .modal-body ul li:hover::before {
       left: 8px;
     }
-    /* Back to top button */
-.scroll-top {
-  position: fixed;
-  right: 20px;
-  bottom: 25px;
-  background: linear-gradient(135deg, #008080, #00a6a6);
-  color: #fff;
-  text-decoration: none;
-  width: 42px;
-  height: 42px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.3rem;
-  box-shadow: 0 8px 22px rgba(0,0,0,0.35);
-  transition: transform 0.25s ease, box-shadow 0.25s ease, opacity 0.25s ease;
-  opacity: 0.9;
-  z-index: 999;
-}
 
-.scroll-top:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 12px 30px rgba(0,0,0,0.45);
-  opacity: 1;
-}
+    .close-btn {
+      color: white;
+      font-size: 2.2rem;
+      font-weight: bold;
+      cursor: pointer;
+      transition: all var(--transition-base);
+      line-height: 1;
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.1);
+    }
 
+    .close-btn:hover {
+      color: #ffcc00;
+      transform: scale(1.15) rotate(90deg);
+      background: rgba(255,255,255,0.2);
+    }
 
     @media (max-width: 768px) {
-      nav a {
-        display: inline-block;
-        margin: 5px 10px;
-      }
-      .card {
+      .exercise-card {
         width: 100%;
         max-width: 350px;
       }
-      h2 {
-        font-size: 1.5rem;
-        padding: 12px 20px;
-      }
+
       .modal-content {
         width: 95%;
         margin: 25% auto;
@@ -552,55 +376,62 @@
   </header>
 
   <section>
-    <h2>Why Exercise Matters</h2>
-    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; margin-bottom: 50px;">
-      <div style="background: rgba(255, 255, 255, 0.95); padding: 25px; border-radius: 15px; box-shadow: 0 8px 25px rgba(0,0,0,0.15); border-left: 5px solid #008080;">
-        <h4 style="color: #008080; margin-top: 0; font-size: 1.1rem;">❤️ Physical Health</h4>
-        <p style="margin: 0; font-size: 0.95rem; color: #555; line-height: 1.6;">Regular exercise strengthens your heart, improves circulation, builds muscle, increases bone density, and enhances overall fitness levels for a healthier body.</p>
+    <h2 class="section-title">Why Exercise Matters</h2>
+
+    <div class="features-grid">
+      <div class="info-box" style="border-left-color: #008080;">
+        <h5 style="color: #008080;">❤️ Physical Health</h5>
+        <p>Regular exercise strengthens your heart, improves circulation, builds muscle, increases bone density, and enhances overall fitness levels for a healthier body.</p>
       </div>
-      <div style="background: rgba(255, 255, 255, 0.95); padding: 25px; border-radius: 15px; box-shadow: 0 8px 25px rgba(0,0,0,0.15); border-left: 5px solid #ff6b6b;">
-        <h4 style="color: #ff6b6b; margin-top: 0; font-size: 1.1rem;">🧠 Mental Wellness</h4>
-        <p style="margin: 0; font-size: 0.95rem; color: #555; line-height: 1.6;">Exercise releases endorphins (happy chemicals), reduces stress and anxiety, improves sleep quality, boosts confidence, and enhances cognitive function and memory.</p>
+
+      <div class="info-box" style="border-left-color: #ff6b6b;">
+        <h5 style="color: #ff6b6b;">🧠 Mental Wellness</h5>
+        <p>Exercise releases endorphins (happy chemicals), reduces stress and anxiety, improves sleep quality, boosts confidence, and enhances cognitive function and memory.</p>
       </div>
-      <div style="background: rgba(255, 255, 255, 0.95); padding: 25px; border-radius: 15px; box-shadow: 0 8px 25px rgba(0,0,0,0.15); border-left: 5px solid #ffc107;">
-        <h4 style="color: #ffc107; margin-top: 0; font-size: 1.1rem;">⚡ Energy & Stamina</h4>
-        <p style="margin: 0; font-size: 0.95rem; color: #555; line-height: 1.6;">Regular physical activity increases your energy levels, improves metabolism, enhances endurance, and builds stamina for better performance in daily tasks.</p>
+
+      <div class="info-box" style="border-left-color: #ffc107;">
+        <h5 style="color: #ffc107;">⚡ Energy & Stamina</h5>
+        <p>Regular physical activity increases your energy levels, improves metabolism, enhances endurance, and builds stamina for better performance in daily tasks.</p>
       </div>
-      <div style="background: rgba(255, 255, 255, 0.95); padding: 25px; border-radius: 15px; box-shadow: 0 8px 25px rgba(0,0,0,0.15); border-left: 5px solid #4caf50;">
-        <h4 style="color: #4caf50; margin-top: 0; font-size: 1.1rem;">⚖️ Weight Management</h4>
-        <p style="margin: 0; font-size: 0.95rem; color: #555; line-height: 1.6;">Exercise burns calories, builds lean muscle (which increases metabolism), helps regulate appetite hormones, and supports sustainable weight loss and management.</p>
+
+      <div class="info-box" style="border-left-color: #4caf50;">
+        <h5 style="color: #4caf50;">⚖️ Weight Management</h5>
+        <p>Exercise burns calories, builds lean muscle (which increases metabolism), helps regulate appetite hormones, and supports sustainable weight loss and management.</p>
       </div>
-      <div style="background: rgba(255, 255, 255, 0.95); padding: 25px; border-radius: 15px; box-shadow: 0 8px 25px rgba(0,0,0,0.15); border-left: 5px solid #9c27b0;">
-        <h4 style="color: #9c27b0; margin-top: 0; font-size: 1.1rem;">🛡️ Disease Prevention</h4>
-        <p style="margin: 0; font-size: 0.95rem; color: #555; line-height: 1.6;">Regular workouts reduce risk of heart disease, diabetes, obesity, certain cancers, and improve immune function to help fight infections naturally.</p>
+
+      <div class="info-box" style="border-left-color: #9c27b0;">
+        <h5 style="color: #9c27b0;">🛡️ Disease Prevention</h5>
+        <p>Regular workouts reduce risk of heart disease, diabetes, obesity, certain cancers, and improve immune function to help fight infections naturally.</p>
       </div>
-      <div style="background: rgba(255, 255, 255, 0.95); padding: 25px; border-radius: 15px; box-shadow: 0 8px 25px rgba(0,0,0,0.15); border-left: 5px solid #00bcd4;">
-        <h4 style="color: #00bcd4; margin-top: 0; font-size: 1.1rem;">👥 Social Connection</h4>
-        <p style="margin: 0; font-size: 0.95rem; color: #555; line-height: 1.6;">Join fitness classes, clubs, or workout with friends to build community, improve motivation, stay accountable, and enjoy the social benefits of exercise.</p>
+
+      <div class="info-box" style="border-left-color: #00bcd4;">
+        <h5 style="color: #00bcd4;">👥 Social Connection</h5>
+        <p>Join fitness classes, clubs, or workout with friends to build community, improve motivation, stay accountable, and enjoy the social benefits of exercise.</p>
       </div>
     </div>
 
-    <h2>Daily Workout Ideas</h2>
-    <div class="gallery">
-      
-      <div class="card">
-        <div class="card-image">
-          <img src="assets/images/push-up-exercises.svg" alt="Push-ups exercise" loading="lazy" class="responsive-img">
-          <span class="card-badge">Upper Body</span>
+    <h2 class="section-title">Daily Workout Ideas</h2>
+
+    <div class="exercise-grid">
+
+      <div class="exercise-card">
+        <div class="exercise-image">
+          <img src="assets/images/push-up-exercises.svg" alt="Push-ups exercise" loading="lazy">
+          <span class="exercise-badge">Upper Body</span>
         </div>
-        <div class="card-content">
+        <div class="exercise-content">
           <h3>Push-Ups</h3>
-          <p class="card-description">A classic bodyweight exercise that requires no equipment and can be performed anywhere.</p>
-          
-          <div class="card-details">
-            <div class="card-detail-title">⏱️ Duration</div>
-            <div class="card-detail-text">3 sets × 10-15 reps</div>
-            
-            <div class="card-detail-title">📊 Difficulty</div>
-            <div class="card-detail-text">Beginner to Advanced</div>
+          <p class="exercise-description">A classic bodyweight exercise that requires no equipment and can be performed anywhere.</p>
+
+          <div class="exercise-details">
+            <div class="exercise-detail-title">⏱️ Duration</div>
+            <div class="exercise-detail-text">3 sets × 10-15 reps</div>
+
+            <div class="exercise-detail-title">📊 Difficulty</div>
+            <div class="exercise-detail-text">Beginner to Advanced</div>
           </div>
 
-          <div class="card-benefits">
+          <div class="exercise-benefits">
             <div class="benefits-title">💪 Key Benefits</div>
             <ul class="benefits-list">
               <li>Strengthens chest, arms & shoulders</li>
@@ -609,29 +440,29 @@
               <li>Enhances functional strength</li>
             </ul>
           </div>
-          
-          <button class="card-cta" onclick="openModal('pushupModal')">Learn More</button>
+
+          <button class="exercise-cta" onclick="openModal('pushupModal')">Learn More</button>
         </div>
       </div>
 
-      <div class="card">
-        <div class="card-image">
-          <img src="assets/images/pexels-victorfreitas-841130.svg" alt="Squat exercise" loading="lazy" class="responsive-img">
-          <span class="card-badge">Lower Body</span>
+      <div class="exercise-card">
+        <div class="exercise-image">
+          <img src="assets/images/pexels-victorfreitas-841130.svg" alt="Squat exercise" loading="lazy">
+          <span class="exercise-badge">Lower Body</span>
         </div>
-        <div class="card-content">
+        <div class="exercise-content">
           <h3>Squats</h3>
-          <p class="card-description">Fundamental leg exercise that targets multiple muscle groups and improves overall fitness.</p>
-          
-          <div class="card-details">
-            <div class="card-detail-title">⏱️ Duration</div>
-            <div class="card-detail-text">3 sets × 12-20 reps</div>
-            
-            <div class="card-detail-title">📊 Difficulty</div>
-            <div class="card-detail-text">Beginner to Intermediate</div>
+          <p class="exercise-description">Fundamental leg exercise that targets multiple muscle groups and improves overall fitness.</p>
+
+          <div class="exercise-details">
+            <div class="exercise-detail-title">⏱️ Duration</div>
+            <div class="exercise-detail-text">3 sets × 12-20 reps</div>
+
+            <div class="exercise-detail-title">📊 Difficulty</div>
+            <div class="exercise-detail-text">Beginner to Intermediate</div>
           </div>
 
-          <div class="card-benefits">
+          <div class="exercise-benefits">
             <div class="benefits-title">💪 Key Benefits</div>
             <ul class="benefits-list">
               <li>Builds leg strength & muscle</li>
@@ -640,29 +471,29 @@
               <li>Strengthens lower back</li>
             </ul>
           </div>
-          
-          <button class="card-cta" onclick="openModal('squatModal')">Learn More</button>
+
+          <button class="exercise-cta" onclick="openModal('squatModal')">Learn More</button>
         </div>
       </div>
 
-      <div class="card">
-        <div class="card-image">
-          <img src="assets/images/plank2.svg" alt="Plank exercise" loading="lazy" class="responsive-img">
-          <span class="card-badge">Core</span>
+      <div class="exercise-card">
+        <div class="exercise-image">
+          <img src="assets/images/plank2.svg" alt="Plank exercise" loading="lazy">
+          <span class="exercise-badge">Core</span>
         </div>
-        <div class="card-content">
+        <div class="exercise-content">
           <h3>Plank</h3>
-          <p class="card-description">Isometric exercise that engages your entire core and builds exceptional stability.</p>
-          
-          <div class="card-details">
-            <div class="card-detail-title">⏱️ Duration</div>
-            <div class="card-detail-text">3 sets × 30-60 seconds</div>
-            
-            <div class="card-detail-title">📊 Difficulty</div>
-            <div class="card-detail-text">Beginner to Advanced</div>
+          <p class="exercise-description">Isometric exercise that engages your entire core and builds exceptional stability.</p>
+
+          <div class="exercise-details">
+            <div class="exercise-detail-title">⏱️ Duration</div>
+            <div class="exercise-detail-text">3 sets × 30-60 seconds</div>
+
+            <div class="exercise-detail-title">📊 Difficulty</div>
+            <div class="exercise-detail-text">Beginner to Advanced</div>
           </div>
 
-          <div class="card-benefits">
+          <div class="exercise-benefits">
             <div class="benefits-title">💪 Key Benefits</div>
             <ul class="benefits-list">
               <li>Strengthens core muscles</li>
@@ -671,29 +502,29 @@
               <li>Builds mental toughness</li>
             </ul>
           </div>
-          
-          <button class="card-cta" onclick="openModal('plankModal')">Learn More</button>
+
+          <button class="exercise-cta" onclick="openModal('plankModal')">Learn More</button>
         </div>
       </div>
 
-      <div class="card">
-        <div class="card-image">
-          <img src="assets/images/yoga_poses_1756548307118_1756548315207.svg" alt="Yoga poses" loading="lazy" class="responsive-img">
-          <span class="card-badge">Flexibility</span>
+      <div class="exercise-card">
+        <div class="exercise-image">
+          <img src="assets/images/yoga_poses_1756548307118_1756548315207.svg" alt="Yoga poses" loading="lazy">
+          <span class="exercise-badge">Flexibility</span>
         </div>
-        <div class="card-content">
+        <div class="exercise-content">
           <h3>Yoga</h3>
-          <p class="card-description">Ancient practice combining physical postures, breathing, and mindfulness for holistic wellness.</p>
-          
-          <div class="card-details">
-            <div class="card-detail-title">⏱️ Duration</div>
-            <div class="card-detail-text">4-6 times weekly, 30-60 min</div>
-            
-            <div class="card-detail-title">📊 Difficulty</div>
-            <div class="card-detail-text">All Levels</div>
+          <p class="exercise-description">Ancient practice combining physical postures, breathing, and mindfulness for holistic wellness.</p>
+
+          <div class="exercise-details">
+            <div class="exercise-detail-title">⏱️ Duration</div>
+            <div class="exercise-detail-text">4-6 times weekly, 30-60 min</div>
+
+            <div class="exercise-detail-title">📊 Difficulty</div>
+            <div class="exercise-detail-text">All Levels</div>
           </div>
 
-          <div class="card-benefits">
+          <div class="exercise-benefits">
             <div class="benefits-title">💪 Key Benefits</div>
             <ul class="benefits-list">
               <li>Increases flexibility & range</li>
@@ -702,21 +533,21 @@
               <li>Enhances body awareness</li>
             </ul>
           </div>
-          
-          <button class="card-cta" onclick="openModal('yogaModal')">Learn More</button>
+
+          <button class="exercise-cta" onclick="openModal('yogaModal')">Learn More</button>
         </div>
       </div>
 
     </div>
 
-    <!-- New Section: Exercise Types -->
-    <h2 style="margin-top: 60px;">Types of Exercise & Their Benefits</h2>
-    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 25px; margin-bottom: 50px;">
-      
-      <div style="background: rgba(255, 255, 255, 0.98); padding: 30px; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.15); border-top: 4px solid #ff6b6b;">
-        <h4 style="color: #ff6b6b; margin-top: 0; font-size: 1.2rem;">💨 Cardiovascular Exercise</h4>
-        <p style="color: #555; font-weight: 500; margin: 15px 0;">Any activity that gets your heart pumping and raises your heart rate.</p>
-        <ul style="margin: 15px 0; padding-left: 20px; color: #555;">
+    <!-- Exercise Types Section -->
+    <h2 class="section-title">Types of Exercise & Their Benefits</h2>
+
+    <div class="features-grid">
+      <div class="info-box" style="border: 2px solid #ff6b6b;">
+        <h5 style="color: #ff6b6b;">💨 Cardiovascular Exercise</h5>
+        <p style="color: #555;">Any activity that gets your heart pumping and raises your heart rate.</p>
+        <ul style="color: #555; margin-top: 15px; padding-left: 20px;">
           <li><strong>Examples:</strong> Running, jogging, cycling, swimming, dancing, HIIT</li>
           <li><strong>Duration:</strong> 150 minutes moderate or 75 minutes vigorous per week</li>
           <li><strong>Benefits:</strong> Stronger heart, better circulation, increased lung capacity</li>
@@ -724,10 +555,10 @@
         </ul>
       </div>
 
-      <div style="background: rgba(255, 255, 255, 0.98); padding: 30px; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.15); border-top: 4px solid #4caf50;">
-        <h4 style="color: #4caf50; margin-top: 0; font-size: 1.2rem;">💪 Strength Training</h4>
-        <p style="color: #555; font-weight: 500; margin: 15px 0;">Resistance exercises that build and tone muscle tissue.</p>
-        <ul style="margin: 15px 0; padding-left: 20px; color: #555;">
+      <div class="info-box" style="border: 2px solid #4caf50;">
+        <h5 style="color: #4caf50;">💪 Strength Training</h5>
+        <p style="color: #555;">Resistance exercises that build and tone muscle tissue.</p>
+        <ul style="color: #555; margin-top: 15px; padding-left: 20px;">
           <li><strong>Examples:</strong> Weight lifting, bodyweight exercises, resistance bands, calisthenics</li>
           <li><strong>Duration:</strong> 2-3 sessions per week, 30-45 minutes each</li>
           <li><strong>Benefits:</strong> Increased muscle mass, stronger bones, improved metabolism</li>
@@ -735,10 +566,10 @@
         </ul>
       </div>
 
-      <div style="background: rgba(255, 255, 255, 0.98); padding: 30px; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.15); border-top: 4px solid #00bcd4;">
-        <h4 style="color: #00bcd4; margin-top: 0; font-size: 1.2rem;">🧘 Flexibility & Balance</h4>
-        <p style="color: #555; font-weight: 500; margin: 15px 0;">Exercises that improve range of motion and body balance.</p>
-        <ul style="margin: 15px 0; padding-left: 20px; color: #555;">
+      <div class="info-box" style="border: 2px solid #00bcd4;">
+        <h5 style="color: #00bcd4;">🧘 Flexibility & Balance</h5>
+        <p style="color: #555;">Exercises that improve range of motion and body balance.</p>
+        <ul style="color: #555; margin-top: 15px; padding-left: 20px;">
           <li><strong>Examples:</strong> Yoga, pilates, tai chi, stretching, foam rolling</li>
           <li><strong>Duration:</strong> 10-30 minutes daily or 3-4 times per week</li>
           <li><strong>Benefits:</strong> Better posture, reduced injury risk, improved mobility</li>
@@ -746,166 +577,206 @@
         </ul>
       </div>
 
-      <div style="background: rgba(255, 255, 255, 0.98); padding: 30px; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.15); border-top: 4px solid #9c27b0;">
-        <h4 style="color: #9c27b0; margin-top: 0; font-size: 1.2rem;">🔥 HIIT Training</h4>
-        <p style="color: #555; font-weight: 500; margin: 15px 0;">High-intensity intervals alternating intense effort with recovery periods.</p>
-        <ul style="margin: 15px 0; padding-left: 20px; color: #555;">
+      <div class="info-box" style="border: 2px solid #9c27b0;">
+        <h5 style="color: #9c27b0;">🔥 HIIT Training</h5>
+        <p style="color: #555;">High-intensity intervals alternating intense effort with recovery periods.</p>
+        <ul style="color: #555; margin-top: 15px; padding-left: 20px;">
           <li><strong>Examples:</strong> Sprints, jump exercises, burpees, mountain climbers</li>
           <li><strong>Duration:</strong> 15-30 minutes, 2-3 times per week</li>
           <li><strong>Benefits:</strong> Maximum calorie burn, improved cardiovascular fitness, time-efficient</li>
           <li><strong>Calories Burned:</strong> 400-800 kcal per session + afterburn effect</li>
         </ul>
       </div>
-
     </div>
 
-    <!-- New Section: Weekly Workout Plan -->
-    <h2>Sample Weekly Workout Plan</h2>
-    <div style="background: rgba(255, 255, 255, 0.98); padding: 30px; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.15); overflow-x: auto;">
-      <table style="width: 100%; border-collapse: collapse;">
-        <tr style="background: linear-gradient(135deg, #008080, #00a6a6); color: white;">
-          <th style="padding: 15px; text-align: left; font-weight: 800; border-bottom: 3px solid #006666;">📅 Day</th>
-          <th style="padding: 15px; text-align: left; font-weight: 800; border-bottom: 3px solid #006666;">🏋️ Exercise Type</th>
-          <th style="padding: 15px; text-align: left; font-weight: 800; border-bottom: 3px solid #006666;">⏱️ Duration</th>
-          <th style="padding: 15px; text-align: left; font-weight: 800; border-bottom: 3px solid #006666;">📝 Details</th>
+    <!-- Weekly Workout Plan -->
+    <h2 class="section-title">Sample Weekly Workout Plan</h2>
+
+    <div class="card card-padding" style="overflow-x: auto;">
+      <table class="data-table">
+        <tr>
+          <th>📅 Day</th>
+          <th>🏋️ Exercise Type</th>
+          <th>⏱️ Duration</th>
+          <th>📝 Details</th>
         </tr>
-        <tr style="border-bottom: 2px solid #e0e0e0;">
-          <td style="padding: 15px; color: #008080; font-weight: 700;">Monday</td>
-          <td style="padding: 15px; color: #555;">Upper Body Strength</td>
-          <td style="padding: 15px; color: #555;">45-60 min</td>
-          <td style="padding: 15px; color: #555;">Push-ups, bench press, rows, shoulder press</td>
+        <tr>
+          <td style="color: var(--primary); font-weight: 700;">Monday</td>
+          <td>Upper Body Strength</td>
+          <td>45-60 min</td>
+          <td>Push-ups, bench press, rows, shoulder press</td>
         </tr>
-        <tr style="border-bottom: 2px solid #e0e0e0; background: rgba(0,128,128,0.03);">
-          <td style="padding: 15px; color: #008080; font-weight: 700;">Tuesday</td>
-          <td style="padding: 15px; color: #555;">Cardio & HIIT</td>
-          <td style="padding: 15px; color: #555;">30-40 min</td>
-          <td style="padding: 15px; color: #555;">Running/cycling 20 min + 10 min HIIT bursts</td>
+        <tr>
+          <td style="color: var(--primary); font-weight: 700;">Tuesday</td>
+          <td>Cardio & HIIT</td>
+          <td>30-40 min</td>
+          <td>Running/cycling 20 min + 10 min HIIT bursts</td>
         </tr>
-        <tr style="border-bottom: 2px solid #e0e0e0;">
-          <td style="padding: 15px; color: #008080; font-weight: 700;">Wednesday</td>
-          <td style="padding: 15px; color: #555;">Yoga & Flexibility</td>
-          <td style="padding: 15px; color: #555;">45-60 min</td>
-          <td style="padding: 15px; color: #555;">Flow yoga, deep stretching, balance poses</td>
+        <tr>
+          <td style="color: var(--primary); font-weight: 700;">Wednesday</td>
+          <td>Yoga & Flexibility</td>
+          <td>45-60 min</td>
+          <td>Flow yoga, deep stretching, balance poses</td>
         </tr>
-        <tr style="border-bottom: 2px solid #e0e0e0; background: rgba(0,128,128,0.03);">
-          <td style="padding: 15px; color: #008080; font-weight: 700;">Thursday</td>
-          <td style="padding: 15px; color: #555;">Lower Body Strength</td>
-          <td style="padding: 15px; color: #555;">45-60 min</td>
-          <td style="padding: 15px; color: #555;">Squats, lunges, deadlifts, leg press</td>
+        <tr>
+          <td style="color: var(--primary); font-weight: 700;">Thursday</td>
+          <td>Lower Body Strength</td>
+          <td>45-60 min</td>
+          <td>Squats, lunges, deadlifts, leg press</td>
         </tr>
-        <tr style="border-bottom: 2px solid #e0e0e0;">
-          <td style="padding: 15px; color: #008080; font-weight: 700;">Friday</td>
-          <td style="padding: 15px; color: #555;">Full Body Cardio</td>
-          <td style="padding: 15px; color: #555;">30-45 min</td>
-          <td style="padding: 15px; color: #555;">Swimming, cycling, or interval running</td>
+        <tr>
+          <td style="color: var(--primary); font-weight: 700;">Friday</td>
+          <td>Full Body Cardio</td>
+          <td>30-45 min</td>
+          <td>Swimming, cycling, or interval running</td>
         </tr>
-        <tr style="border-bottom: 2px solid #e0e0e0; background: rgba(0,128,128,0.03);">
-          <td style="padding: 15px; color: #008080; font-weight: 700;">Saturday</td>
-          <td style="padding: 15px; color: #555;">Sport or Active Fun</td>
-          <td style="padding: 15px; color: #555;">60 min</td>
-          <td style="padding: 15px; color: #555;">Basketball, tennis, hiking, dance class</td>
+        <tr>
+          <td style="color: var(--primary); font-weight: 700;">Saturday</td>
+          <td>Sport or Active Fun</td>
+          <td>60 min</td>
+          <td>Basketball, tennis, hiking, dance class</td>
         </tr>
         <tr style="background: rgba(0,128,128,0.1);">
-          <td style="padding: 15px; color: #008080; font-weight: 700;">Sunday</td>
-          <td style="padding: 15px; color: #555;">Rest & Recovery</td>
-          <td style="padding: 15px; color: #555;">Light activity</td>
-          <td style="padding: 15px; color: #555;">Stretching, light walk, meditation, meal prep</td>
+          <td style="color: var(--primary); font-weight: 700;">Sunday</td>
+          <td><strong>Rest & Recovery</strong></td>
+          <td>Light activity</td>
+          <td>Stretching, light walk, meditation, meal prep</td>
         </tr>
       </table>
     </div>
 
-    <!-- New Section: Exercise Tips -->
-    <h2 style="margin-top: 60px;">💡 Essential Exercise Tips for Success</h2>
-    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; margin-bottom: 50px;">
-      
-      <div style="background: linear-gradient(135deg, rgba(76, 175, 80, 0.1), rgba(139, 195, 74, 0.1)); padding: 20px; border-radius: 12px; border-left: 5px solid #4caf50;">
-        <h4 style="color: #2e7d32; margin-top: 0; margin-bottom: 12px;">1️⃣ Warm Up Before Exercise</h4>
-        <p style="margin: 0; color: #555; font-size: 0.95rem;">Spend 5-10 minutes warming up with light cardio and dynamic stretches. This increases blood flow, prepares muscles, and reduces injury risk significantly.</p>
-      </div>
+    <!-- Exercise Tips Section -->
+    <h2 class="section-title">💡 Essential Exercise Tips for Success</h2>
 
-      <div style="background: linear-gradient(135deg, rgba(255, 87, 34, 0.1), rgba(255, 140, 60, 0.1)); padding: 20px; border-radius: 12px; border-left: 5px solid #ff5722;">
-        <h4 style="color: #d84315; margin-top: 0; margin-bottom: 12px;">2️⃣ Perfect Your Form</h4>
-        <p style="margin: 0; color: #555; font-size: 0.95rem;">Correct form is crucial to prevent injuries and maximize effectiveness. Start with lighter weights or easier variations until you master proper technique.</p>
-      </div>
-
-      <div style="background: linear-gradient(135deg, rgba(63, 81, 181, 0.1), rgba(66, 165, 245, 0.1)); padding: 20px; border-radius: 12px; border-left: 5px solid #3949ab;">
-        <h4 style="color: #283593; margin-top: 0; margin-bottom: 12px;">3️⃣ Progressive Overload</h4>
-        <p style="margin: 0; color: #555; font-size: 0.95rem;">Gradually increase intensity, weight, or reps over time. This challenges your muscles and drives continuous improvement and better results.</p>
-      </div>
-
-      <div style="background: linear-gradient(135deg, rgba(233, 30, 99, 0.1), rgba(244, 67, 54, 0.1)); padding: 20px; border-radius: 12px; border-left: 5px solid #e91e63;">
-        <h4 style="color: #c2185b; margin-top: 0; margin-bottom: 12px;">4️⃣ Stay Hydrated</h4>
-        <p style="margin: 0; color: #555; font-size: 0.95rem;">Drink plenty of water before, during, and after exercise. Hydration is essential for performance, recovery, and overall health maintenance.</p>
-      </div>
-
-      <div style="background: linear-gradient(135deg, rgba(255, 193, 7, 0.1), rgba(255, 235, 59, 0.1)); padding: 20px; border-radius: 12px; border-left: 5px solid #ffc107;">
-        <h4 style="color: #f57f17; margin-top: 0; margin-bottom: 12px;">5️⃣ Cool Down & Stretch</h4>
-        <p style="margin: 0; color: #555; font-size: 0.95rem;">Spend 5-10 minutes cooling down with light activity and stretching. This aids recovery, reduces muscle soreness, and improves flexibility.</p>
-      </div>
-
-      <div style="background: linear-gradient(135deg, rgba(0, 150, 136, 0.1), rgba(0, 188, 212, 0.1)); padding: 20px; border-radius: 12px; border-left: 5px solid #009688;">
-        <h4 style="color: #004d40; margin-top: 0; margin-bottom: 12px;">6️⃣ Rest & Recovery</h4>
-        <p style="margin: 0; color: #555; font-size: 0.95rem;">Get 7-9 hours of quality sleep and take rest days. Recovery is when your body actually builds muscle and adapts to training stress.</p>
-      </div>
-
-      <div style="background: linear-gradient(135deg, rgba(156, 39, 176, 0.1), rgba(186, 104, 200, 0.1)); padding: 20px; border-radius: 12px; border-left: 5px solid #9c27b0;">
-        <h4 style="color: #6a1b9a; margin-top: 0; margin-bottom: 12px;">7️⃣ Consistency Over Intensity</h4>
-        <p style="margin: 0; color: #555; font-size: 0.95rem;">Regular moderate workouts beat sporadic intense sessions. Train 3-5 times per week consistently for sustainable progress and habit formation.</p>
-      </div>
-
-      <div style="background: linear-gradient(135deg, rgba(76, 175, 80, 0.1), rgba(129, 199, 132, 0.1)); padding: 20px; border-radius: 12px; border-left: 5px solid #43a047;">
-        <h4 style="color: #2e7d32; margin-top: 0; margin-bottom: 12px;">8️⃣ Listen to Your Body</h4>
-        <p style="margin: 0; color: #555; font-size: 0.95rem;">Pay attention to pain signals. Mild discomfort is normal, but sharp pain indicates injury. Rest and seek professional advice if needed.</p>
-      </div>
-
-    </div>
-
-    <!-- New Section: Common Mistakes -->
-    <h2>Common Exercise Mistakes to Avoid</h2>
-    <div style="background: rgba(255, 255, 255, 0.98); padding: 30px; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.15);">
-      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px;">
-        
-        <div style="background: linear-gradient(135deg, rgba(255, 107, 107, 0.1), rgba(255, 140, 60, 0.1)); padding: 18px; border-radius: 10px; border-left: 4px solid #ff6b6b;">
-          <h5 style="color: #c62828; margin-top: 0; margin-bottom: 10px;">❌ Skipping Warm-Up</h5>
-          <p style="margin: 0; color: #555; font-size: 0.9rem;">Jumping straight into intense exercise increases injury risk. Always warm up for 5-10 minutes first.</p>
+    <div class="tips-grid">
+      <div class="tip-card" style="border-left-color: #4caf50; background: linear-gradient(135deg, rgba(76, 175, 80, 0.08), rgba(139, 195, 74, 0.06));">
+        <div class="tip-number" style="background: linear-gradient(135deg, #4caf50, #66bb6a);">1</div>
+        <div class="tip-text">
+          <strong>Warm Up Before Exercise</strong><br>
+          Spend 5-10 minutes warming up with light cardio and dynamic stretches. This increases blood flow, prepares muscles, and reduces injury risk significantly.
         </div>
+      </div>
 
-        <div style="background: linear-gradient(135deg, rgba(255, 107, 107, 0.1), rgba(255, 140, 60, 0.1)); padding: 18px; border-radius: 10px; border-left: 4px solid #ff6b6b;">
-          <h5 style="color: #c62828; margin-top: 0; margin-bottom: 10px;">❌ Poor Form</h5>
-          <p style="margin: 0; color: #555; font-size: 0.9rem;">Bad technique reduces effectiveness and causes injuries. Use lighter weight and master form before progressing.</p>
+      <div class="tip-card" style="border-left-color: #ff5722; background: linear-gradient(135deg, rgba(255, 87, 34, 0.08), rgba(255, 140, 60, 0.06));">
+        <div class="tip-number" style="background: linear-gradient(135deg, #ff5722, #ff7043);">2</div>
+        <div class="tip-text">
+          <strong>Perfect Your Form</strong><br>
+          Correct form is crucial to prevent injuries and maximize effectiveness. Start with lighter weights or easier variations until you master proper technique.
         </div>
+      </div>
 
-        <div style="background: linear-gradient(135deg, rgba(255, 107, 107, 0.1), rgba(255, 140, 60, 0.1)); padding: 18px; border-radius: 10px; border-left: 4px solid #ff6b6b;">
-          <h5 style="color: #c62828; margin-top: 0; margin-bottom: 10px;">❌ Doing Too Much Too Soon</h5>
-          <p style="margin: 0; color: #555; font-size: 0.9rem;">Overtraining leads to burnout and injury. Increase intensity gradually over weeks and months.</p>
+      <div class="tip-card" style="border-left-color: #3949ab; background: linear-gradient(135deg, rgba(63, 81, 181, 0.08), rgba(66, 165, 245, 0.06));">
+        <div class="tip-number" style="background: linear-gradient(135deg, #3949ab, #5c6bc0);">3</div>
+        <div class="tip-text">
+          <strong>Progressive Overload</strong><br>
+          Gradually increase intensity, weight, or reps over time. This challenges your muscles and drives continuous improvement and better results.
         </div>
+      </div>
 
-        <div style="background: linear-gradient(135deg, rgba(255, 107, 107, 0.1), rgba(255, 140, 60, 0.1)); padding: 18px; border-radius: 10px; border-left: 4px solid #ff6b6b;">
-          <h5 style="color: #c62828; margin-top: 0; margin-bottom: 10px;">❌ Neglecting Recovery</h5>
-          <p style="margin: 0; color: #555; font-size: 0.9rem;">Rest days are essential for adaptation. Train 3-5 times weekly and prioritize sleep for best results.</p>
+      <div class="tip-card" style="border-left-color: #e91e63; background: linear-gradient(135deg, rgba(233, 30, 99, 0.08), rgba(244, 67, 54, 0.06));">
+        <div class="tip-number" style="background: linear-gradient(135deg, #e91e63, #f06292);">4</div>
+        <div class="tip-text">
+          <strong>Stay Hydrated</strong><br>
+          Drink plenty of water before, during, and after exercise. Hydration is essential for performance, recovery, and overall health maintenance.
         </div>
+      </div>
 
-        <div style="background: linear-gradient(135deg, rgba(255, 107, 107, 0.1), rgba(255, 140, 60, 0.1)); padding: 18px; border-radius: 10px; border-left: 4px solid #ff6b6b;">
-          <h5 style="color: #c62828; margin-top: 0; margin-bottom: 10px;">❌ Ignoring Pain</h5>
-          <p style="margin: 0; color: #555; font-size: 0.9rem;">Sharp pain signals injury. Stop immediately and rest. Distinguish between discomfort and pain.</p>
+      <div class="tip-card" style="border-left-color: #ffc107; background: linear-gradient(135deg, rgba(255, 193, 7, 0.08), rgba(255, 235, 59, 0.06));">
+        <div class="tip-number" style="background: linear-gradient(135deg, #ffc107, #ffd54f);">5</div>
+        <div class="tip-text">
+          <strong>Cool Down & Stretch</strong><br>
+          Spend 5-10 minutes cooling down with light activity and stretching. This aids recovery, reduces muscle soreness, and improves flexibility.
         </div>
+      </div>
 
-        <div style="background: linear-gradient(135deg, rgba(255, 107, 107, 0.1), rgba(255, 140, 60, 0.1)); padding: 18px; border-radius: 10px; border-left: 4px solid #ff6b6b;">
-          <h5 style="color: #c62828; margin-top: 0; margin-bottom: 10px;">❌ Inconsistent Training</h5>
-          <p style="margin: 0; color: #555; font-size: 0.9rem;">Sporadic workouts prevent progress. Consistency is key to seeing results and building habits.</p>
+      <div class="tip-card" style="border-left-color: #009688; background: linear-gradient(135deg, rgba(0, 150, 136, 0.08), rgba(0, 188, 212, 0.06));">
+        <div class="tip-number" style="background: linear-gradient(135deg, #009688, #4db6ac);">6</div>
+        <div class="tip-text">
+          <strong>Rest & Recovery</strong><br>
+          Get 7-9 hours of quality sleep and take rest days. Recovery is when your body actually builds muscle and adapts to training stress.
         </div>
+      </div>
 
+      <div class="tip-card" style="border-left-color: #9c27b0; background: linear-gradient(135deg, rgba(156, 39, 176, 0.08), rgba(186, 104, 200, 0.06));">
+        <div class="tip-number" style="background: linear-gradient(135deg, #9c27b0, #ba68c8);">7</div>
+        <div class="tip-text">
+          <strong>Consistency Over Intensity</strong><br>
+          Regular moderate workouts beat sporadic intense sessions. Train 3-5 times per week consistently for sustainable progress and habit formation.
+        </div>
+      </div>
+
+      <div class="tip-card" style="border-left-color: #43a047; background: linear-gradient(135deg, rgba(76, 175, 80, 0.08), rgba(129, 199, 132, 0.06));">
+        <div class="tip-number" style="background: linear-gradient(135deg, #43a047, #66bb6a);">8</div>
+        <div class="tip-text">
+          <strong>Listen to Your Body</strong><br>
+          Pay attention to pain signals. Mild discomfort is normal, but sharp pain indicates injury. Rest and seek professional advice if needed.
+        </div>
       </div>
     </div>
 
-    </section>
+    <!-- Common Mistakes Section -->
+    <h2 class="section-title">Common Exercise Mistakes to Avoid</h2>
+
+    <div class="card card-padding">
+      <div class="tips-grid">
+        <div class="tip-card" style="border-left-color: #ff6b6b; background: linear-gradient(135deg, rgba(255, 107, 107, 0.08), rgba(255, 140, 60, 0.06));">
+          <div class="tip-number" style="background: linear-gradient(135deg, #ff6b6b, #ff8a65);">❌</div>
+          <div class="tip-text">
+            <strong>Skipping Warm-Up</strong><br>
+            Jumping straight into intense exercise increases injury risk. Always warm up for 5-10 minutes first.
+          </div>
+        </div>
+
+        <div class="tip-card" style="border-left-color: #ff6b6b; background: linear-gradient(135deg, rgba(255, 107, 107, 0.08), rgba(255, 140, 60, 0.06));">
+          <div class="tip-number" style="background: linear-gradient(135deg, #ff6b6b, #ff8a65);">❌</div>
+          <div class="tip-text">
+            <strong>Poor Form</strong><br>
+            Bad technique reduces effectiveness and causes injuries. Use lighter weight and master form before progressing.
+          </div>
+        </div>
+
+        <div class="tip-card" style="border-left-color: #ff6b6b; background: linear-gradient(135deg, rgba(255, 107, 107, 0.08), rgba(255, 140, 60, 0.06));">
+          <div class="tip-number" style="background: linear-gradient(135deg, #ff6b6b, #ff8a65);">❌</div>
+          <div class="tip-text">
+            <strong>Doing Too Much Too Soon</strong><br>
+            Overtraining leads to burnout and injury. Increase intensity gradually over weeks and months.
+          </div>
+        </div>
+
+        <div class="tip-card" style="border-left-color: #ff6b6b; background: linear-gradient(135deg, rgba(255, 107, 107, 0.08), rgba(255, 140, 60, 0.06));">
+          <div class="tip-number" style="background: linear-gradient(135deg, #ff6b6b, #ff8a65);">❌</div>
+          <div class="tip-text">
+            <strong>Neglecting Recovery</strong><br>
+            Rest days are essential for adaptation. Train 3-5 times weekly and prioritize sleep for best results.
+          </div>
+        </div>
+
+        <div class="tip-card" style="border-left-color: #ff6b6b; background: linear-gradient(135deg, rgba(255, 107, 107, 0.08), rgba(255, 140, 60, 0.06));">
+          <div class="tip-number" style="background: linear-gradient(135deg, #ff6b6b, #ff8a65);">❌</div>
+          <div class="tip-text">
+            <strong>Ignoring Pain</strong><br>
+            Sharp pain signals injury. Stop immediately and rest. Distinguish between discomfort and pain.
+          </div>
+        </div>
+
+        <div class="tip-card" style="border-left-color: #ff6b6b; background: linear-gradient(135deg, rgba(255, 107, 107, 0.08), rgba(255, 140, 60, 0.06));">
+          <div class="tip-number" style="background: linear-gradient(135deg, #ff6b6b, #ff8a65);">❌</div>
+          <div class="tip-text">
+            <strong>Inconsistent Training</strong><br>
+            Sporadic workouts prevent progress. Consistency is key to seeing results and building habits.
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </section>
 
   <!-- Modals -->
   <div id="pushupModal" class="modal">
     <div class="modal-content">
       <div class="modal-header">
         <h2>Push-Ups: Complete Guide</h2>
-        <span class="close-btn" onclick="closeModal('pushupModal')">&times;</span>
+        <span class="close-btn" onclick="closeModal('pushupModal')">×</span>
       </div>
       <div class="modal-body">
         <h3>How to Perform Push-Ups:</h3>
@@ -915,7 +786,7 @@
           <li>Push back up to the starting position</li>
           <li>Keep your body in a straight line throughout</li>
         </ul>
-        
+
         <h3>Common Mistakes:</h3>
         <ul>
           <li>Letting your hips sag or pike up</li>
@@ -923,7 +794,7 @@
           <li>Not going deep enough</li>
           <li>Neck strain from looking down</li>
         </ul>
-        
+
         <h3>Variations:</h3>
         <ul>
           <li>Wall push-ups (easier)</li>
@@ -931,7 +802,7 @@
           <li>Diamond push-ups (challenging)</li>
           <li>Decline push-ups (advanced)</li>
         </ul>
-        
+
         <h3>Pro Tips:</h3>
         <p>Breathe in as you lower, breathe out as you push up. Start with 3 sets of 5-10 reps and gradually increase. Consistency is key!</p>
       </div>
@@ -942,7 +813,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <h2>Squats: Complete Guide</h2>
-        <span class="close-btn" onclick="closeModal('squatModal')">&times;</span>
+        <span class="close-btn" onclick="closeModal('squatModal')">×</span>
       </div>
       <div class="modal-body">
         <h3>How to Perform Squats:</h3>
@@ -952,7 +823,7 @@
           <li>Go down until thighs are parallel to the ground</li>
           <li>Push through heels to return to starting position</li>
         </ul>
-        
+
         <h3>Common Mistakes:</h3>
         <ul>
           <li>Knees caving inward</li>
@@ -960,7 +831,7 @@
           <li>Not going deep enough</li>
           <li>Heels lifting off the ground</li>
         </ul>
-        
+
         <h3>Variations:</h3>
         <ul>
           <li>Bodyweight squats (beginner)</li>
@@ -968,7 +839,7 @@
           <li>Jump squats (advanced)</li>
           <li>Bulgarian split squats (challenging)</li>
         </ul>
-        
+
         <h3>Pro Tips:</h3>
         <p>Keep your chest up and weight in your heels. Start with 3 sets of 12-15 reps. Progressive overload is important for growth!</p>
       </div>
@@ -979,7 +850,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <h2>Plank: Complete Guide</h2>
-        <span class="close-btn" onclick="closeModal('plankModal')">&times;</span>
+        <span class="close-btn" onclick="closeModal('plankModal')">×</span>
       </div>
       <div class="modal-body">
         <h3>How to Perform Plank:</h3>
@@ -989,7 +860,7 @@
           <li>Engage your core and avoid sagging</li>
           <li>Hold for the desired duration</li>
         </ul>
-        
+
         <h3>Common Mistakes:</h3>
         <ul>
           <li>Hips sagging too low</li>
@@ -997,7 +868,7 @@
           <li>Neck strain from looking up</li>
           <li>Holding breath instead of breathing steadily</li>
         </ul>
-        
+
         <h3>Variations:</h3>
         <ul>
           <li>Forearm plank (basic)</li>
@@ -1005,7 +876,7 @@
           <li>Side plank (obliques)</li>
           <li>Dynamic plank with shoulder taps</li>
         </ul>
-        
+
         <h3>Pro Tips:</h3>
         <p>Start with 20-30 seconds and gradually increase. Focus on form over duration. Planks are excellent for core stability!</p>
       </div>
@@ -1016,7 +887,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <h2>Yoga: Complete Guide</h2>
-        <span class="close-btn" onclick="closeModal('yogaModal')">&times;</span>
+        <span class="close-btn" onclick="closeModal('yogaModal')">×</span>
       </div>
       <div class="modal-body">
         <h3>Benefits of Regular Yoga:</h3>
@@ -1027,7 +898,7 @@
           <li>Reduced stress and anxiety</li>
           <li>Better balance and coordination</li>
         </ul>
-        
+
         <h3>Common Yoga Poses:</h3>
         <ul>
           <li>Downward Dog</li>
@@ -1036,14 +907,14 @@
           <li>Tree Pose</li>
           <li>Corpse Pose (relaxation)</li>
         </ul>
-        
+
         <h3>Breathing Techniques:</h3>
         <ul>
           <li>Diaphragmatic breathing</li>
           <li>Ujjayi breath (victorious breath)</li>
           <li>Nadi Shodhana (alternate nostril breathing)</li>
         </ul>
-        
+
         <h3>Pro Tips:</h3>
         <p>Start with beginner classes. Practice 4-6 times per week for best results. Always warm up and cool down properly. Listen to your body!</p>
       </div>
@@ -1053,23 +924,39 @@
   <script>
     function openModal(modalId) {
       document.getElementById(modalId).style.display = "block";
+      document.body.style.overflow = 'hidden';
     }
 
     function closeModal(modalId) {
       document.getElementById(modalId).style.display = "none";
+      document.body.style.overflow = 'auto';
     }
 
     window.onclick = function(event) {
       if (event.target.classList.contains('modal')) {
         event.target.style.display = "none";
+        document.body.style.overflow = 'auto';
       }
     }
+
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') {
+        const modals = document.querySelectorAll('.modal');
+        modals.forEach(modal => {
+          if (modal.style.display === 'block') {
+            modal.style.display = 'none';
+            document.body.style.overflow = 'auto';
+          }
+        });
+      }
+    });
   </script>
 
   <footer class="site-footer">
     <div class="container">© 2025 Fitness Blog | Created by Puneet Kewlani</div>
   </footer>
-<a href="#top" class="scroll-top">↑</a>
+
+  <a href="#top" class="scroll-top">↑</a>
 
 </body>
 </html>

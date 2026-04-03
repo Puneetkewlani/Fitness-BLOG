@@ -8,504 +8,8 @@
   <link rel="icon" href="assets/images/favicon.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/css/styles.css">
-  <style>
-    body {
-      font-family: 'Segoe UI', Arial, sans-serif;
-      margin: 0;
-      background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), 
-                  linear-gradient(135deg, #1a1a2e, #16213e);
-      background-size: cover;
-      background-attachment: fixed;
-      background-position: center;
-      line-height: 1.6;
-      min-height: 100vh;
-    }
-
-    header {
-      background: linear-gradient(135deg, #008080, #006666);
-      color: white;
-      padding: 25px;
-      text-align: center;
-      box-shadow: 0 2px 15px rgba(0,0,0,0.1);
-    }
-
-    nav {
-      margin: 20px 0;
-    }
-
-    nav a {
-      color: white;
-      margin: 0 20px;
-      text-decoration: none;
-      font-weight: bold;
-      padding: 8px 15px;
-      border-radius: 20px;
-      transition: all 0.3s ease;
-
-        nav {
-          display: flex;
-          justify-content: center;
-          gap: 15px;
-          flex-wrap: wrap;
-        }
-    }
-
-    nav a:hover {
-      background: rgba(255,255,255,0.2);
-      color: #ffcc00;
-      transform: translateY(-2px);
-    }
-
-    section {
-      padding: 40px 20px;
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-
-    .welcome-text {
-      width: 100%;
-      max-width: none;
-      margin: 0 auto 35px;
-      padding: 45px 50px;
-      background: linear-gradient(135deg, rgba(255, 255, 255, 0.99), rgba(248, 252, 255, 0.99));
-      border-radius: 0 80px 80px 0;
-      box-shadow: 0 15px 45px rgba(0,0,0,0.25);
-      overflow: hidden;
-      backdrop-filter: blur(15px);
-      border: 2px solid rgba(0, 128, 128, 0.3);
-      transition: all 0.3s ease;
-      position: relative;
-    }
-
-    .welcome-text::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 5px;
-      background: linear-gradient(90deg, #008080, #00a6a6, #008080);
-      border-radius: 80px 80px 0 0;
-    }
-
-    .welcome-text::after {
-      content: '';
-      position: absolute;
-      top: -50%;
-      right: -10%;
-      width: 400px;
-      height: 400px;
-      background: radial-gradient(circle, rgba(0, 166, 166, 0.1), transparent);
-      border-radius: 50%;
-      pointer-events: none;
-      opacity: 0.5;
-    }
-
-    .welcome-text:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 20px 55px rgba(0,128,128,0.3);
-      border-color: rgba(0, 128, 128, 0.5);
-    }
-
-    h1 {
-      font-size: 2.5em;
-      margin-bottom: 20px;
-      text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
-    }
-
-    h2 {
-      color: #008080;
-      font-size: 2em;
-      margin: 0 0 15px 0;
-      font-weight: 800;
-    }
-
-    h2::after {
-      content: '';
-      display: block;
-      width: 80px;
-      height: 4px;
-      background: linear-gradient(90deg, #008080, #00a6a6);
-      border-radius: 2px;
-      margin-top: 10px;
-    }
-
-    p {
-      color: #333;
-      font-size: 1.05em;
-      margin-bottom: 15px;
-      line-height: 1.8;
-      font-weight: 500;
-    }
-
-    .featured-image {
-      display: none;
-    }
-
-    /* Features Section */
-    .features-section {
-      margin: 50px 0;
-    }
-
-    .features-title {
-      text-align: center;
-      color: white;
-      font-size: 2rem;
-      margin-bottom: 40px;
-      display: inline-block;
-      padding: 16px 40px;
-      background: linear-gradient(135deg, rgba(0,128,128,0.5), rgba(0,102,102,0.4));
-      border-radius: 15px;
-      backdrop-filter: blur(12px);
-      border: 2px solid rgba(255,255,255,0.3);
-      width: 100%;
-      box-sizing: border-box;
-      text-shadow: 2px 2px 8px rgba(0,0,0,0.6);
-      font-weight: 800;
-      letter-spacing: 1.2px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-    }
-
-    .features-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 28px;
-      margin-top: 35px;
-    }
-
-    .feature-card {
-      background: linear-gradient(135deg, rgba(255, 255, 255, 0.99), rgba(248, 252, 255, 0.99));
-      padding: 35px;
-      border-radius: 18px;
-      box-shadow: 0 12px 40px rgba(0,0,0,0.2);
-      text-align: center;
-      transition: all 0.3s ease;
-      backdrop-filter: blur(12px);
-      border: 2px solid rgba(0, 128, 128, 0.2);
-      position: relative;
-      overflow: hidden;
-    }
-
-    .feature-card::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 4px;
-      background: linear-gradient(90deg, #008080, #00a6a6, #008080);
-    }
-
-    .feature-card:hover {
-      transform: translateY(-12px);
-      box-shadow: 0 20px 60px rgba(0,128,128,0.3);
-      border-color: rgba(0, 128, 128, 0.5);
-    }
-
-    .feature-icon {
-      font-size: 3.5rem;
-      margin-bottom: 15px;
-      transition: transform 0.3s ease;
-    }
-
-    .feature-card:hover .feature-icon {
-      transform: scale(1.15);
-    }
-
-    .feature-card h3 {
-      color: #008080;
-      font-size: 1.4rem;
-      margin: 15px 0;
-      font-weight: 800;
-    }
-
-    .feature-card p {
-      color: #555;
-      font-size: 0.98rem;
-      margin-bottom: 18px;
-      font-weight: 500;
-      line-height: 1.7;
-    }
-
-    .feature-link {
-      color: white;
-      text-decoration: none;
-      font-weight: 700;
-      transition: all 0.3s ease;
-      display: inline-block;
-      background: linear-gradient(135deg, #008080, #00a6a6);
-      padding: 10px 20px;
-      border-radius: 8px;
-      letter-spacing: 0.5px;
-    }
-
-    .feature-link:hover {
-      background: linear-gradient(135deg, #006666, #008080);
-      transform: translateX(5px);
-      box-shadow: 0 5px 15px rgba(0,128,128,0.3);
-    }
-
-    /* Why Choose Us Section */
-    .why-section {
-      background: linear-gradient(135deg, rgba(255, 255, 255, 0.99), rgba(248, 252, 255, 0.99));
-      padding: 45px;
-      border-radius: 18px;
-      box-shadow: 0 15px 45px rgba(0,0,0,0.2);
-      margin: 50px 0;
-      backdrop-filter: blur(12px);
-      border: 2px solid rgba(0, 128, 128, 0.3);
-      transition: all 0.3s ease;
-      position: relative;
-    }
-
-    .why-section::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 5px;
-      background: linear-gradient(90deg, #008080, #00a6a6, #008080);
-      border-radius: 18px 18px 0 0;
-    }
-
-    .why-section:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 20px 55px rgba(0,128,128,0.25);
-      border-color: rgba(0, 128, 128, 0.5);
-    }
-
-    .why-section h3 {
-      color: #008080;
-      font-size: 1.8rem;
-      margin-top: 15px;
-      margin-bottom: 25px;
-      font-weight: 800;
-    }
-
-    .why-list {
-      list-style: none;
-      padding: 0;
-      margin: 0;
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 20px;
-    }
-
-    .why-list li {
-      padding: 16px 18px;
-      padding-left: 40px;
-      position: relative;
-      color: #333;
-      font-size: 0.98rem;
-      font-weight: 600;
-      background: linear-gradient(135deg, rgba(0,128,128,0.05), rgba(0,166,166,0.03));
-      border-radius: 10px;
-      border-left: 4px solid #008080;
-      transition: all 0.3s ease;
-    }
-
-    .why-list li:hover {
-      background: linear-gradient(135deg, rgba(0,128,128,0.1), rgba(0,166,166,0.08));
-      border-left-color: #00a6a6;
-      transform: translateX(5px);
-    }
-
-    .why-list li::before {
-      content: '✓';
-      position: absolute;
-      left: 12px;
-      color: #008080;
-      font-weight: bold;
-      font-size: 1.2rem;
-    }
-
-    /* CTA Button */
-    .cta-section {
-      text-align: center;
-      margin: 50px 0;
-      padding: 35px;
-      background: linear-gradient(135deg, rgba(255, 255, 255, 0.98), rgba(248, 252, 255, 0.98));
-      border-radius: 18px;
-      box-shadow: 0 15px 45px rgba(0,0,0,0.2);
-      backdrop-filter: blur(12px);
-      border: 2px solid rgba(0, 128, 128, 0.3);
-      transition: all 0.3s ease;
-    }
-
-    .cta-section:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 20px 55px rgba(0,128,128,0.25);
-    }
-
-    .cta-button {
-      background: linear-gradient(135deg, #008080, #00a6a6);
-      color: white;
-      padding: 18px 50px;
-      border: none;
-      border-radius: 10px;
-      font-size: 1.15rem;
-      font-weight: 800;
-      text-transform: uppercase;
-      letter-spacing: 1.3px;
-      cursor: pointer;
-      box-shadow: 0 10px 30px rgba(0,128,128,0.35);
-      transition: all 0.3s ease;
-      text-decoration: none;
-      display: inline-block;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .cta-button::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: -100%;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
-      transition: left 0.5s ease;
-    }
-
-    .cta-button:hover {
-      background: linear-gradient(135deg, #006666, #008080);
-      transform: translateY(-4px);
-      box-shadow: 0 15px 45px rgba(0,128,128,0.45);
-    }
-
-    .cta-button:hover::before {
-      left: 100%;
-    }
-
-    /* Stats Section */
-    .stats-section {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 25px;
-      margin: 50px 0;
-    }
-
-    .stat-card {
-      background: linear-gradient(135deg, rgba(255, 255, 255, 0.99), rgba(248, 252, 255, 0.99));
-      padding: 30px;
-      border-radius: 15px;
-      text-align: center;
-      box-shadow: 0 12px 35px rgba(0,0,0,0.18);
-      backdrop-filter: blur(12px);
-      border: 2px solid rgba(0, 128, 128, 0.2);
-      transition: all 0.3s ease;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .stat-card::after {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 3px;
-      background: linear-gradient(90deg, #008080, #00a6a6, #008080);
-    }
-
-    .stat-card:hover {
-      transform: translateY(-10px) scale(1.04);
-      box-shadow: 0 18px 50px rgba(0,128,128,0.25);
-      border-color: rgba(0, 128, 128, 0.5);
-    }
-
-    .stat-number {
-      font-size: 2.8rem;
-      color: #008080;
-      font-weight: 900;
-      margin-top: 10px;
-    }
-
-    .stat-label {
-      color: #555;
-      font-size: 1rem;
-      margin-top: 12px;
-      font-weight: 700;
-      letter-spacing: 0.5px;
-    }
-
-    footer {
-      text-align: center;
-      background: linear-gradient(135deg, rgba(0,128,128,0.95), rgba(0,102,102,0.95));
-      color: #ffffff;
-      padding: 25px;
-      margin-top: 50px;
-      backdrop-filter: blur(10px);
-    }
-
-    footer p {
-      color: #ffffff;
-      margin: 0;
-      font-weight: 600;
-    }
-    /* Back to top button */
-.scroll-top {
-  position: fixed;
-  right: 20px;
-  bottom: 25px;
-  background: linear-gradient(135deg, #008080, #00a6a6);
-  color: #fff;
-  text-decoration: none;
-  width: 42px;
-  height: 42px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.3rem;
-  box-shadow: 0 8px 22px rgba(0,0,0,0.35);
-  transition: transform 0.25s ease, box-shadow 0.25s ease, opacity 0.25s ease;
-  opacity: 0.9;
-  z-index: 999;
-}
-
-.scroll-top:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 12px 30px rgba(0,0,0,0.45);
-  opacity: 1;
-}
-
-
-    @media (max-width: 768px) {
-      section {
-        padding: 20px;
-      }
-      
-      nav a {
-        display: inline-block;
-        margin: 5px 10px;
-      }
-
-      .welcome-text {
-        border-radius: 0 40px 40px 0;
-        padding: 25px;
-      }
-
-      .features-grid {
-        grid-template-columns: 1fr;
-      }
-
-      h1 {
-        font-size: 1.8rem;
-      }
-
-      .why-list {
-        grid-template-columns: 1fr;
-      }
-
-      .cta-section {
-        padding: 25px;
-      }
-    }
-  </style>
 </head>
 <body>
 
@@ -522,57 +26,55 @@
   </header>
 
   <section>
-    <div class="welcome-text">
+    <!-- Welcome Section -->
+    <div class="welcome-card animate-fade-in">
       <h2>Welcome to Your Fitness Journey</h2>
       <p>Hi, I'm <strong>Puneet Kewlani</strong>, a passionate fitness enthusiast and student dedicated to promoting healthy living and physical fitness.</p>
       <p>This comprehensive website is designed to guide you through scientifically-backed diet plans, effective exercise routines, and practical wellness tips to help you maintain a balanced, healthy lifestyle using natural methods.</p>
     </div>
 
     <!-- Hero Section with Statistics -->
-    <div style="background: linear-gradient(135deg, rgba(0, 128, 128, 0.15), rgba(0, 166, 166, 0.1)); padding: 40px; border-radius: 18px; border: 2px solid rgba(0, 128, 128, 0.3); margin: 50px 0; text-align: center;">
-      <h3 style="color: white; font-size: 1.6rem; margin-top: 0; text-shadow: 2px 2px 4px rgba(0,0,0,0.5); margin-bottom: 30px;">🎯 Transform Your Health Today</h3>
-      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 20px;">
-        <div style="background: linear-gradient(135deg, rgba(76, 175, 80, 0.2), rgba(139, 195, 74, 0.15)); padding: 25px; border-radius: 12px; border-left: 5px solid #4caf50;">
-          <div style="font-size: 2.5rem; font-weight: 900; color: #4caf50;">500+</div>
-          <div style="color: white; font-weight: 600; font-size: 0.95rem; margin-top: 8px;">Success Stories</div>
+    <div class="hero-section">
+      <h3 class="hero-title">🎯 Transform Your Health Today</h3>
+      <div class="hero-stats">
+        <div class="hero-stat green">
+          <div class="value">500+</div>
+          <div class="label">Success Stories</div>
         </div>
-        <div style="background: linear-gradient(135deg, rgba(33, 150, 243, 0.2), rgba(66, 165, 245, 0.15)); padding: 25px; border-radius: 12px; border-left: 5px solid #2196f3;">
-          <div style="font-size: 2.5rem; font-weight: 900; color: #2196f3;">100%</div>
-          <div style="color: white; font-weight: 600; font-size: 0.95rem; margin-top: 8px;">Results Proven</div>
+        <div class="hero-stat blue">
+          <div class="value">100%</div>
+          <div class="label">Results Proven</div>
         </div>
-        <div style="background: linear-gradient(135deg, rgba(255, 193, 7, 0.2), rgba(255, 235, 59, 0.15)); padding: 25px; border-radius: 12px; border-left: 5px solid #ffc107;">
-          <div style="font-size: 2.5rem; font-weight: 900; color: #ffc107;">24/7</div>
-          <div style="color: white; font-weight: 600; font-size: 0.95rem; margin-top: 8px;">Support Available</div>
+        <div class="hero-stat yellow">
+          <div class="value">24/7</div>
+          <div class="label">Support Available</div>
         </div>
-        <div style="background: linear-gradient(135deg, rgba(244, 67, 54, 0.2), rgba(229, 57, 53, 0.15)); padding: 25px; border-radius: 12px; border-left: 5px solid #f44336;">
-          <div style="font-size: 2.5rem; font-weight: 900; color: #f44336;">10+</div>
-          <div style="color: white; font-weight: 600; font-size: 0.95rem; margin-top: 8px;">Years Experience</div>
+        <div class="hero-stat red">
+          <div class="value">10+</div>
+          <div class="label">Years Experience</div>
         </div>
       </div>
     </div>
 
     <!-- Features Section -->
     <div class="features-section">
-      <h2 style="text-align: center; width: 100%; color: white; text-shadow: 2px 2px 6px rgba(0,0,0,0.5);">📚 What We Offer</h2>
+      <h2 class="section-title">📚 What We Offer</h2>
       <div class="features-grid">
-        <div class="feature-card" style="position: relative; overflow: hidden;">
-          <div style="position: absolute; top: -50%; right: -50%; width: 200px; height: 200px; background: radial-gradient(circle, rgba(76, 175, 80, 0.2), transparent); border-radius: 50%; pointer-events: none;"></div>
+        <div class="feature-card stagger-1">
           <div class="feature-icon">🥗</div>
           <h3>Customized Diet Plans</h3>
           <p>Discover balanced, nutritious meal plans tailored to your fitness goals and dietary preferences.</p>
           <a href="diet.html" class="feature-link">Explore Diet Plans →</a>
         </div>
 
-        <div class="feature-card" style="position: relative; overflow: hidden;">
-          <div style="position: absolute; top: -50%; right: -50%; width: 200px; height: 200px; background: radial-gradient(circle, rgba(255, 107, 107, 0.2), transparent); border-radius: 50%; pointer-events: none;"></div>
+        <div class="feature-card stagger-2">
           <div class="feature-icon">💪</div>
           <h3>Effective Workouts</h3>
           <p>Learn proven exercise techniques designed to build strength, endurance, and overall fitness.</p>
           <a href="exercise.html" class="feature-link">View Exercises →</a>
         </div>
 
-        <div class="feature-card" style="position: relative; overflow: hidden;">
-          <div style="position: absolute; top: -50%; right: -50%; width: 200px; height: 200px; background: radial-gradient(circle, rgba(63, 81, 181, 0.2), transparent); border-radius: 50%; pointer-events: none;"></div>
+        <div class="feature-card stagger-3">
           <div class="feature-icon">🧠</div>
           <h3>Wellness Tips</h3>
           <p>Get expert advice on nutrition, fitness, mental health, and sustainable lifestyle changes.</p>
@@ -582,22 +84,22 @@
     </div>
 
     <!-- Stats Section -->
-    <div class="stats-section" style="margin: 60px 0; background: linear-gradient(135deg, rgba(0, 128, 128, 0.1), rgba(0, 166, 166, 0.05)); padding: 45px 30px; border-radius: 18px; border: 2px solid rgba(0, 128, 128, 0.3);">
-      <div class="stat-card" style="background: linear-gradient(135deg, rgba(76, 175, 80, 0.15), rgba(139, 195, 74, 0.1)); padding: 30px; border-radius: 15px; border-left: 5px solid #4caf50; transition: all 0.3s ease;" onmouseover="this.style.transform='translateY(-8px)'; this.style.boxShadow='0 15px 40px rgba(76, 175, 80, 0.25)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='none'">
+    <div class="stats-section">
+      <div class="stat-card stagger-1">
         <div class="stat-number" style="color: #4caf50;">50+</div>
-        <div class="stat-label" style="color: white;">Workout Plans</div>
+        <div class="stat-label">Workout Plans</div>
       </div>
-      <div class="stat-card" style="background: linear-gradient(135deg, rgba(33, 150, 243, 0.15), rgba(66, 165, 245, 0.1)); padding: 30px; border-radius: 15px; border-left: 5px solid #2196f3; transition: all 0.3s ease;" onmouseover="this.style.transform='translateY(-8px)'; this.style.boxShadow='0 15px 40px rgba(33, 150, 243, 0.25)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='none'">
+      <div class="stat-card stagger-2">
         <div class="stat-number" style="color: #2196f3;">100+</div>
-        <div class="stat-label" style="color: white;">Diet Recipes</div>
+        <div class="stat-label">Diet Recipes</div>
       </div>
-      <div class="stat-card" style="background: linear-gradient(135deg, rgba(255, 193, 7, 0.15), rgba(255, 235, 59, 0.1)); padding: 30px; border-radius: 15px; border-left: 5px solid #ffc107; transition: all 0.3s ease;" onmouseover="this.style.transform='translateY(-8px)'; this.style.boxShadow='0 15px 40px rgba(255, 193, 7, 0.25)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='none'">
+      <div class="stat-card stagger-3">
         <div class="stat-number" style="color: #ffc107;">1000+</div>
-        <div class="stat-label" style="color: white;">Active Members</div>
+        <div class="stat-label">Active Members</div>
       </div>
-      <div class="stat-card" style="background: linear-gradient(135deg, rgba(244, 67, 54, 0.15), rgba(229, 57, 53, 0.1)); padding: 30px; border-radius: 15px; border-left: 5px solid #f44336; transition: all 0.3s ease;" onmouseover="this.style.transform='translateY(-8px)'; this.style.boxShadow='0 15px 40px rgba(244, 67, 54, 0.25)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='none'">
+      <div class="stat-card stagger-4">
         <div class="stat-number" style="color: #f44336;">5★</div>
-        <div class="stat-label" style="color: white;">User Rating</div>
+        <div class="stat-label">User Rating</div>
       </div>
     </div>
 
@@ -616,85 +118,78 @@
 
     <!-- CTA Section -->
     <div class="cta-section">
-      <p style="color: white; font-size: 1.15rem; font-weight: 600; text-shadow: 2px 2px 4px rgba(0,0,0,0.5);">Ready to Transform Your Life?</p>
+      <p>Ready to Transform Your Life?</p>
       <a href="contact.html" class="cta-button">Start Your Journey Today 🚀</a>
     </div>
 
     <!-- Testimonials Section -->
-    <h2 style="text-align: center; width: 100%; color: white; text-shadow: 2px 2px 6px rgba(0,0,0,0.5); margin-top: 60px;">⭐ What Our Members Say</h2>
-    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; margin-bottom: 50px;">
-      
-      <div style="background: rgba(255, 255, 255, 0.95); padding: 25px; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.15); border-left: 5px solid #ff6b6b; transition: all 0.3s ease; position: relative; overflow: hidden;" onmouseover="this.style.transform='translateY(-8px)'; this.style.boxShadow='0 20px 45px rgba(255, 107, 107, 0.3)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 10px 30px rgba(0,0,0,0.15)'">
-        <div style="position: absolute; top: -40px; right: -40px; width: 150px; height: 150px; background: radial-gradient(circle, rgba(255, 107, 107, 0.15), transparent); border-radius: 50%; pointer-events: none;"></div>
-        <div style="display: flex; align-items: center; margin-bottom: 15px;">
-          <div style="font-size: 2.5rem; margin-right: 15px;">👨</div>
-          <div>
-            <h5 style="margin: 0; color: #008080; font-size: 1rem;">Raj Kumar</h5>
-            <p style="margin: 3px 0 0; color: #888; font-size: 0.9rem; font-weight: 600;">Lost 15 kg in 3 months</p>
+    <h2 class="section-title">⭐ What Our Members Say</h2>
+    <div class="testimonials-grid">
+
+      <div class="testimonial-card red">
+        <div class="testimonial-header">
+          <div class="testimonial-avatar">👨</div>
+          <div class="testimonial-info">
+            <h5>Raj Kumar</h5>
+            <p>Lost 15 kg in 3 months</p>
           </div>
         </div>
-        <p style="margin: 0; color: #555; font-size: 0.95rem; line-height: 1.6;">"Puneet's coaching completely transformed my fitness journey. The personalized workouts and nutrition plans are exactly what I needed!"</p>
-        <div style="color: #ffc107; font-size: 1rem; margin-top: 10px; font-weight: bold;">⭐⭐⭐⭐⭐</div>
+        <p class="testimonial-text">"Puneet's coaching completely transformed my fitness journey. The personalized workouts and nutrition plans are exactly what I needed!"</p>
+        <div class="testimonial-rating">⭐⭐⭐⭐⭐</div>
       </div>
 
-      <div style="background: rgba(255, 255, 255, 0.95); padding: 25px; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.15); border-left: 5px solid #4caf50; transition: all 0.3s ease; position: relative; overflow: hidden;" onmouseover="this.style.transform='translateY(-8px)'; this.style.boxShadow='0 20px 45px rgba(76, 175, 80, 0.3)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 10px 30px rgba(0,0,0,0.15)'">
-        <div style="position: absolute; top: -40px; right: -40px; width: 150px; height: 150px; background: radial-gradient(circle, rgba(76, 175, 80, 0.15), transparent); border-radius: 50%; pointer-events: none;"></div>
-        <div style="display: flex; align-items: center; margin-bottom: 15px;">
-          <div style="font-size: 2.5rem; margin-right: 15px;">👩</div>
-          <div>
-            <h5 style="margin: 0; color: #008080; font-size: 1rem;">Priya Sharma</h5>
-            <p style="margin: 3px 0 0; color: #888; font-size: 0.9rem; font-weight: 600;">Gained strength & confidence</p>
+      <div class="testimonial-card green">
+        <div class="testimonial-header">
+          <div class="testimonial-avatar">👩</div>
+          <div class="testimonial-info">
+            <h5>Priya Sharma</h5>
+            <p>Gained strength & confidence</p>
           </div>
         </div>
-        <p style="margin: 0; color: #555; font-size: 0.95rem; line-height: 1.6;">"I was a complete beginner, but Puneet made everything easy to understand. Now I can do 20 push-ups and feel amazing!"</p>
-        <div style="color: #ffc107; font-size: 1rem; margin-top: 10px; font-weight: bold;">⭐⭐⭐⭐⭐</div>
+        <p class="testimonial-text">"I was a complete beginner, but Puneet made everything easy to understand. Now I can do 20 push-ups and feel amazing!"</p>
+        <div class="testimonial-rating">⭐⭐⭐⭐⭐</div>
       </div>
 
-      <div style="background: rgba(255, 255, 255, 0.95); padding: 25px; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.15); border-left: 5px solid #ffc107; transition: all 0.3s ease; position: relative; overflow: hidden;" onmouseover="this.style.transform='translateY(-8px)'; this.style.boxShadow='0 20px 45px rgba(255, 193, 7, 0.3)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 10px 30px rgba(0,0,0,0.15)'">
-        <div style="position: absolute; top: -40px; right: -40px; width: 150px; height: 150px; background: radial-gradient(circle, rgba(255, 193, 7, 0.15), transparent); border-radius: 50%; pointer-events: none;"></div>
-        <div style="display: flex; align-items: center; margin-bottom: 15px;">
-          <div style="font-size: 2.5rem; margin-right: 15px;">👨</div>
-          <div>
-            <h5 style="margin: 0; color: #008080; font-size: 1rem;">Arjun Singh</h5>
-            <p style="margin: 3px 0 0; color: #888; font-size: 0.9rem; font-weight: 600;">Improved health & energy</p>
+      <div class="testimonial-card yellow">
+        <div class="testimonial-header">
+          <div class="testimonial-avatar">👨</div>
+          <div class="testimonial-info">
+            <h5>Arjun Singh</h5>
+            <p>Improved health & energy</p>
           </div>
         </div>
-        <p style="margin: 0; color: #555; font-size: 0.95rem; line-height: 1.6;">"The nutrition plans are science-based and sustainable. My energy levels have doubled and I feel healthier than ever!"</p>
-        <div style="color: #ffc107; font-size: 1rem; margin-top: 10px; font-weight: bold;">⭐⭐⭐⭐⭐</div>
+        <p class="testimonial-text">"The nutrition plans are science-based and sustainable. My energy levels have doubled and I feel healthier than ever!"</p>
+        <div class="testimonial-rating">⭐⭐⭐⭐⭐</div>
       </div>
 
     </div>
 
     <!-- Quick Fitness Assessment Form -->
-    <div style="background: linear-gradient(135deg, rgba(0, 166, 166, 0.25), rgba(0, 128, 128, 0.15)); padding: 50px 40px; border-radius: 20px; border: 2px solid rgba(0, 128, 128, 0.4); margin-top: 60px; box-shadow: 0 20px 50px rgba(0, 128, 128, 0.15); position: relative; overflow: hidden;">
-      
-      <div style="position: absolute; top: -100px; right: -100px; width: 300px; height: 300px; background: radial-gradient(circle, rgba(0, 166, 166, 0.1), transparent); border-radius: 50%; pointer-events: none;"></div>
-      
-      <h2 style="text-align: center; color: white; text-shadow: 2px 2px 6px rgba(0,0,0,0.4); margin-top: 0; margin-bottom: 15px; font-size: 2.2rem;">🎯 Your Fitness Journey Starts Here</h2>
-      <p style="text-align: center; color: rgba(255,255,255,0.95); font-size: 1.05rem; margin-bottom: 35px; font-weight: 500; max-width: 600px; margin-left: auto; margin-right: auto;">Get a personalized fitness plan tailored to your unique goals and fitness level</p>
-      
-      <div style="max-width: 800px; margin: 0 auto; background: rgba(255, 255, 255, 0.98); padding: 45px; border-radius: 18px; box-shadow: 0 15px 45px rgba(0,0,0,0.2); border: 2px solid rgba(0, 128, 128, 0.3); backdrop-filter: blur(10px);">
+    <div class="assessment-section">
+      <h2>🎯 Your Fitness Journey Starts Here</h2>
+      <p class="subtitle">Get a personalized fitness plan tailored to your unique goals and fitness level</p>
 
-        <form style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 22px;">
-          
-          <div style="display: flex; flex-direction: column;">
-            <label style="color: #008080; font-weight: 700; margin-bottom: 10px; font-size: 0.95rem; display: flex; align-items: center;">📝 Full Name</label>
-            <input type="text" placeholder="Your full name" required style="padding: 14px 16px; border: 2px solid #e0e0e0; border-radius: 10px; font-size: 0.95rem; transition: all 0.3s ease; background: rgba(255,255,255,0.9);" onfocus="this.style.borderColor='#008080'; this.style.boxShadow='0 0 12px rgba(0,128,128,0.35)'; this.style.background='white'" onblur="this.style.borderColor='#e0e0e0'; this.style.boxShadow='none'; this.style.background='rgba(255,255,255,0.9)'">
+      <div class="assessment-form-container">
+        <form id="assessmentForm" class="assessment-form">
+
+          <div class="form-group">
+            <label for="name">📝 Full Name</label>
+            <input type="text" id="name" placeholder="Your full name" required>
           </div>
 
-          <div style="display: flex; flex-direction: column;">
-            <label style="color: #008080; font-weight: 700; margin-bottom: 10px; font-size: 0.95rem;">⚖️ Weight (kg)</label>
-            <input type="number" placeholder="e.g., 70" min="30" max="200" step="0.1" required style="padding: 14px 16px; border: 2px solid #e0e0e0; border-radius: 10px; font-size: 0.95rem; transition: all 0.3s ease; background: rgba(255,255,255,0.9);" onfocus="this.style.borderColor='#008080'; this.style.boxShadow='0 0 12px rgba(0,128,128,0.35)'; this.style.background='white'" onblur="this.style.borderColor='#e0e0e0'; this.style.boxShadow='none'; this.style.background='rgba(255,255,255,0.9)'">
+          <div class="form-group">
+            <label for="weight">⚖️ Weight (kg)</label>
+            <input type="number" id="weight" placeholder="e.g., 70" min="30" max="200" step="0.1" required>
           </div>
 
-          <div style="display: flex; flex-direction: column;">
-            <label style="color: #008080; font-weight: 700; margin-bottom: 10px; font-size: 0.95rem;">📏 Height (cm)</label>
-            <input type="number" placeholder="e.g., 175" min="100" max="250" required style="padding: 14px 16px; border: 2px solid #e0e0e0; border-radius: 10px; font-size: 0.95rem; transition: all 0.3s ease; background: rgba(255,255,255,0.9);" onfocus="this.style.borderColor='#008080'; this.style.boxShadow='0 0 12px rgba(0,128,128,0.35)'; this.style.background='white'" onblur="this.style.borderColor='#e0e0e0'; this.style.boxShadow='none'; this.style.background='rgba(255,255,255,0.9)'">
+          <div class="form-group">
+            <label for="height">📏 Height (cm)</label>
+            <input type="number" id="height" placeholder="e.g., 175" min="100" max="250" required>
           </div>
 
-          <div style="display: flex; flex-direction: column;">
-            <label style="color: #008080; font-weight: 700; margin-bottom: 10px; font-size: 0.95rem;">🎯 Fitness Goal</label>
-            <select required style="padding: 14px 16px; border: 2px solid #e0e0e0; border-radius: 10px; font-size: 0.95rem; font-family: 'Segoe UI', Arial, sans-serif; transition: all 0.3s ease; background: rgba(255,255,255,0.9); cursor: pointer;" onfocus="this.style.borderColor='#008080'; this.style.boxShadow='0 0 12px rgba(0,128,128,0.35)'; this.style.background='white'" onblur="this.style.borderColor='#e0e0e0'; this.style.boxShadow='none'; this.style.background='rgba(255,255,255,0.9)'">
+          <div class="form-group">
+            <label for="goal">🎯 Fitness Goal</label>
+            <select id="goal" required>
               <option value="">Select your goal</option>
               <option value="weight-loss">💪 Weight Loss</option>
               <option value="muscle-gain">🏋️ Muscle Gain</option>
@@ -705,9 +200,9 @@
             </select>
           </div>
 
-          <div style="display: flex; flex-direction: column;">
-            <label style="color: #008080; font-weight: 700; margin-bottom: 10px; font-size: 0.95rem;">💪 Fitness Level</label>
-            <select required style="padding: 14px 16px; border: 2px solid #e0e0e0; border-radius: 10px; font-size: 0.95rem; font-family: 'Segoe UI', Arial, sans-serif; transition: all 0.3s ease; background: rgba(255,255,255,0.9); cursor: pointer;" onfocus="this.style.borderColor='#008080'; this.style.boxShadow='0 0 12px rgba(0,128,128,0.35)'; this.style.background='white'" onblur="this.style.borderColor='#e0e0e0'; this.style.boxShadow='none'; this.style.background='rgba(255,255,255,0.9)'">
+          <div class="form-group">
+            <label for="fitness_level">💪 Fitness Level</label>
+            <select id="fitness_level" required>
               <option value="">Select level</option>
               <option value="beginner">🌱 Beginner</option>
               <option value="intermediate">📈 Intermediate</option>
@@ -715,14 +210,9 @@
             </select>
           </div>
 
-          <div style="display: flex; flex-direction: column;">
-            <label style="color: #008080; font-weight: 700; margin-bottom: 10px; font-size: 0.95rem;">📧 Email Address</label>
-            <input type="email" placeholder="your.email@example.com" required style="padding: 14px 16px; border: 2px solid #e0e0e0; border-radius: 10px; font-size: 0.95rem; transition: all 0.3s ease; background: rgba(255,255,255,0.9);" onfocus="this.style.borderColor='#008080'; this.style.boxShadow='0 0 12px rgba(0,128,128,0.35)'; this.style.background='white'" onblur="this.style.borderColor='#e0e0e0'; this.style.boxShadow='none'; this.style.background='rgba(255,255,255,0.9)'">
-          </div>
-
-          <div style="display: flex; flex-direction: column;">
-            <label style="color: #008080; font-weight: 700; margin-bottom: 10px; font-size: 0.95rem;">🏋️ Preferred Workout Type</label>
-            <select required style="padding: 14px 16px; border: 2px solid #e0e0e0; border-radius: 10px; font-size: 0.95rem; font-family: 'Segoe UI', Arial, sans-serif; transition: all 0.3s ease; background: rgba(255,255,255,0.9); cursor: pointer;" onfocus="this.style.borderColor='#008080'; this.style.boxShadow='0 0 12px rgba(0,128,128,0.35)'; this.style.background='white'" onblur="this.style.borderColor='#e0e0e0'; this.style.boxShadow='none'; this.style.background='rgba(255,255,255,0.9)'">
+          <div class="form-group">
+            <label for="workout_type">🏋️ Preferred Workout Type</label>
+            <select id="workout_type" required>
               <option value="">Select workout type</option>
               <option value="cardio">🏃 Cardio</option>
               <option value="strength">💪 Strength Training</option>
@@ -732,9 +222,9 @@
             </select>
           </div>
 
-          <div style="display: flex; flex-direction: column;">
-            <label style="color: #008080; font-weight: 700; margin-bottom: 10px; font-size: 0.95rem;">📅 Available Days/Week</label>
-            <select required style="padding: 14px 16px; border: 2px solid #e0e0e0; border-radius: 10px; font-size: 0.95rem; font-family: 'Segoe UI', Arial, sans-serif; transition: all 0.3s ease; background: rgba(255,255,255,0.9); cursor: pointer;" onfocus="this.style.borderColor='#008080'; this.style.boxShadow='0 0 12px rgba(0,128,128,0.35)'; this.style.background='white'" onblur="this.style.borderColor='#e0e0e0'; this.style.boxShadow='none'; this.style.background='rgba(255,255,255,0.9)'">
+          <div class="form-group">
+            <label for="frequency">📅 Available Days/Week</label>
+            <select id="frequency" required>
               <option value="">Select frequency</option>
               <option value="2-3">2-3 days</option>
               <option value="4-5">4-5 days</option>
@@ -742,9 +232,14 @@
             </select>
           </div>
 
-          <div style="display: flex; flex-direction: column;">
-            <label style="color: #008080; font-weight: 700; margin-bottom: 10px; font-size: 0.95rem;">🍽️ Diet Preference</label>
-            <select required style="padding: 14px 16px; border: 2px solid #e0e0e0; border-radius: 10px; font-size: 0.95rem; font-family: 'Segoe UI', Arial, sans-serif; transition: all 0.3s ease; background: rgba(255,255,255,0.9); cursor: pointer;" onfocus="this.style.borderColor='#008080'; this.style.boxShadow='0 0 12px rgba(0,128,128,0.35)'; this.style.background='white'" onblur="this.style.borderColor='#e0e0e0'; this.style.boxShadow='none'; this.style.background='rgba(255,255,255,0.9)'">
+          <div class="form-group">
+            <label for="email">📧 Email Address</label>
+            <input type="email" id="email" placeholder="your.email@example.com" required>
+          </div>
+
+          <div class="form-group">
+            <label for="diet_preference">🍽️ Diet Preference</label>
+            <select id="diet_preference" required>
               <option value="">Select diet preference</option>
               <option value="vegetarian">🥬 Vegetarian</option>
               <option value="non-vegetarian">🥩 Non-Vegetarian</option>
@@ -753,37 +248,32 @@
             </select>
           </div>
 
-          <div style="display: flex; flex-direction: column;">
-            <label style="color: #008080; font-weight: 700; margin-bottom: 10px; font-size: 0.95rem;">💬 Any Injuries/Concerns?</label>
-            <input type="text" placeholder="e.g., Back pain, Knee issues (Optional)" style="padding: 14px 16px; border: 2px solid #e0e0e0; border-radius: 10px; font-size: 0.95rem; transition: all 0.3s ease; background: rgba(255,255,255,0.9);" onfocus="this.style.borderColor='#008080'; this.style.boxShadow='0 0 12px rgba(0,128,128,0.35)'; this.style.background='white'" onblur="this.style.borderColor='#e0e0e0'; this.style.boxShadow='none'; this.style.background='rgba(255,255,255,0.9)'">
+          <div class="form-group">
+            <label for="injuries">💬 Any Injuries/Concerns?</label>
+            <input type="text" id="injuries" placeholder="e.g., Back pain, Knee issues (Optional)">
           </div>
 
         </form>
 
-        <div style="text-align: center; margin-top: 35px;">
-          <button type="submit" id="assessmentBtn" style="padding: 16px 50px; background: linear-gradient(135deg, #00a6a6, #008080); color: white; border: none; border-radius: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.2px; font-size: 1rem; cursor: pointer; transition: all 0.3s ease; box-shadow: 0 10px 25px rgba(0,128,128,0.35); text-shadow: 1px 1px 2px rgba(0,0,0,0.1);" onmouseover="this.style.transform='translateY(-3px)'; this.style.boxShadow='0 15px 35px rgba(0,128,128,0.5)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 10px 25px rgba(0,128,128,0.35)'">Get My Personalized Plan 🚀</button>
+        <div class="text-center" style="margin-top: 35px;">
+          <button type="submit" id="assessmentBtn" class="assessment-submit" form="assessmentForm">Get My Personalized Plan 🚀</button>
         </div>
 
-        <p style="text-align: center; color: #666; font-size: 0.9rem; margin-top: 25px; line-height: 1.6;">✓ We'll analyze your profile and send personalized workout & nutrition recommendations to your inbox within 24 hours!</p>
-
+        <p class="assessment-note">✓ We'll analyze your profile and send personalized workout & nutrition recommendations to your inbox within 24 hours!</p>
       </div>
     </div>
 
     <!-- CTA Banner Section -->
-    <div style="background: linear-gradient(135deg, #008080 0%, #00a6a6 50%, #00d4d4 100%); padding: 60px 40px; border-radius: 20px; margin-top: 70px; text-align: center; box-shadow: 0 20px 60px rgba(0, 128, 128, 0.4); position: relative; overflow: hidden;">
-      
-      <div style="position: absolute; top: -50px; left: -50px; width: 200px; height: 200px; background: radial-gradient(circle, rgba(255,255,255,0.1), transparent); border-radius: 50%; pointer-events: none;"></div>
-      <div style="position: absolute; bottom: -80px; right: -80px; width: 300px; height: 300px; background: radial-gradient(circle, rgba(255,255,255,0.08), transparent); border-radius: 50%; pointer-events: none;"></div>
-      
-      <h2 style="color: white; font-size: 2.3rem; margin: 0 0 20px; text-shadow: 2px 2px 8px rgba(0,0,0,0.3); font-weight: 900; position: relative; z-index: 1;">🔥 Transform Your Body in Just 90 Days!</h2>
-      <p style="color: rgba(255,255,255,0.95); font-size: 1.15rem; margin-bottom: 35px; max-width: 700px; margin-left: auto; margin-right: auto; line-height: 1.7; position: relative; z-index: 1; font-weight: 500;">Join hundreds of members who have already transformed their lives with our proven coaching methods. Your success story starts today!</p>
-      
-      <div style="display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; position: relative; z-index: 1;">
-        <a href="assessment.html" style="background: white; color: #008080; padding: 16px 40px; border-radius: 12px; text-decoration: none; font-weight: 700; font-size: 1rem; transition: all 0.3s ease; box-shadow: 0 10px 30px rgba(0,0,0,0.2); display: inline-block; text-transform: uppercase; letter-spacing: 0.5px;" onmouseover="this.style.transform='translateY(-4px)'; this.style.boxShadow='0 15px 40px rgba(0,0,0,0.3)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 10px 30px rgba(0,0,0,0.2)'">Start Free Assessment →</a>
-        <a href="contact.html" style="background: transparent; color: white; padding: 16px 40px; border: 2px solid white; border-radius: 12px; text-decoration: none; font-weight: 700; font-size: 1rem; transition: all 0.3s ease; display: inline-block; text-transform: uppercase; letter-spacing: 0.5px;" onmouseover="this.style.background='rgba(255,255,255,0.1)'; this.style.transform='translateY(-4px)'" onmouseout="this.style.background='transparent'; this.style.transform='translateY(0)'">View Packages 💎</a>
+    <div class="cta-banner">
+      <h2>🔥 Transform Your Body in Just 90 Days!</h2>
+      <p>Join hundreds of members who have already transformed their lives with our proven coaching methods. Your success story starts today!</p>
+
+      <div class="buttons">
+        <a href="assessment.html" class="btn" style="background: white; color: #008080; box-shadow: var(--shadow-md);">Start Free Assessment →</a>
+        <a href="contact.html" class="btn btn-outline">View Packages 💎</a>
       </div>
 
-      <p style="color: rgba(255,255,255,0.85); font-size: 0.9rem; margin-top: 30px; position: relative; z-index: 1; font-style: italic;">⭐ Limited spots available for personalized 1-on-1 coaching. Apply now to secure your spot!</p>
+      <p class="cta-note">⭐ Limited spots available for personalized 1-on-1 coaching. Apply now to secure your spot!</p>
     </div>
 
   </section>
@@ -791,6 +281,7 @@
   <footer class="site-footer">
     <div class="container">© 2025 Fitness Blog | Created by Puneet Kewlani | Dedicated to Your Health & Wellness</div>
   </footer>
+
   <a href="#top" class="scroll-top">↑</a>
 
   <script>
@@ -799,23 +290,24 @@
 
     // Fitness Assessment Form Handler
     document.addEventListener('DOMContentLoaded', function() {
-      const assessmentForm = document.querySelector('form');
-      if (assessmentForm) {
-        assessmentForm.addEventListener('submit', async function(e) {
+      const assessmentForm = document.getElementById('assessmentForm');
+      const assessmentBtn = document.getElementById('assessmentBtn');
+
+      if (assessmentForm && assessmentBtn) {
+        assessmentBtn.addEventListener('click', async function(e) {
           e.preventDefault();
 
           // Get form values
-          const name = assessmentForm.querySelector('input[type="text"]').value;
-          const weight = parseFloat(assessmentForm.querySelectorAll('input[type="number"]')[0].value);
-          const height = parseFloat(assessmentForm.querySelectorAll('input[type="number"]')[1].value);
-          const selects = assessmentForm.querySelectorAll('select');
-          const goal = selects[0].value;
-          const fitness_level = selects[1].value;
-          const workout_type = selects[2].value;
-          const frequency = selects[3].value;
-          const diet_preference = selects[4].value;
-          const email = assessmentForm.querySelector('input[type="email"]').value;
-          const injuries_concerns = assessmentForm.querySelectorAll('input[type="text"]')[1].value;
+          const name = document.getElementById('name').value;
+          const weight = parseFloat(document.getElementById('weight').value);
+          const height = parseFloat(document.getElementById('height').value);
+          const goal = document.getElementById('goal').value;
+          const fitness_level = document.getElementById('fitness_level').value;
+          const workout_type = document.getElementById('workout_type').value;
+          const frequency = document.getElementById('frequency').value;
+          const email = document.getElementById('email').value;
+          const diet_preference = document.getElementById('diet_preference').value;
+          const injuries_concerns = document.getElementById('injuries').value;
 
           // Validate required fields
           if (!name || !weight || !height || !goal || !fitness_level || !email || !workout_type || !frequency || !diet_preference) {
@@ -824,10 +316,9 @@
           }
 
           // Show loading state
-          const btn = document.getElementById('assessmentBtn');
-          const originalText = btn.textContent;
-          btn.textContent = '⏳ Submitting...';
-          btn.disabled = true;
+          const originalText = assessmentBtn.textContent;
+          assessmentBtn.textContent = '⏳ Submitting...';
+          assessmentBtn.disabled = true;
 
           try {
             const response = await fetch(`${API_URL}/api/fitness-assessment`, {
@@ -854,24 +345,23 @@
             if (data.status === 'success') {
               alert('✅ ' + data.message + '\n\n📧 Check your email for:\n• Personalized workout plan\n• Nutrition recommendations\n• Progress tracking tips\n\nSubmission ID: #' + data.id);
               assessmentForm.reset();
-              btn.textContent = 'Get My Personalized Plan 🚀';
-              btn.disabled = false;
+              assessmentBtn.textContent = 'Get My Personalized Plan 🚀';
+              assessmentBtn.disabled = false;
             } else {
               alert('❌ Error: ' + data.message);
-              btn.textContent = originalText;
-              btn.disabled = false;
+              assessmentBtn.textContent = originalText;
+              assessmentBtn.disabled = false;
             }
           } catch (error) {
             alert('❌ Connection error. Make sure the backend server is running on port 5000.\n\nTo start the server, open terminal in the backend folder and run: python app.py');
-            btn.textContent = originalText;
-            btn.disabled = false;
+            assessmentBtn.textContent = originalText;
+            assessmentBtn.disabled = false;
             console.error('Error:', error);
           }
         });
       }
     });
   </script>
-
 
 </body>
 </html>
