@@ -9,326 +9,31 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/css/styles.css">
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    body {
-      font-family: 'Segoe UI', Arial, sans-serif;
-      background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), 
-                  linear-gradient(135deg, #1a1a2e, #16213e);
-      background-size: cover;
-      background-attachment: fixed;
-      min-height: 100vh;
-      color: #333;
-    }
-
-    header {
-      background: linear-gradient(135deg, #008080, #006666);
-      color: white;
-      padding: 25px;
-      text-align: center;
-      box-shadow: 0 2px 15px rgba(0,0,0,0.1);
-    }
-
-    header h1 {
-      font-size: 2.5rem;
-      margin-bottom: 10px;
-      text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-    }
-
-    header p {
-      font-size: 1.1rem;
-      opacity: 0.95;
-    }
-
-    nav {
-      margin: 20px 0;
-      display: flex;
-      justify-content: center;
-      gap: 20px;
-      flex-wrap: wrap;
-    }
-
-    nav a {
-      color: white;
-      text-decoration: none;
-      font-weight: bold;
-      padding: 10px 20px;
-      border-radius: 20px;
-      transition: all 0.3s ease;
-      background: rgba(255,255,255,0.1);
-    }
-
-    nav a:hover {
-      background: rgba(255,255,255,0.25);
-      color: #ffcc00;
-      transform: translateY(-2px);
-    }
-
-    .container {
-      max-width: 900px;
-      margin: 0 auto;
-      padding: 40px 20px;
-    }
-
-    .form-section {
-      background: white;
-      border-radius: 20px;
-      padding: 40px;
-      box-shadow: 0 10px 40px rgba(0,0,0,0.2);
-      margin-bottom: 30px;
-    }
-
-    .form-section h2 {
-      color: #008080;
-      font-size: 1.8rem;
-      margin-bottom: 25px;
-      padding-bottom: 15px;
-      border-bottom: 3px solid #008080;
-    }
-
-    .form-group {
-      margin-bottom: 25px;
-    }
-
-    .form-group label {
-      display: block;
-      color: #008080;
-      font-weight: 700;
-      margin-bottom: 10px;
-      font-size: 1rem;
-    }
-
-    .form-group input,
-    .form-group select,
-    .form-group textarea {
-      width: 100%;
-      padding: 12px 15px;
-      border: 2px solid #e0e0e0;
-      border-radius: 10px;
-      font-size: 1rem;
-      font-family: 'Segoe UI', Arial, sans-serif;
-      transition: all 0.3s ease;
-      background: rgba(255,255,255,0.95);
-    }
-
-    .form-group input:focus,
-    .form-group select:focus,
-    .form-group textarea:focus {
-      border-color: #008080;
-      box-shadow: 0 0 12px rgba(0,128,128,0.35);
-      background: white;
-      outline: none;
-    }
-
-    .form-group textarea {
-      resize: vertical;
-      min-height: 100px;
-    }
-
-    .radio-group {
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-    }
-
-    .radio-option {
-      display: flex;
-      align-items: center;
-      padding: 10px;
-      border-radius: 8px;
-      transition: all 0.2s ease;
-      cursor: pointer;
-      background: #f5f5f5;
-    }
-
-    .radio-option:hover {
-      background: #e8f5e9;
-    }
-
-    .radio-option input[type="radio"] {
-      width: auto;
-      margin-right: 12px;
-      cursor: pointer;
-    }
-
-    .checkbox-group {
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-    }
-
-    .checkbox-option {
-      display: flex;
-      align-items: center;
-      padding: 10px;
-      border-radius: 8px;
-      transition: all 0.2s ease;
-      cursor: pointer;
-      background: #f5f5f5;
-    }
-
-    .checkbox-option:hover {
-      background: #e8f5e9;
-    }
-
-    .checkbox-option input[type="checkbox"] {
-      width: auto;
-      margin-right: 12px;
-      cursor: pointer;
-    }
-
-    .scale-group {
-      display: flex;
-      justify-content: space-between;
-      gap: 10px;
-      margin-top: 10px;
-    }
-
-    .scale-btn {
-      flex: 1;
-      padding: 12px;
-      border: 2px solid #e0e0e0;
-      background: white;
-      border-radius: 10px;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      font-weight: bold;
-      color: #666;
-    }
-
-    .scale-btn:hover {
-      border-color: #008080;
-      background: #f0f8f8;
-    }
-
-    .scale-btn.active {
-      background: #008080;
-      color: white;
-      border-color: #008080;
-    }
-
-    .button-group {
-      display: flex;
-      gap: 15px;
-      justify-content: center;
-      margin-top: 40px;
-    }
-
-    .btn {
-      padding: 15px 40px;
-      border: none;
-      border-radius: 12px;
-      font-size: 1rem;
-      font-weight: bold;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-    }
-
-    .btn-primary {
-      background: linear-gradient(135deg, #008080, #006666);
-      color: white;
-      box-shadow: 0 10px 25px rgba(0,128,128,0.35);
-    }
-
-    .btn-primary:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 15px 35px rgba(0,128,128,0.5);
-    }
-
-    .btn-primary:disabled {
-      opacity: 0.5;
-      cursor: not-allowed;
-      transform: none;
-    }
-
-    .btn-secondary {
-      background: #f5f5f5;
-      color: #666;
-      border: 2px solid #e0e0e0;
-    }
-
-    .btn-secondary:hover {
-      border-color: #008080;
-      color: #008080;
-    }
-
-    .progress-bar {
-      background: #e0e0e0;
-      height: 8px;
-      border-radius: 10px;
-      margin-bottom: 30px;
-      overflow: hidden;
-    }
-
-    .progress-fill {
-      height: 100%;
-      background: linear-gradient(90deg, #008080, #00a6a6);
-      transition: width 0.3s ease;
-    }
-
-    footer {
-      background: linear-gradient(135deg, #008080, #006666);
-      color: white;
-      text-align: center;
-      padding: 20px;
-      margin-top: 60px;
-    }
-
-    .success-message {
-      display: none;
-      background: #4caf50;
-      color: white;
-      padding: 20px;
-      border-radius: 10px;
-      margin-bottom: 20px;
-      text-align: center;
-      font-weight: bold;
-    }
-
-    .error-message {
-      display: none;
-      background: #f44336;
-      color: white;
-      padding: 20px;
-      border-radius: 10px;
-      margin-bottom: 20px;
-      text-align: center;
-      font-weight: bold;
-    }
-  </style>
+  <link rel="stylesheet" href="assets/css/modern.css">
+  
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 </head>
 <body>
 
-  <header>
-    <h1>🎯 Personal Wellness Assessment</h1>
-    <p>Complete this comprehensive assessment to get your personalized fitness & wellness plan</p>
-    <nav>
-      <a href="index.html">🏠 Home</a>
-      <a href="games.html">🎮 Games</a>
-      <a href="diet.html">🍎 Diet</a>
-      <a href="exercise.html">💪 Exercise</a>
-      <a href="contact.html">📧 Contact</a>
-    </nav>
-  <header id="top" class="site-header">
-    <div class="container">
-      <h1>🏋️‍♂️ Fitness Assessment</h1>
-      <p style="color:rgba(255,255,255,0.95);margin:0">Complete the form to get a personalized plan</p>
+  
+    <header id="top" class="site-header">
+    <div class="container header-inner">
+      <a href="index.html" class="logo">
+        <span class="logo-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8h1a4 4 0 0 1 0 8h-1"></path><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"></path><line x1="6" y1="1" x2="6" y2="4"></line><line x1="10" y1="1" x2="10" y2="4"></line><line x1="14" y1="1" x2="14" y2="4"></line></svg>
+        </span>
+        FitLife
+      </a>
       <nav class="site-nav">
         <a href="index.html">Home</a>
         <a href="diet.html">Diet Plans</a>
         <a href="exercise.html">Exercise</a>
         <a href="contact.html">Contact</a>
       </nav>
+      <a href="index.html#assessment" class="btn btn-sm btn-primary">Get Started</a>
     </div>
   </header>
+      <div class="container">
       <div class="progress-fill" id="progressFill"></div>
     </div>
 
@@ -403,7 +108,7 @@
 
       <!-- Section 3: Fitness Profile -->
       <div class="form-section">
-        <h2>💪 Fitness Profile</h2>
+        <h2><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align:middle;margin-right:8px;"><path d="M14.5 10c0-2.8-2.2-5-5-5a5 5 0 000 10h5z"/></svg> Fitness Profile</h2>
 
         <div class="form-group">
           <label for="fitnessLevel">Current Fitness Level *</label>
@@ -419,12 +124,12 @@
           <label for="goal">Primary Fitness Goal *</label>
           <select id="goal" name="goal" required>
             <option value="">Select your goal</option>
-            <option value="weight-loss">💪 Weight Loss</option>
+            <option value="weight-loss"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align:middle;margin-right:8px;"><path d="M14.5 10c0-2.8-2.2-5-5-5a5 5 0 000 10h5z"/></svg> Weight Loss</option>
             <option value="muscle-gain">🏋️ Muscle Gain</option>
             <option value="strength">⚡ Build Strength</option>
             <option value="flexibility">🧘 Flexibility & Mobility</option>
             <option value="endurance">🏃 Improve Endurance</option>
-            <option value="general">✨ General Health & Fitness</option>
+            <option value="general"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" class="text-primary" stroke="currentColor" stroke-width="2" style="vertical-align:middle;margin-right:8px;"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg> General Health & Fitness</option>
           </select>
         </div>
 
@@ -450,7 +155,7 @@
               <input type="radio" name="workoutType" value="cardio" required> 🏃 Cardio
             </label>
             <label class="radio-option">
-              <input type="radio" name="workoutType" value="strength" required> 💪 Strength Training
+              <input type="radio" name="workoutType" value="strength" required> <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align:middle;margin-right:8px;"><path d="M14.5 10c0-2.8-2.2-5-5-5a5 5 0 000 10h5z"/></svg> Strength Training
             </label>
             <label class="radio-option">
               <input type="radio" name="workoutType" value="yoga" required> 🧘 Yoga/Flexibility
@@ -459,7 +164,7 @@
               <input type="radio" name="workoutType" value="hiit" required> ⚡ HIIT
             </label>
             <label class="radio-option">
-              <input type="radio" name="workoutType" value="mixed" required> 🎯 Mixed Training
+              <input type="radio" name="workoutType" value="mixed" required> <svg width="24" height="24" viewBox="0 0 24 24" fill="none" class="text-primary" stroke="currentColor" stroke-width="2" style="vertical-align:middle;margin-right:8px;"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg> Mixed Training
             </label>
           </div>
         </div>
@@ -510,7 +215,7 @@
 
       <!-- Section 5: Lifestyle & Nutrition -->
       <div class="form-section">
-        <h2>🍎 Lifestyle & Nutrition</h2>
+        <h2><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align:middle;margin-right:8px;"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/></svg> Lifestyle & Nutrition</h2>
 
         <div class="form-group">
           <label for="dietPreference">Diet Preference *</label>
@@ -564,7 +269,7 @@
 
       <!-- Section 6: Motivation & Goals -->
       <div class="form-section">
-        <h2>🎯 Motivation & Goals</h2>
+        <h2><svg width="24" height="24" viewBox="0 0 24 24" fill="none" class="text-primary" stroke="currentColor" stroke-width="2" style="vertical-align:middle;margin-right:8px;"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg> Motivation & Goals</h2>
 
         <div class="form-group">
           <label>What motivates you to stay fit? (Select all that apply)</label>
@@ -623,16 +328,25 @@
       <!-- Buttons -->
       <div class="button-group">
         <button type="reset" class="btn btn-secondary">Clear Form</button>
-        <button type="submit" class="btn btn-primary" id="submitBtn">📊 Submit Assessment</button>
+        <button type="submit" class="btn btn-primary" id="submitBtn"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" class="text-primary" stroke="currentColor" stroke-width="2" style="vertical-align:middle;margin-right:8px;"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg> Submit Assessment</button>
       </div>
     </form>
+    </div>
   </div>
 
   <footer>
-    <p>© 2025 Fitness Blog | Assessment Section | Your wellness journey starts here! 🎯</p>
-    <footer class="site-footer">
-      <div class="container">© 2025 Fitness Blog | Created by Puneet Kewlani</div>
-    </footer>
+    <p>© 2025 Fitness Blog | Assessment Section | Your wellness journey starts here! <svg width="24" height="24" viewBox="0 0 24 24" fill="none" class="text-primary" stroke="currentColor" stroke-width="2" style="vertical-align:middle;margin-right:8px;"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg></p>
+      <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-brand">
+        <h4>FitLife</h4>
+        <p>Dedicated to Your Health & Wellness.</p>
+      </div>
+      <div class="footer-links">
+        <p>© 2025 FitLife | Created by Puneet Kewlani</p>
+      </div>
+    </div>
+  </footer>
     const API_URL = window.location.origin;
     const form = document.getElementById('assessmentForm');
 

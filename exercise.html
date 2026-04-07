@@ -9,403 +9,62 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/css/styles.css">
-  <style>
-    /* Exercise Page Specific Styles */
-    .exercise-grid {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 25px;
-    }
-
-    .exercise-card {
-      background: var(--card-bg);
-      width: 320px;
-      border-radius: var(--radius-xl);
-      box-shadow: var(--shadow-lg);
-      transition: transform var(--transition-base), box-shadow var(--transition-base);
-      overflow: hidden;
-      backdrop-filter: blur(5px);
-      border: 2px solid rgba(0, 128, 128, 0.2);
-      display: flex;
-      flex-direction: column;
-    }
-
-    .exercise-card:hover {
-      transform: translateY(-10px);
-      box-shadow: var(--shadow-glow);
-      border-color: rgba(0, 128, 128, 0.5);
-    }
-
-    .exercise-image {
-      position: relative;
-      height: 250px;
-      overflow: hidden;
-      background: linear-gradient(135deg, #008080, #006666);
-    }
-
-    .exercise-image img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transition: transform 0.4s ease;
-    }
-
-    .exercise-card:hover .exercise-image img {
-      transform: scale(1.08);
-    }
-
-    .exercise-badge {
-      position: absolute;
-      top: 15px;
-      right: 15px;
-      background: linear-gradient(135deg, #ff6b6b, #ee5a6f);
-      color: white;
-      padding: 8px 16px;
-      border-radius: 20px;
-      font-size: 0.75rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-      box-shadow: 0 4px 12px rgba(255,107,107,0.3);
-    }
-
-    .exercise-content {
-      padding: 25px;
-      flex-grow: 1;
-      display: flex;
-      flex-direction: column;
-    }
-
-    .exercise-card h3 {
-      color: #008080;
-      font-size: 1.4rem;
-      margin: 0 0 12px 0;
-      font-weight: 800;
-    }
-
-    .exercise-description {
-      color: #555;
-      font-size: 0.95rem;
-      margin-bottom: 16px;
-      font-weight: 500;
-      line-height: 1.6;
-    }
-
-    .exercise-details {
-      background: linear-gradient(135deg, rgba(0,128,128,0.08), rgba(0,166,166,0.06));
-      padding: 15px;
-      border-radius: 12px;
-      border-left: 4px solid #008080;
-      margin-bottom: 15px;
-    }
-
-    .exercise-detail-title {
-      color: #008080;
-      font-weight: 700;
-      font-size: 0.85rem;
-      text-transform: uppercase;
-      letter-spacing: 0.6px;
-      margin-bottom: 6px;
-    }
-
-    .exercise-detail-text {
-      color: #444;
-      font-size: 0.9rem;
-      margin: 4px 0;
-    }
-
-    .exercise-benefits {
-      margin: 15px 0;
-      flex-grow: 1;
-    }
-
-    .benefits-title {
-      color: #008080;
-      font-weight: 700;
-      font-size: 0.85rem;
-      text-transform: uppercase;
-      letter-spacing: 0.6px;
-      margin-bottom: 8px;
-    }
-
-    .benefits-list {
-      list-style: none;
-      padding: 0;
-      margin: 0;
-    }
-
-    .benefits-list li {
-      color: #555;
-      font-size: 0.9rem;
-      padding: 6px 0;
-      padding-left: 20px;
-      position: relative;
-    }
-
-    .benefits-list li::before {
-      content: '✓';
-      position: absolute;
-      left: 0;
-      color: #008080;
-      font-weight: bold;
-      font-size: 1.1rem;
-    }
-
-    .exercise-cta {
-      background: linear-gradient(135deg, #008080, #00a6a6);
-      color: white;
-      padding: 12px 16px;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
-      font-weight: 700;
-      text-transform: uppercase;
-      font-size: 0.85rem;
-      letter-spacing: 0.8px;
-      transition: all var(--transition-base);
-      width: 100%;
-      margin-top: 15px;
-      text-decoration: none;
-      display: inline-block;
-      box-shadow: 0 4px 12px rgba(0,128,128,0.2);
-    }
-
-    .exercise-cta:hover {
-      background: linear-gradient(135deg, #006666, #008080);
-      transform: translateY(-2px);
-      box-shadow: 0 6px 16px rgba(0,128,128,0.35);
-    }
-
-    /* Modal Styling */
-    .modal {
-      display: none;
-      position: fixed;
-      z-index: 1000;
-      left: 0;
-      top: 0;
-      width: 100%;
-      height: 100%;
-      background-color: rgba(0,0,0,0.7);
-      animation: fadeIn 0.4s ease;
-      overflow-y: auto;
-    }
-
-    .modal.show {
-      display: block !important;
-    }
-
-    .modal-content {
-      background: linear-gradient(135deg, rgba(255, 255, 255, 0.99), rgba(248, 252, 255, 0.99));
-      margin: 3% auto;
-      padding: 0;
-      border-radius: 20px;
-      width: 90%;
-      max-width: 700px;
-      box-shadow: 0 25px 80px rgba(0,0,0,0.4);
-      animation: slideDown 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
-      backdrop-filter: blur(15px);
-      border: 2px solid rgba(0, 128, 128, 0.3);
-      overflow: hidden;
-    }
-
-    @keyframes slideDown {
-      from { transform: translateY(-80px); opacity: 0; }
-      to { transform: translateY(0); opacity: 1; }
-    }
-
-    .modal-header {
-      background: linear-gradient(135deg, #008080, #00a6a6);
-      color: white;
-      padding: 25px 30px;
-      border-radius: 20px 20px 0 0;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .modal-header h2 {
-      margin: 0;
-      color: white;
-      text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
-      font-size: 1.9rem;
-      font-weight: 800;
-      letter-spacing: 0.5px;
-    }
-
-    .modal-body {
-      padding: 35px;
-      color: #333;
-      max-height: 70vh;
-      overflow-y: auto;
-    }
-
-    .modal-body::-webkit-scrollbar {
-      width: 8px;
-    }
-
-    .modal-body::-webkit-scrollbar-track {
-      background: rgba(0,128,128,0.1);
-      border-radius: 10px;
-    }
-
-    .modal-body::-webkit-scrollbar-thumb {
-      background: linear-gradient(135deg, #008080, #00a6a6);
-      border-radius: 10px;
-    }
-
-    .modal-body h3 {
-      color: #008080;
-      font-size: 1.4rem;
-      margin: 20px 0 12px 0;
-      font-weight: 800;
-      border-bottom: 3px solid rgba(0,128,128,0.2);
-      padding-bottom: 8px;
-    }
-
-    .modal-body h3:first-child {
-      margin-top: 0;
-    }
-
-    .modal-body p {
-      line-height: 1.8;
-      margin: 15px 0;
-      font-weight: 500;
-    }
-
-    .modal-body ul {
-      list-style: none;
-      padding-left: 0;
-      margin: 15px 0;
-    }
-
-    .modal-body ul li {
-      padding: 10px 0;
-      padding-left: 30px;
-      position: relative;
-      color: #444;
-      font-weight: 500;
-      line-height: 1.6;
-      transition: all var(--transition-base);
-    }
-
-    .modal-body ul li:hover {
-      padding-left: 35px;
-      color: #008080;
-    }
-
-    .modal-body ul li::before {
-      content: '→';
-      position: absolute;
-      left: 0;
-      color: #008080;
-      font-weight: bold;
-      font-size: 1.1rem;
-      transition: all var(--transition-base);
-    }
-
-    .modal-body ul li:hover::before {
-      left: 8px;
-    }
-
-    .close-btn {
-      color: white;
-      font-size: 2.2rem;
-      font-weight: bold;
-      cursor: pointer;
-      transition: all var(--transition-base);
-      line-height: 1;
-      width: 40px;
-      height: 40px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border-radius: 50%;
-      background: rgba(255,255,255,0.1);
-    }
-
-    .close-btn:hover {
-      color: #ffcc00;
-      transform: scale(1.15) rotate(90deg);
-      background: rgba(255,255,255,0.2);
-    }
-
-    @media (max-width: 768px) {
-      .exercise-card {
-        width: 100%;
-        max-width: 350px;
-      }
-
-      .modal-content {
-        width: 95%;
-        margin: 25% auto;
-        max-height: 85vh;
-      }
-
-      .modal-header {
-        padding: 20px;
-      }
-
-      .modal-header h2 {
-        font-size: 1.5rem;
-      }
-
-      .modal-body {
-        padding: 20px;
-      }
-
-      .modal-body h3 {
-        font-size: 1.2rem;
-      }
-    }
-  </style>
+  <link rel="stylesheet" href="assets/css/modern.css">
+  
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 </head>
 <body>
 
-  <header id="top" class="site-header">
-    <div class="container">
-      <h1>🏋️‍♂️ Exercise Gallery</h1>
+    <header id="top" class="site-header">
+    <div class="container header-inner">
+      <a href="index.html" class="logo">
+        <span class="logo-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8h1a4 4 0 0 1 0 8h-1"></path><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"></path><line x1="6" y1="1" x2="6" y2="4"></line><line x1="10" y1="1" x2="10" y2="4"></line><line x1="14" y1="1" x2="14" y2="4"></line></svg>
+        </span>
+        FitLife
+      </a>
       <nav class="site-nav">
         <a href="index.html">Home</a>
         <a href="diet.html">Diet Plans</a>
-        <a href="exercise.html">Exercise</a>
+        <a href="exercise.html" class="active">Exercise</a>
         <a href="contact.html">Contact</a>
       </nav>
+      <a href="index.html#assessment" class="btn btn-sm btn-primary">Get Started</a>
     </div>
   </header>
 
-  <section>
+  <section class="section-padding">
+    <div class="container text-center">
     <h2 class="section-title">Why Exercise Matters</h2>
 
     <div class="features-grid">
-      <div class="info-box" style="border-left-color: #008080;">
-        <h5 style="color: #008080;">❤️ Physical Health</h5>
+      <div class="info-box" style="border-left-">
+        <h5 style="">❤️ Physical Health</h5>
         <p>Regular exercise strengthens your heart, improves circulation, builds muscle, increases bone density, and enhances overall fitness levels for a healthier body.</p>
       </div>
 
-      <div class="info-box" style="border-left-color: #ff6b6b;">
-        <h5 style="color: #ff6b6b;">🧠 Mental Wellness</h5>
+      <div class="info-box" style="border-left-">
+        <h5 style="">🧠 Mental Wellness</h5>
         <p>Exercise releases endorphins (happy chemicals), reduces stress and anxiety, improves sleep quality, boosts confidence, and enhances cognitive function and memory.</p>
       </div>
 
-      <div class="info-box" style="border-left-color: #ffc107;">
-        <h5 style="color: #ffc107;">⚡ Energy & Stamina</h5>
+      <div class="info-box" style="border-left-">
+        <h5 style="">⚡ Energy & Stamina</h5>
         <p>Regular physical activity increases your energy levels, improves metabolism, enhances endurance, and builds stamina for better performance in daily tasks.</p>
       </div>
 
-      <div class="info-box" style="border-left-color: #4caf50;">
-        <h5 style="color: #4caf50;">⚖️ Weight Management</h5>
+      <div class="info-box" style="border-left-">
+        <h5 style="">⚖️ Weight Management</h5>
         <p>Exercise burns calories, builds lean muscle (which increases metabolism), helps regulate appetite hormones, and supports sustainable weight loss and management.</p>
       </div>
 
-      <div class="info-box" style="border-left-color: #9c27b0;">
-        <h5 style="color: #9c27b0;">🛡️ Disease Prevention</h5>
+      <div class="info-box" style="border-left-">
+        <h5 style="">🛡️ Disease Prevention</h5>
         <p>Regular workouts reduce risk of heart disease, diabetes, obesity, certain cancers, and improve immune function to help fight infections naturally.</p>
       </div>
 
-      <div class="info-box" style="border-left-color: #00bcd4;">
-        <h5 style="color: #00bcd4;">👥 Social Connection</h5>
+      <div class="info-box" style="border-left-">
+        <h5 style="">👥 Social Connection</h5>
         <p>Join fitness classes, clubs, or workout with friends to build community, improve motivation, stay accountable, and enjoy the social benefits of exercise.</p>
       </div>
     </div>
@@ -427,12 +86,12 @@
             <div class="exercise-detail-title">⏱️ Duration</div>
             <div class="exercise-detail-text">3 sets × 10-15 reps</div>
 
-            <div class="exercise-detail-title">📊 Difficulty</div>
+            <div class="exercise-detail-title"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" class="text-primary" stroke="currentColor" stroke-width="2" style="vertical-align:middle;margin-right:8px;"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg> Difficulty</div>
             <div class="exercise-detail-text">Beginner to Advanced</div>
           </div>
 
           <div class="exercise-benefits">
-            <div class="benefits-title">💪 Key Benefits</div>
+            <div class="benefits-title"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align:middle;margin-right:8px;"><path d="M14.5 10c0-2.8-2.2-5-5-5a5 5 0 000 10h5z"/></svg> Key Benefits</div>
             <ul class="benefits-list">
               <li>Strengthens chest, arms & shoulders</li>
               <li>Builds core stability</li>
@@ -458,12 +117,12 @@
             <div class="exercise-detail-title">⏱️ Duration</div>
             <div class="exercise-detail-text">3 sets × 12-20 reps</div>
 
-            <div class="exercise-detail-title">📊 Difficulty</div>
+            <div class="exercise-detail-title"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" class="text-primary" stroke="currentColor" stroke-width="2" style="vertical-align:middle;margin-right:8px;"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg> Difficulty</div>
             <div class="exercise-detail-text">Beginner to Intermediate</div>
           </div>
 
           <div class="exercise-benefits">
-            <div class="benefits-title">💪 Key Benefits</div>
+            <div class="benefits-title"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align:middle;margin-right:8px;"><path d="M14.5 10c0-2.8-2.2-5-5-5a5 5 0 000 10h5z"/></svg> Key Benefits</div>
             <ul class="benefits-list">
               <li>Builds leg strength & muscle</li>
               <li>Improves balance & stability</li>
@@ -489,12 +148,12 @@
             <div class="exercise-detail-title">⏱️ Duration</div>
             <div class="exercise-detail-text">3 sets × 30-60 seconds</div>
 
-            <div class="exercise-detail-title">📊 Difficulty</div>
+            <div class="exercise-detail-title"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" class="text-primary" stroke="currentColor" stroke-width="2" style="vertical-align:middle;margin-right:8px;"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg> Difficulty</div>
             <div class="exercise-detail-text">Beginner to Advanced</div>
           </div>
 
           <div class="exercise-benefits">
-            <div class="benefits-title">💪 Key Benefits</div>
+            <div class="benefits-title"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align:middle;margin-right:8px;"><path d="M14.5 10c0-2.8-2.2-5-5-5a5 5 0 000 10h5z"/></svg> Key Benefits</div>
             <ul class="benefits-list">
               <li>Strengthens core muscles</li>
               <li>Improves posture significantly</li>
@@ -520,12 +179,12 @@
             <div class="exercise-detail-title">⏱️ Duration</div>
             <div class="exercise-detail-text">4-6 times weekly, 30-60 min</div>
 
-            <div class="exercise-detail-title">📊 Difficulty</div>
+            <div class="exercise-detail-title"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" class="text-primary" stroke="currentColor" stroke-width="2" style="vertical-align:middle;margin-right:8px;"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg> Difficulty</div>
             <div class="exercise-detail-text">All Levels</div>
           </div>
 
           <div class="exercise-benefits">
-            <div class="benefits-title">💪 Key Benefits</div>
+            <div class="benefits-title"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align:middle;margin-right:8px;"><path d="M14.5 10c0-2.8-2.2-5-5-5a5 5 0 000 10h5z"/></svg> Key Benefits</div>
             <ul class="benefits-list">
               <li>Increases flexibility & range</li>
               <li>Reduces stress & anxiety</li>
@@ -545,9 +204,9 @@
 
     <div class="features-grid">
       <div class="info-box" style="border: 2px solid #ff6b6b;">
-        <h5 style="color: #ff6b6b;">💨 Cardiovascular Exercise</h5>
-        <p style="color: #555;">Any activity that gets your heart pumping and raises your heart rate.</p>
-        <ul style="color: #555; margin-top: 15px; padding-left: 20px;">
+        <h5 style="">💨 Cardiovascular Exercise</h5>
+        <p style="">Any activity that gets your heart pumping and raises your heart rate.</p>
+        <ul style=" margin-top: 15px; padding-left: 20px;">
           <li><strong>Examples:</strong> Running, jogging, cycling, swimming, dancing, HIIT</li>
           <li><strong>Duration:</strong> 150 minutes moderate or 75 minutes vigorous per week</li>
           <li><strong>Benefits:</strong> Stronger heart, better circulation, increased lung capacity</li>
@@ -556,9 +215,9 @@
       </div>
 
       <div class="info-box" style="border: 2px solid #4caf50;">
-        <h5 style="color: #4caf50;">💪 Strength Training</h5>
-        <p style="color: #555;">Resistance exercises that build and tone muscle tissue.</p>
-        <ul style="color: #555; margin-top: 15px; padding-left: 20px;">
+        <h5 style=""><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align:middle;margin-right:8px;"><path d="M14.5 10c0-2.8-2.2-5-5-5a5 5 0 000 10h5z"/></svg> Strength Training</h5>
+        <p style="">Resistance exercises that build and tone muscle tissue.</p>
+        <ul style=" margin-top: 15px; padding-left: 20px;">
           <li><strong>Examples:</strong> Weight lifting, bodyweight exercises, resistance bands, calisthenics</li>
           <li><strong>Duration:</strong> 2-3 sessions per week, 30-45 minutes each</li>
           <li><strong>Benefits:</strong> Increased muscle mass, stronger bones, improved metabolism</li>
@@ -567,9 +226,9 @@
       </div>
 
       <div class="info-box" style="border: 2px solid #00bcd4;">
-        <h5 style="color: #00bcd4;">🧘 Flexibility & Balance</h5>
-        <p style="color: #555;">Exercises that improve range of motion and body balance.</p>
-        <ul style="color: #555; margin-top: 15px; padding-left: 20px;">
+        <h5 style="">🧘 Flexibility & Balance</h5>
+        <p style="">Exercises that improve range of motion and body balance.</p>
+        <ul style=" margin-top: 15px; padding-left: 20px;">
           <li><strong>Examples:</strong> Yoga, pilates, tai chi, stretching, foam rolling</li>
           <li><strong>Duration:</strong> 10-30 minutes daily or 3-4 times per week</li>
           <li><strong>Benefits:</strong> Better posture, reduced injury risk, improved mobility</li>
@@ -578,9 +237,9 @@
       </div>
 
       <div class="info-box" style="border: 2px solid #9c27b0;">
-        <h5 style="color: #9c27b0;">🔥 HIIT Training</h5>
-        <p style="color: #555;">High-intensity intervals alternating intense effort with recovery periods.</p>
-        <ul style="color: #555; margin-top: 15px; padding-left: 20px;">
+        <h5 style=""><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align:middle;margin-right:8px;"><path d="M12 2c-4 5-2 11-2 11 2-3 4-2 4-2 1 2 2 4 4 2 2 7-6 9-6 9s7-1 9-6c2-6-4-10-4-10-1.5-1-5-4-5-4z"/></svg> HIIT Training</h5>
+        <p style="">High-intensity intervals alternating intense effort with recovery periods.</p>
+        <ul style=" margin-top: 15px; padding-left: 20px;">
           <li><strong>Examples:</strong> Sprints, jump exercises, burpees, mountain climbers</li>
           <li><strong>Duration:</strong> 15-30 minutes, 2-3 times per week</li>
           <li><strong>Benefits:</strong> Maximum calorie burn, improved cardiovascular fitness, time-efficient</li>
@@ -646,67 +305,67 @@
     </div>
 
     <!-- Exercise Tips Section -->
-    <h2 class="section-title">💡 Essential Exercise Tips for Success</h2>
+    <h2 class="section-title"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align:middle;margin-right:8px;"><path d="M9 21h6m-3-3v3m0-16a5 5 0 00-5 5c0 1.57.8 2.94 2 3.75V17a2 2 0 002 2h2a2 2 0 002-2v-2.25c1.2-.81 2-2.18 2-3.75a5 5 0 00-5-5z"/></svg> Essential Exercise Tips for Success</h2>
 
     <div class="tips-grid">
-      <div class="tip-card" style="border-left-color: #4caf50; background: linear-gradient(135deg, rgba(76, 175, 80, 0.08), rgba(139, 195, 74, 0.06));">
-        <div class="tip-number" style="background: linear-gradient(135deg, #4caf50, #66bb6a);">1</div>
+      <div class="tip-card" style="border-left- (135deg, rgba(76, 175, 80, 0.08), rgba(139, 195, 74, 0.06));">
+        <div class="tip-number" style="(135deg, #4caf50, #66bb6a);">1</div>
         <div class="tip-text">
           <strong>Warm Up Before Exercise</strong><br>
           Spend 5-10 minutes warming up with light cardio and dynamic stretches. This increases blood flow, prepares muscles, and reduces injury risk significantly.
         </div>
       </div>
 
-      <div class="tip-card" style="border-left-color: #ff5722; background: linear-gradient(135deg, rgba(255, 87, 34, 0.08), rgba(255, 140, 60, 0.06));">
-        <div class="tip-number" style="background: linear-gradient(135deg, #ff5722, #ff7043);">2</div>
+      <div class="tip-card" style="border-left- (135deg, rgba(255, 87, 34, 0.08), rgba(255, 140, 60, 0.06));">
+        <div class="tip-number" style="(135deg, #ff5722, #ff7043);">2</div>
         <div class="tip-text">
           <strong>Perfect Your Form</strong><br>
           Correct form is crucial to prevent injuries and maximize effectiveness. Start with lighter weights or easier variations until you master proper technique.
         </div>
       </div>
 
-      <div class="tip-card" style="border-left-color: #3949ab; background: linear-gradient(135deg, rgba(63, 81, 181, 0.08), rgba(66, 165, 245, 0.06));">
-        <div class="tip-number" style="background: linear-gradient(135deg, #3949ab, #5c6bc0);">3</div>
+      <div class="tip-card" style="border-left- (135deg, rgba(63, 81, 181, 0.08), rgba(66, 165, 245, 0.06));">
+        <div class="tip-number" style="(135deg, #3949ab, #5c6bc0);">3</div>
         <div class="tip-text">
           <strong>Progressive Overload</strong><br>
           Gradually increase intensity, weight, or reps over time. This challenges your muscles and drives continuous improvement and better results.
         </div>
       </div>
 
-      <div class="tip-card" style="border-left-color: #e91e63; background: linear-gradient(135deg, rgba(233, 30, 99, 0.08), rgba(244, 67, 54, 0.06));">
-        <div class="tip-number" style="background: linear-gradient(135deg, #e91e63, #f06292);">4</div>
+      <div class="tip-card" style="border-left- (135deg, rgba(233, 30, 99, 0.08), rgba(244, 67, 54, 0.06));">
+        <div class="tip-number" style="(135deg, #e91e63, #f06292);">4</div>
         <div class="tip-text">
           <strong>Stay Hydrated</strong><br>
           Drink plenty of water before, during, and after exercise. Hydration is essential for performance, recovery, and overall health maintenance.
         </div>
       </div>
 
-      <div class="tip-card" style="border-left-color: #ffc107; background: linear-gradient(135deg, rgba(255, 193, 7, 0.08), rgba(255, 235, 59, 0.06));">
-        <div class="tip-number" style="background: linear-gradient(135deg, #ffc107, #ffd54f);">5</div>
+      <div class="tip-card" style="border-left- (135deg, rgba(255, 193, 7, 0.08), rgba(255, 235, 59, 0.06));">
+        <div class="tip-number" style="(135deg, #ffc107, #ffd54f);">5</div>
         <div class="tip-text">
           <strong>Cool Down & Stretch</strong><br>
           Spend 5-10 minutes cooling down with light activity and stretching. This aids recovery, reduces muscle soreness, and improves flexibility.
         </div>
       </div>
 
-      <div class="tip-card" style="border-left-color: #009688; background: linear-gradient(135deg, rgba(0, 150, 136, 0.08), rgba(0, 188, 212, 0.06));">
-        <div class="tip-number" style="background: linear-gradient(135deg, #009688, #4db6ac);">6</div>
+      <div class="tip-card" style="border-left- (135deg, rgba(0, 150, 136, 0.08), rgba(0, 188, 212, 0.06));">
+        <div class="tip-number" style="(135deg, #009688, #4db6ac);">6</div>
         <div class="tip-text">
           <strong>Rest & Recovery</strong><br>
           Get 7-9 hours of quality sleep and take rest days. Recovery is when your body actually builds muscle and adapts to training stress.
         </div>
       </div>
 
-      <div class="tip-card" style="border-left-color: #9c27b0; background: linear-gradient(135deg, rgba(156, 39, 176, 0.08), rgba(186, 104, 200, 0.06));">
-        <div class="tip-number" style="background: linear-gradient(135deg, #9c27b0, #ba68c8);">7</div>
+      <div class="tip-card" style="border-left- (135deg, rgba(156, 39, 176, 0.08), rgba(186, 104, 200, 0.06));">
+        <div class="tip-number" style="(135deg, #9c27b0, #ba68c8);">7</div>
         <div class="tip-text">
           <strong>Consistency Over Intensity</strong><br>
           Regular moderate workouts beat sporadic intense sessions. Train 3-5 times per week consistently for sustainable progress and habit formation.
         </div>
       </div>
 
-      <div class="tip-card" style="border-left-color: #43a047; background: linear-gradient(135deg, rgba(76, 175, 80, 0.08), rgba(129, 199, 132, 0.06));">
-        <div class="tip-number" style="background: linear-gradient(135deg, #43a047, #66bb6a);">8</div>
+      <div class="tip-card" style="border-left- (135deg, rgba(76, 175, 80, 0.08), rgba(129, 199, 132, 0.06));">
+        <div class="tip-number" style="(135deg, #43a047, #66bb6a);">8</div>
         <div class="tip-text">
           <strong>Listen to Your Body</strong><br>
           Pay attention to pain signals. Mild discomfort is normal, but sharp pain indicates injury. Rest and seek professional advice if needed.
@@ -719,48 +378,48 @@
 
     <div class="card card-padding">
       <div class="tips-grid">
-        <div class="tip-card" style="border-left-color: #ff6b6b; background: linear-gradient(135deg, rgba(255, 107, 107, 0.08), rgba(255, 140, 60, 0.06));">
-          <div class="tip-number" style="background: linear-gradient(135deg, #ff6b6b, #ff8a65);">❌</div>
+        <div class="tip-card" style="border-left- (135deg, rgba(255, 107, 107, 0.08), rgba(255, 140, 60, 0.06));">
+          <div class="tip-number" style="(135deg, #ff6b6b, #ff8a65);">❌</div>
           <div class="tip-text">
             <strong>Skipping Warm-Up</strong><br>
             Jumping straight into intense exercise increases injury risk. Always warm up for 5-10 minutes first.
           </div>
         </div>
 
-        <div class="tip-card" style="border-left-color: #ff6b6b; background: linear-gradient(135deg, rgba(255, 107, 107, 0.08), rgba(255, 140, 60, 0.06));">
-          <div class="tip-number" style="background: linear-gradient(135deg, #ff6b6b, #ff8a65);">❌</div>
+        <div class="tip-card" style="border-left- (135deg, rgba(255, 107, 107, 0.08), rgba(255, 140, 60, 0.06));">
+          <div class="tip-number" style="(135deg, #ff6b6b, #ff8a65);">❌</div>
           <div class="tip-text">
             <strong>Poor Form</strong><br>
             Bad technique reduces effectiveness and causes injuries. Use lighter weight and master form before progressing.
           </div>
         </div>
 
-        <div class="tip-card" style="border-left-color: #ff6b6b; background: linear-gradient(135deg, rgba(255, 107, 107, 0.08), rgba(255, 140, 60, 0.06));">
-          <div class="tip-number" style="background: linear-gradient(135deg, #ff6b6b, #ff8a65);">❌</div>
+        <div class="tip-card" style="border-left- (135deg, rgba(255, 107, 107, 0.08), rgba(255, 140, 60, 0.06));">
+          <div class="tip-number" style="(135deg, #ff6b6b, #ff8a65);">❌</div>
           <div class="tip-text">
             <strong>Doing Too Much Too Soon</strong><br>
             Overtraining leads to burnout and injury. Increase intensity gradually over weeks and months.
           </div>
         </div>
 
-        <div class="tip-card" style="border-left-color: #ff6b6b; background: linear-gradient(135deg, rgba(255, 107, 107, 0.08), rgba(255, 140, 60, 0.06));">
-          <div class="tip-number" style="background: linear-gradient(135deg, #ff6b6b, #ff8a65);">❌</div>
+        <div class="tip-card" style="border-left- (135deg, rgba(255, 107, 107, 0.08), rgba(255, 140, 60, 0.06));">
+          <div class="tip-number" style="(135deg, #ff6b6b, #ff8a65);">❌</div>
           <div class="tip-text">
             <strong>Neglecting Recovery</strong><br>
             Rest days are essential for adaptation. Train 3-5 times weekly and prioritize sleep for best results.
           </div>
         </div>
 
-        <div class="tip-card" style="border-left-color: #ff6b6b; background: linear-gradient(135deg, rgba(255, 107, 107, 0.08), rgba(255, 140, 60, 0.06));">
-          <div class="tip-number" style="background: linear-gradient(135deg, #ff6b6b, #ff8a65);">❌</div>
+        <div class="tip-card" style="border-left- (135deg, rgba(255, 107, 107, 0.08), rgba(255, 140, 60, 0.06));">
+          <div class="tip-number" style="(135deg, #ff6b6b, #ff8a65);">❌</div>
           <div class="tip-text">
             <strong>Ignoring Pain</strong><br>
             Sharp pain signals injury. Stop immediately and rest. Distinguish between discomfort and pain.
           </div>
         </div>
 
-        <div class="tip-card" style="border-left-color: #ff6b6b; background: linear-gradient(135deg, rgba(255, 107, 107, 0.08), rgba(255, 140, 60, 0.06));">
-          <div class="tip-number" style="background: linear-gradient(135deg, #ff6b6b, #ff8a65);">❌</div>
+        <div class="tip-card" style="border-left- (135deg, rgba(255, 107, 107, 0.08), rgba(255, 140, 60, 0.06));">
+          <div class="tip-number" style="(135deg, #ff6b6b, #ff8a65);">❌</div>
           <div class="tip-text">
             <strong>Inconsistent Training</strong><br>
             Sporadic workouts prevent progress. Consistency is key to seeing results and building habits.
@@ -769,6 +428,7 @@
       </div>
     </div>
 
+      </div>
   </section>
 
   <!-- Modals -->
@@ -952,8 +612,16 @@
     });
   </script>
 
-  <footer class="site-footer">
-    <div class="container">© 2025 Fitness Blog | Created by Puneet Kewlani</div>
+    <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-brand">
+        <h4>FitLife</h4>
+        <p>Dedicated to Your Health & Wellness.</p>
+      </div>
+      <div class="footer-links">
+        <p>© 2025 FitLife | Created by Puneet Kewlani</p>
+      </div>
+    </div>
   </footer>
 
   <a href="#top" class="scroll-top">↑</a>

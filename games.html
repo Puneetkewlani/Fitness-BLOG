@@ -9,304 +9,30 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/css/styles.css">
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    body {
-      font-family: 'Segoe UI', Arial, sans-serif;
-      background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), 
-                  linear-gradient(135deg, #1a1a2e, #16213e);
-      background-size: cover;
-      background-attachment: fixed;
-      min-height: 100vh;
-      color: #333;
-    }
-
-    header {
-      background: linear-gradient(135deg, #008080, #006666);
-      color: white;
-      padding: 25px;
-      text-align: center;
-      box-shadow: 0 2px 15px rgba(0,0,0,0.1);
-    }
-
-    header h1 {
-      font-size: 2.5rem;
-      margin-bottom: 10px;
-      text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-    }
-
-    nav {
-      margin: 20px 0;
-      display: flex;
-      justify-content: center;
-      gap: 20px;
-      flex-wrap: wrap;
-    }
-
-    nav a {
-      color: white;
-      text-decoration: none;
-      font-weight: bold;
-      padding: 10px 20px;
-      border-radius: 20px;
-      transition: all 0.3s ease;
-      background: rgba(255,255,255,0.1);
-    }
-
-    nav a:hover {
-      background: rgba(255,255,255,0.25);
-      color: #ffcc00;
-      transform: translateY(-2px);
-    }
-
-    .container {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 40px 20px;
-    }
-
-    .game-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 30px;
-      margin-bottom: 60px;
-    }
-
-    .game-card {
-      background: white;
-      border-radius: 20px;
-      padding: 30px;
-      box-shadow: 0 10px 40px rgba(0,0,0,0.2);
-      transition: all 0.3s ease;
-      border-left: 5px solid #008080;
-      cursor: pointer;
-    }
-
-    .game-card:hover {
-      transform: translateY(-10px);
-      box-shadow: 0 20px 60px rgba(0,128,128,0.3);
-    }
-
-    .game-card h3 {
-      color: #008080;
-      font-size: 1.8rem;
-      margin-bottom: 15px;
-    }
-
-    .game-card p {
-      color: #666;
-      font-size: 1rem;
-      line-height: 1.6;
-      margin-bottom: 20px;
-    }
-
-    .game-btn {
-      display: inline-block;
-      background: linear-gradient(135deg, #008080, #006666);
-      color: white;
-      padding: 12px 30px;
-      border-radius: 10px;
-      text-decoration: none;
-      font-weight: bold;
-      transition: all 0.3s ease;
-      border: none;
-      cursor: pointer;
-      font-size: 1rem;
-    }
-
-    .game-btn:hover {
-      background: linear-gradient(135deg, #00a6a6, #008080);
-      transform: translateY(-2px);
-      box-shadow: 0 10px 25px rgba(0,128,128,0.35);
-    }
-
-    .game-container {
-      background: white;
-      border-radius: 20px;
-      padding: 40px;
-      box-shadow: 0 10px 40px rgba(0,0,0,0.2);
-      margin-bottom: 60px;
-      display: none;
-    }
-
-    .game-container.active {
-      display: block;
-    }
-
-    .game-container h2 {
-      color: #008080;
-      font-size: 2.2rem;
-      margin-bottom: 20px;
-      text-align: center;
-    }
-
-    .close-btn {
-      float: right;
-      background: #f44336;
-      color: white;
-      border: none;
-      padding: 10px 20px;
-      border-radius: 10px;
-      cursor: pointer;
-      font-weight: bold;
-    }
-
-    .close-btn:hover {
-      background: #d32f2f;
-    }
-
-    /* Reaction Time Game */
-    #reactionGame {
-      text-align: center;
-      padding: 40px;
-    }
-
-    .reaction-box {
-      width: 200px;
-      height: 200px;
-      background: #4caf50;
-      margin: 40px auto;
-      border-radius: 20px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: white;
-      font-size: 2rem;
-      font-weight: bold;
-      cursor: pointer;
-      transition: all 0.3s ease;
-    }
-
-    .reaction-box:hover {
-      transform: scale(1.05);
-    }
-
-    .reaction-box.ready {
-      background: #2196f3;
-    }
-
-    .reaction-box.go {
-      background: #4caf50;
-      cursor: pointer;
-    }
-
-    /* Memory Game */
-    .memory-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 100px);
-      gap: 15px;
-      justify-content: center;
-      margin: 40px 0;
-    }
-
-    .memory-card {
-      width: 100px;
-      height: 100px;
-      background: linear-gradient(135deg, #008080, #006666);
-      border-radius: 10px;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 2rem;
-      color: white;
-      transition: all 0.3s ease;
-      border: 3px solid transparent;
-    }
-
-    .memory-card:hover {
-      transform: scale(1.05);
-      border-color: #ffcc00;
-    }
-
-    .memory-card.flipped {
-      background: white;
-      color: #008080;
-    }
-
-    /* Typing Speed Game */
-    .typing-section {
-      text-align: center;
-      margin: 40px 0;
-    }
-
-    .typing-text {
-      font-size: 1.3rem;
-      color: #008080;
-      background: #f5f5f5;
-      padding: 20px;
-      border-radius: 10px;
-      margin: 20px 0;
-      font-family: monospace;
-      min-height: 60px;
-    }
-
-    .typing-input {
-      width: 100%;
-      max-width: 600px;
-      padding: 15px;
-      font-size: 1.1rem;
-      border: 2px solid #008080;
-      border-radius: 10px;
-      margin: 20px 0;
-    }
-
-    .stats {
-      display: flex;
-      justify-content: space-around;
-      margin: 30px 0;
-      flex-wrap: wrap;
-      gap: 20px;
-    }
-
-    .stat {
-      background: #f5f5f5;
-      padding: 20px;
-      border-radius: 10px;
-      min-width: 150px;
-      text-align: center;
-    }
-
-    .stat h3 {
-      color: #008080;
-      margin-bottom: 10px;
-    }
-
-    .stat p {
-      font-size: 1.5rem;
-      font-weight: bold;
-      color: #333;
-    }
-
-    footer {
-      background: linear-gradient(135deg, #008080, #006666);
-      color: white;
-      text-align: center;
-      padding: 20px;
-      margin-top: 60px;
-    }
-  </style>
+  <link rel="stylesheet" href="assets/css/modern.css">
+  
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 </head>
 <body>
 
   <header>
-    <header id="top" class="site-header">
-      <div class="container">
-        <h1>🎮 Fitness Games</h1>
-        <nav class="site-nav">
-          <a href="index.html">Home</a>
-          <a href="diet.html">Diet Plans</a>
-          <a href="exercise.html">Exercise</a>
-          <a href="contact.html">Contact</a>
-        </nav>
-      </div>
-    </header>
+      <header id="top" class="site-header">
+    <div class="container header-inner">
+      <a href="index.html" class="logo">
+        <span class="logo-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8h1a4 4 0 0 1 0 8h-1"></path><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"></path><line x1="6" y1="1" x2="6" y2="4"></line><line x1="10" y1="1" x2="10" y2="4"></line><line x1="14" y1="1" x2="14" y2="4"></line></svg>
+        </span>
+        FitLife
+      </a>
+      <nav class="site-nav">
+        <a href="index.html">Home</a>
+        <a href="diet.html">Diet Plans</a>
+        <a href="exercise.html">Exercise</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+      <a href="index.html#assessment" class="btn btn-sm btn-primary">Get Started</a>
+    </div>
+  </header>
   </header>
 
   <div class="container">
@@ -335,9 +61,9 @@
       <button class="close-btn" onclick="closeGame()">✕ Close</button>
       <h2>⚡ Reaction Time Challenge</h2>
       <div id="reactionGame">
-        <p style="font-size: 1.2rem; color: #666; margin-bottom: 20px;">Click the box as fast as you can!</p>
+        <p style="font-size: 1.2rem;  margin-bottom: 20px;">Click the box as fast as you can!</p>
         <div class="reaction-box" id="reactionBox">Ready?</div>
-        <p id="reactionResult" style="font-size: 1.5rem; color: #008080; font-weight: bold; margin-top: 30px;"></p>
+        <p id="reactionResult" style="font-size: 1.5rem;  font-weight: bold; margin-top: 30px;"></p>
       </div>
     </div>
 
@@ -345,7 +71,7 @@
     <div class="game-container" id="memoryContainer">
       <button class="close-btn" onclick="closeGame()">✕ Close</button>
       <h2>🧠 Memory Match Game</h2>
-      <p style="text-align: center; color: #666; margin: 20px 0;">Match the pairs! Score: <span id="memoryScore">0</span></p>
+      <p style="text-align: center;  margin: 20px 0;">Match the pairs! Score: <span id="memoryScore">0</span></p>
       <div class="memory-grid" id="memoryGrid"></div>
       <div style="text-align: center; margin-top: 30px;">
         <button class="game-btn" onclick="resetMemoryGame()">New Game</button>
@@ -382,9 +108,17 @@
   </div>
 
   <footer>
-      <footer class="site-footer">
-        <div class="container">© 2025 Fitness Blog | Created by Puneet Kewlani</div>
-      </footer>
+        <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-brand">
+        <h4>FitLife</h4>
+        <p>Dedicated to Your Health & Wellness.</p>
+      </div>
+      <div class="footer-links">
+        <p>© 2025 FitLife | Created by Puneet Kewlani</p>
+      </div>
+    </div>
+  </footer>
 
   <script>
     // Game state
@@ -449,7 +183,7 @@
 
     // Memory Game
     function initMemoryGame() {
-      const symbols = ['🎮', '🏋️', '🥗', '🧘', '⚡', '💪', '🏃', '🎯'];
+      const symbols = ['🎮', '🏋️', '🥗', '🧘', '⚡', '<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align:middle;margin-right:8px;"><path d="M14.5 10c0-2.8-2.2-5-5-5a5 5 0 000 10h5z"/></svg>', '🏃', '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" class="text-primary" stroke="currentColor" stroke-width="2" style="vertical-align:middle;margin-right:8px;"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>'];
       const gameSymbols = [...symbols, ...symbols];
       memoryCards = gameSymbols.sort(() => Math.random() - 0.5);
       memoryFlipped = new Array(16).fill(false);
