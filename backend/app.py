@@ -425,6 +425,225 @@ def get_bmi_data():
             'message': str(e)
         }), 500
 
+# Helper function to load dotenv manually
+def load_dotenv():
+    dotenv_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), '.env')
+    if os.path.exists(dotenv_path):
+        try:
+            with open(dotenv_path, 'r', encoding='utf-8') as f:
+                for line in f:
+                    line = line.strip()
+                    if line and not line.startswith('#'):
+                        key, value = line.split('=', 1)
+                        os.environ[key.strip()] = value.strip()
+        except Exception as e:
+            print(f"Error loading local .env: {e}")
+
+# Gemini API Integration
+def call_gemini_api(prompt, api_key):
+    import urllib.request
+    import json
+    
+    url = f"https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key={api_key}"
+    headers = {"Content-Type": "application/json"}
+    
+    system_instruction = (
+        "You are FitLife AI, a friendly, encouraging, and professional fitness, nutrition, and wellness AI coach "
+        "created by Puneet Kewlani. Your goal is to provide evidence-based, supportive, and practical advice on "
+        "diets, workouts, weight loss/gain, and lifestyle habits. Keep your answers relatively concise, encouraging, "
+        "and highly structured with bullet points or emojis when helpful. Always warn users to consult with "
+        "medical professionals before starting extreme programs, especially if they have pre-existing injuries. "
+        "Always reply in clean, well-formatted HTML (using tags like <p>, <ul>, <li>, <strong>, etc.) so it displays "
+        "beautifully in the chat window, but do NOT wrap it in a markdown ```html code block."
+    )
+    
+    payload = {
+        "contents": [
+            {
+                "parts": [
+                    {"text": prompt}
+                ]
+            }
+        ],
+        "systemInstruction": {
+            "parts": [
+                {"text": system_instruction}
+            ]
+        },
+        "generationConfig": {
+            "temperature": 0.7,
+            "maxOutputTokens": 800
+        }
+    }
+    
+    req = urllib.request.Request(
+        url, 
+        data=json.dumps(payload).encode('utf-8'), 
+        headers=headers, 
+        method='POST'
+    )
+    
+    try:
+        with urllib.request.urlopen(req, timeout=12) as response:
+            res_data = json.loads(response.read().decode('utf-8'))
+            text = res_data['candidates'][0]['content']['parts'][0]['text']
+            return text
+    except Exception as e:
+        print(f"Gemini API Error details: {e}")
+        return None
+
+# Local expert chatbot fallback for seamless robust performance
+def get_local_expert_response(msg):
+    msg = msg.lower()
+    
+    if any(k in msg for k in ['hello', 'hi', 'hey', 'greetings', 'yo']):
+        return (
+            "<p>👋 <strong>Hello! I'm your FitLife AI Coach.</strong></p>"
+            "<p>I'm here to help you guide through your health, exercise, and diet journey! "
+            "Whether you need a custom workout, healthy meal ideas, or sleep tips, just ask.</p>"
+            "<p>Here are some things you can try asking me:</p>"
+            "<ul>"
+            "<li><em>\"How do I lose weight safely?\"</em></li>"
+            "<li><em>\"Give me a simple balanced meal plan.\"</em></li>"
+            "<li><em>\"What are the best exercises for strength?\"</em></li>"
+            "<li><em>\"How can I calculate my BMI?\"</em></li>"
+            "</ul>"
+        )
+        
+    elif any(k in msg for k in ['diet', 'food', 'eat', 'meal', 'nutrition', 'recipe', 'breakfast', 'lunch', 'dinner']):
+        return (
+            "<p>🥗 <strong>Nutrition & Diet Tips</strong></p>"
+            "<p>A balanced diet is the cornerstone of sustainable health. Focus on whole foods and high-quality macronutrients:</p>"
+            "<ul>"
+            "<li><strong>Proteins:</strong> Vital for muscle repair. Include eggs, chicken, paneer, tofu, and legumes.</li>"
+            "<li><strong>Carbohydrates:</strong> Your main energy source. Choose complex carbs like oats, brown rice, and sweet potatoes.</li>"
+            "<li><strong>Fats:</strong> Essential for hormones. Opt for nuts, olive oil, and avocados.</li>"
+            "</ul>"
+            "<p>Check out our detailed <a href=\"diet.html\" style=\"color: #6366f1; text-decoration: underline;\">Diet Plans</a> page for sample macronutrient distributions, or fill out the <strong>Fitness Assessment</strong> on our home page to receive a fully customized plan in your inbox!</p>"
+        )
+        
+    elif any(k in msg for k in ['workout', 'exercise', 'routine', 'gym', 'training', 'cardio', 'strength', 'stretch']):
+        return (
+            "<p>💪 <strong>Exercise & Training Guide</strong></p>"
+            "<p>To see continuous progress, your routine should incorporate a mix of strength and cardiovascular training:</p>"
+            "<ul>"
+            "<li><strong>Strength Training:</strong> Builds calorie-burning muscle tissue and increases density. Try compound lifts like squats, deadlifts, and push-ups.</li>"
+            "<li><strong>Cardiovascular Exercise:</strong> Improves heart health and boosts fat loss. Aim for 150 minutes of moderate activity (like brisk walking) per week.</li>"
+            "<li><strong>Flexibility & Recovery:</strong> Never skip stretching. It prevents injuries and increases your range of motion.</li>"
+            "</ul>"
+            "<p>Explore full instructional guides on our <a href=\"exercise.html\" style=\"color: #6366f1; text-decoration: underline;\">Exercise Catalog</a>!</p>"
+        )
+        
+    elif any(k in msg for k in ['bmi', 'body mass index', 'calculate weight']):
+        return (
+            "<p>📏 <strong>Body Mass Index (BMI)</strong></p>"
+            "<p>BMI is a useful standard measure to categorize individuals into weight classifications (Underweight, Normal, Overweight, Obese):</p>"
+            "<ul>"
+            "<li><strong>Underweight:</strong> Below 18.5</li>"
+            "<li><strong>Normal weight:</strong> 18.5 to 24.9</li>"
+            "<li><strong>Overweight:</strong> 25.0 to 29.9</li>"
+            "<li><strong>Obese:</strong> 30.0 and above</li>"
+            "</ul>"
+            "<p>We have a fully interactive calculator waiting for you! Scroll down on the <a href=\"diet.html#bmiResult\" style=\"color: #6366f1; text-decoration: underline;\">Diet Plans</a> page to enter your measurements and get instant feedback with local database saving.</p>"
+        )
+        
+    elif any(k in msg for k in ['lose weight', 'weight loss', 'burn fat', 'slim down', 'calories', 'deficit']):
+        return (
+            "<p>🔥 <strong>Sustainable Fat Loss</strong></p>"
+            "<p>The golden rule of fat loss is simple: you must create a <strong>calorie deficit</strong> (burning more calories than you consume). Here's a safe strategy:</p>"
+            "<ol>"
+            "<li><strong>Target Deficit:</strong> Aim for a mild deficit of 300 to 500 kcal below your daily maintenance level. This achieves about 0.5kg of healthy fat loss per week.</li>"
+            "<li><strong>High Protein:</strong> Crucial to prevent muscle loss while losing weight. Make sure protein represents at least 30% of your daily intake.</li>"
+            "<li><strong>NEAT (Activity):</strong> Walk more! Aiming for 8,000–10,000 steps daily is a massive contributor to fat loss.</li>"
+            "</ol>"
+            "<p><em>Note: Always consult a doctor before making any aggressive dietary modifications.</em></p>"
+        )
+        
+    elif any(k in msg for k in ['gain muscle', 'build muscle', 'bulk', 'hypertrophy', 'size']):
+        return (
+            "<p>🏋️ <strong>Muscle Hypertrophy & Gain</strong></p>"
+            "<p>To build clean muscle tissue, your body requires two main stimuli: a calorie surplus and progressive strength overload.</p>"
+            "<ul>"
+            "<li><strong>Calorie Surplus:</strong> Consume 200–400 calories *above* your maintenance level to provide building blocks.</li>"
+            "<li><strong>Protein intake:</strong> Consume 1.6 to 2.2 grams of protein per kilogram of body weight.</li>"
+            "<li><strong>Progressive Overload:</strong> Gradually increase the resistance (weights or reps) in your exercises over time to force adaptation.</li>"
+            "<li><strong>Rest:</strong> Muscles grow when you rest, not when you lift. Get 7-8 hours of sleep.</li>"
+            "</ul>"
+        )
+        
+    elif any(k in msg for k in ['sleep', 'rest', 'recovery', 'insomnia', 'hours']):
+        return (
+            "<p>😴 <strong>Sleep & Recovery Protocol</strong></p>"
+            "<p>Recovery is where the transformation happens. Without adequate rest, your body cannot heal and build muscle tissues efficiently:</p>"
+            "<ul>"
+            "<li><strong>Aim for 7-9 Hours:</strong> Consistent sleep cycles regulate critical fat-burning and growth hormones.</li>"
+            "<li><strong>Sleep Hygiene:</strong> Discontinue phone/screen usage at least 45 minutes before bed. Keep your room dark, cool, and quiet.</li>"
+            "<li><strong>Active Recovery:</strong> On rest days, do light walking or yoga to promote blood flow and alleviate soreness.</li>"
+            "</ul>"
+        )
+        
+    elif any(k in msg for k in ['injury', 'pain', 'hurt', 'sore', 'knees', 'back']):
+        return (
+            "<p>⚠️ <strong>Injury Care & Safety First</strong></p>"
+            "<p>Your safety is the highest priority! If you feel sharp pain (distinguished from normal muscle soreness):</p>"
+            "<ul>"
+            "<li><strong>STOP immediately:</strong> Never 'push through' acute joint or tendon pain.</li>"
+            "<li><strong>Use R.I.C.E.:</strong> Rest, Ice, Compression, and Elevation for minor strains.</li>"
+            "<li><strong>Consult a professional:</strong> For any persistent joint pain, visit a licensed physician or physical therapist.</li>"
+            "</ul>"
+            "<p>When performing workouts, you can specify your injuries in our home page assessment so we exclude dangerous exercises from your routines.</p>"
+        )
+        
+    else:
+        return (
+            "<p>💡 <strong>Thanks for your question!</strong></p>"
+            "<p>As your FitLife Coach, I want to make sure you get the most accurate support. "
+            "To give you custom diet and training recommendations tailored precisely to your metrics, "
+            "please complete our <a href=\"index.html#assessment\" style=\"color: #6366f1; text-decoration: underline;\">Personalized Fitness Assessment</a>!</p>"
+            "<p>You can also ask me about topics like: <strong>dieting, muscle gain, burning fat, sleep, exercise guides, and BMI calculations.</strong></p>"
+        )
+
+# AI Chatbot endpoint
+@app.route('/api/chat', methods=['POST'])
+def chat():
+    try:
+        data = request.get_json()
+        if not data or 'message' not in data:
+            return jsonify({
+                'status': 'error',
+                'message': 'Message is required'
+            }), 400
+        
+        user_message = data['message']
+        
+        # Load dotenv to find key
+        load_dotenv()
+        api_key = os.environ.get('GEMINI_API_KEY') or os.environ.get('GOOGLE_API_KEY')
+        
+        if api_key:
+            # Attempt to call Gemini API
+            gemini_response = call_gemini_api(user_message, api_key)
+            if gemini_response:
+                return jsonify({
+                    'status': 'success',
+                    'response': gemini_response,
+                    'source': 'gemini'
+                }), 200
+        
+        # Graceful fallback to smart local expert bot if API key is missing or call fails
+        fallback_response = get_local_expert_response(user_message)
+        return jsonify({
+            'status': 'success',
+            'response': fallback_response,
+            'source': 'local_expert'
+        }), 200
+        
+    except Exception as e:
+        return jsonify({
+            'status': 'error',
+            'message': str(e)
+        }), 500
+
 # Error handlers
 @app.errorhandler(404)
 def not_found(error):
@@ -445,7 +664,7 @@ if __name__ == '__main__':
     port = int(os.environ.get('PORT', 5000))
     debug_mode = os.environ.get('FLASK_DEBUG', 'True') == 'True'
     print(" Starting Fitness Backend Server...")
-    print(f"📍 Server running at port {port}")
-    print(f"📊 Admin Dashboard available at your deployed URL")
+    print(f"[*] Server running at port {port}")
+    print("[*] Admin Dashboard available at your deployed URL")
     app.run(debug=debug_mode, port=port, host='0.0.0.0')
 
