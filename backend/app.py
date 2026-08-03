@@ -659,11 +659,12 @@ def server_error(error):
         'message': 'Internal server error'
     }), 500
 
+init_db()
+
 if __name__ == '__main__':
-    init_db()
     port = int(os.environ.get('PORT', 5000))
     debug_mode = os.environ.get('FLASK_DEBUG', 'True') == 'True'
-    print(" Starting Fitness Backend Server...")
+    print("🚀 Starting Fitness Backend Server...")
     print(f"[*] Server running at port {port}")
     print("[*] Admin Dashboard available at your deployed URL")
     app.run(debug=debug_mode, port=port, host='0.0.0.0')
