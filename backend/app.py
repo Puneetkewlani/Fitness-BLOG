@@ -427,26 +427,28 @@ def get_bmi_data():
 
 # Helper function to load dotenv manually
 def load_dotenv():
-    dotenv_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), '.env')
-    if os.path.exists(dotenv_path):
-        try:
-            with open(dotenv_path, 'r', encoding='utf-8') as f:
-                for line in f:
-                    line = line.strip()
-                    if line and not line.startswith('#'):
-                        key, value = line.split('=', 1)
-                        os.environ[key.strip()] = value.strip()
-        except Exception as e:
-            print(f"Error loading local .env: {e}")
+    paths = [
+        os.path.join(os.path.dirname(os.path.abspath(__file__)), '.env'),
+        os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), '.env')
+    ]
+    for dotenv_path in paths:
+        if os.path.exists(dotenv_path):
+            try:
+                with open(dotenv_path, 'r', encoding='utf-8') as f:
+                    for line in f:
+                        line = line.strip()
+                        if line and not line.startswith('#') and '=' in line:
+                            key, value = line.split('=', 1)
+                            os.environ[key.strip()] = value.strip()
+            except Exception as e:
+                print(f"Error loading {dotenv_path}: {e}")
 
 # Gemini API Integration
 def call_gemini_api(prompt, api_key):
     import urllib.request
     import json
     
-    url = f"https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key={api_key}"
-    headers = {"Content-Type": "application/json"}
-    
+    models = ["gemini-1.5-flash", "gemini-2.0-flash", "gemini-1.5-pro"]
     system_instruction = (
         "You are FitLife AI, a friendly, encouraging, and professional fitness, nutrition, and wellness AI coach "
         "created by Puneet Kewlani. Your goal is to provide evidence-based, supportive, and practical advice on "
@@ -476,21 +478,25 @@ def call_gemini_api(prompt, api_key):
         }
     }
     
-    req = urllib.request.Request(
-        url, 
-        data=json.dumps(payload).encode('utf-8'), 
-        headers=headers, 
-        method='POST'
-    )
-    
-    try:
-        with urllib.request.urlopen(req, timeout=12) as response:
-            res_data = json.loads(response.read().decode('utf-8'))
-            text = res_data['candidates'][0]['content']['parts'][0]['text']
-            return text
-    except Exception as e:
-        print(f"Gemini API Error details: {e}")
-        return None
+    for model in models:
+        url = f"https://generativelanguage.googleapis.com/v1beta/models/{model}:generateContent?key={api_key}"
+        headers = {"Content-Type": "application/json"}
+        req = urllib.request.Request(
+            url, 
+            data=json.dumps(payload).encode('utf-8'), 
+            headers=headers, 
+            method='POST'
+        )
+        try:
+            with urllib.request.urlopen(req, timeout=12) as response:
+                res_data = json.loads(response.read().decode('utf-8'))
+                text = res_data['candidates'][0]['content']['parts'][0]['text']
+                return text
+        except Exception as e:
+            print(f"Gemini API Error with model {model}: {e}")
+            continue
+            
+    return None
 
 # Local expert chatbot fallback for seamless robust performance
 def get_local_expert_response(msg):
